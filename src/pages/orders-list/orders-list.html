@@ -6,13 +6,49 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-searchbar></ion-searchbar>
+  <ion-navbar color="navBarColor">
+    <button ion-button menuToggle>
+      <ion-icon name="menu"></ion-icon>
+    </button>
+
+    <ion-title>Siparişler</ion-title>
+
   </ion-navbar>
 
+  <ion-toolbar color="navBarColor">
+    <ion-searchbar></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar color="navBarColor">
+    <ion-item color="navBarColor">
+      <ion-label>Müşteri</ion-label>
+      <ion-label>Sipariş Tarihi</ion-label>
+      <ion-label>İş Teslim Tarihi</ion-label>
+      <ion-label>Personel</ion-label>
+      <ion-label>Sipariş Tutarı</ion-label>
+      <ion-label>Kalan tutar</ion-label>
+    </ion-item>
+  </ion-toolbar>
 </ion-header>
 
 
 <ion-content padding>
-  <ion-list></ion-list>
+
+
+  <ion-list>
+    <ion-item-sliding *ngFor="let order of orders">
+      <ion-item (click)="showOrdersDetails(order._id)">
+        <ion-label>{{ order.customer.name }}</ion-label>
+        <ion-label>{{ order.orderDetails.orderDate }}</ion-label>
+        <ion-label>{{ order.orderDetails.deliveryDate }}</ion-label>
+        <ion-label>{{ order.orderDetails.personnel }}</ion-label>
+        <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>
+        <ion-label>TODO</ion-label>
+      </ion-item>
+
+      <ion-item-options>
+        <button color="danger" ion-button>Sil</button>
+      </ion-item-options>
+    </ion-item-sliding>
+  </ion-list>
 </ion-content>

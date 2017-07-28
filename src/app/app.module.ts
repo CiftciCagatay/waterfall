@@ -20,6 +20,7 @@ import { ProductFormPage } from "../pages/order-details/components/forms/product
 import { PaymentFormPage } from "../pages/order-details/components/forms/payment-form/payment-form";
 import { CustomerFormPage } from "../pages/order-details/components/forms/customer-form/customer-form";
 import { OrderDetailsFormPage } from "../pages/order-details/components/forms/order-details-form/order-details-form";
+import { OrdersListPage } from "../pages/orders-list/orders-list";
 
 @NgModule({
   declarations: [
@@ -27,6 +28,7 @@ import { OrderDetailsFormPage } from "../pages/order-details/components/forms/or
 
     HomePage,
     NewOrderFormPage,
+    OrdersListPage,
     OrderDetailsPage,
 
     CustomerFormPage,
@@ -51,6 +53,7 @@ import { OrderDetailsFormPage } from "../pages/order-details/components/forms/or
 
     HomePage,
     NewOrderFormPage,
+    OrdersListPage,
     OrderDetailsPage,
 
     CustomerFormPage,
