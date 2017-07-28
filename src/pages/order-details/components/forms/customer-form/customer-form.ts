@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the CustomerFormPage page.
@@ -14,11 +14,42 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class CustomerFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  customer: any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private alertCtrl: AlertController
+  ) {
+
+    this.customer = this.navParams.get('customer');
+
+    if (!this.customer) {
+      this.navCtrl.pop();
+    }
   }
 
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad CustomerFormPage');
+  showSubmitAlert() {
+    this.alertCtrl.create({
+      title: 'Değişiklikler Kaydedilecek',
+      subTitle: 'Bu değişiklikler geri alınamaz. Emin misiniz?',
+
+      buttons: [
+        {
+          text: "Hayır"
+        },
+        {
+          text: "Evet",
+          handler: () => {
+            this.saveChanges()
+          }
+        }
+      ]
+    }).present();
+  }
+
+  saveChanges() {
+
   }
 
 }

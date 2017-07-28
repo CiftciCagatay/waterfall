@@ -6,13 +6,71 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>customer-form</ion-title>
+  <ion-navbar color="navBarColor">
+    <ion-buttons start>
+      <button navPop ion-button>Vazgeç</button>
+    </ion-buttons>
+
+    <ion-title>Müşteri Bilgileri Düzenleme Formu</ion-title>
+
+    <ion-buttons end>
+      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label>TC Kimlik</ion-label>
+        <ion-input type="number" name="identificationNumber" [(ngModel)]="customer.identificationNumber"></ion-input>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>İsim</ion-label>
+        <ion-input name="name" [(ngModel)]="customer.name"></ion-input>
+      </ion-item>
+
+      <ion-item-divider></ion-item-divider>
+      
+      <ion-item>
+        <ion-label>Telefon 1</ion-label>
+        <ion-input name="telephone1" [(ngModel)]="customer.telephones[0]"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefon 2</ion-label>
+        <ion-input name="telephone2" [(ngModel)]="customer.telephones[1]"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-input name="email" [(ngModel)]="customer.email"></ion-input>
+      </ion-item>
+
+      <ion-item-divider></ion-item-divider>
+      
+      <ion-item>
+        <ion-label>Adres Satırı</ion-label>
+        <ion-textarea name="addressLine" [(ngModel)]="customer.address.line"></ion-textarea>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>Şehir</ion-label>
+        <ion-input name="addressCity" [(ngModel)]="customer.address.city"></ion-input>
+      </ion-item>
+      
+      <ion-item>
+        <ion-label>İlçe</ion-label>
+        <ion-input name="addressDistrict" [(ngModel)]="customer.address.district"></ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Adres Not</ion-label>
+        <ion-input name="addressNote" [(ngModel)]="customer.address.note"></ion-input>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>
