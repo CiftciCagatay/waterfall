@@ -4,31 +4,64 @@ import { IonicApp, IonicErrorHandler, IonicModule } from 'ionic-angular';
 
 import { MyApp } from './app.component';
 import { HomePage } from '../pages/home/home';
-import { ListPage } from '../pages/list/list';
 
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
+import { NewOrderFormPage } from "../pages/new-order-form/new-order-form";
+import { OrderDetailsPage } from "../pages/order-details/order-details";
+import { ComponentsModule } from "../components/components.module";
+
+import { ProductsListCardComponent } from "../pages/order-details/components/panels/products-list-card/products-list-card";
+import { PaymentsListCardComponent } from "../pages/order-details/components/panels/payments-list-card/payments-list-card";
+import { OrderDetailsCardComponent } from "../pages/order-details/components/panels/order-details-card/order-details-card";
+import { CustomerDetailsCardComponent } from "../pages/order-details/components/panels/customer-details-card/customer-details-card";
+import { FormatDatePipe } from "../pipes/format-date/format-date";
+import { ProductFormPage } from "../pages/order-details/components/forms/product-form/product-form";
+import { PaymentFormPage } from "../pages/order-details/components/forms/payment-form/payment-form";
+import { CustomerFormPage } from "../pages/order-details/components/forms/customer-form/customer-form";
+import { OrderDetailsFormPage } from "../pages/order-details/components/forms/order-details-form/order-details-form";
 
 @NgModule({
   declarations: [
     MyApp,
+
     HomePage,
-    ListPage
+    NewOrderFormPage,
+    OrderDetailsPage,
+
+    CustomerFormPage,
+    OrderDetailsFormPage,
+    ProductFormPage,
+    PaymentFormPage,
+
+    CustomerDetailsCardComponent,
+    OrderDetailsCardComponent,
+    PaymentsListCardComponent,
+    ProductsListCardComponent,
+    
+    FormatDatePipe
   ],
   imports: [
     BrowserModule,
-    IonicModule.forRoot(MyApp),
+    IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
   entryComponents: [
     MyApp,
+
     HomePage,
-    ListPage
+    NewOrderFormPage,
+    OrderDetailsPage,
+
+    CustomerFormPage,
+    OrderDetailsFormPage,
+    ProductFormPage,
+    PaymentFormPage
   ],
   providers: [
     StatusBar,
     SplashScreen,
-    {provide: ErrorHandler, useClass: IonicErrorHandler}
+    { provide: ErrorHandler, useClass: IonicErrorHandler }
   ]
 })
-export class AppModule {}
+export class AppModule { }

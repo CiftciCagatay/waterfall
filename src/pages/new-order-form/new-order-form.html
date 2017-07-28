@@ -1,0 +1,165 @@
+<!--
+  Generated template for the NewOrderFormPage page.
+
+  See http://ionicframework.com/docs/components/#navigation for more info on
+  Ionic pages and navigation.
+-->
+<ion-header>
+
+  <ion-navbar>
+    <ion-title>Yeni Sipariş Formu</ion-title>
+
+    <ion-buttons end>
+      <button (click)="showSavingAlert()" ion-button>Kaydet</button>
+    </ion-buttons>
+  </ion-navbar>
+
+</ion-header>
+
+
+<ion-content padding>
+  <form>
+    <ion-grid>
+      <ion-row>
+        <!-- Müşteri -->
+        <ion-col>
+          <ion-card>
+            <ion-card-header>Müşteri</ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <label ion-item>
+                  <ion-label fixed>*TC Kimlik</ion-label>
+                  <ion-input type="number"></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>*İsim</ion-label>
+                  <ion-input></ion-input>
+                </label>
+
+                <ion-item-divider></ion-item-divider>
+
+                <label ion-item>
+                  <ion-label fixed>Telefon 1</ion-label>
+                  <ion-input></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Telefon 2</ion-label>
+                  <ion-input></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Email</ion-label>
+                  <ion-input></ion-input>
+                </label>
+
+                <ion-item-divider></ion-item-divider>
+
+                <label ion-item>
+                  <ion-label fixed>Adres Satırı</ion-label>
+                  <ion-textarea></ion-textarea>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Şehir</ion-label>
+                  <ion-input></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>İlçe</ion-label>
+                  <ion-input></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Adres Not</ion-label>
+                  <ion-textarea></ion-textarea>
+                </label>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+
+        <!-- Sipariş ve Kapora -->
+        <ion-col>
+          <!-- Sipariş -->
+          <ion-card>
+            <ion-card-header>Sipariş</ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <label ion-item>
+                  <ion-label>İş Teslim Tarihi</ion-label>
+                  <ion-datetime></ion-datetime>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Sipariş Tutarı</ion-label>
+                  <ion-input type="number"></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label>Para Birimi</ion-label>
+                  <ion-select>
+                    <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>
+                  </ion-select>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Sipariş Not</ion-label>
+                  <ion-textarea></ion-textarea>
+                </label>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+          
+          <!-- Kapora -->
+          <ion-card>
+            <ion-card-header>Kapora</ion-card-header>
+
+            <ion-card-content>
+              <ion-list>
+                <label ion-item>
+                  <ion-label>Ödeme Türü</ion-label>
+                  <ion-select>
+                    <ion-option *ngFor="let paymentType of paymentTypes">{{ paymentType }}</ion-option>
+                  </ion-select>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Tutar</ion-label>
+                  <ion-input type="number"></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label>Para Birimi</ion-label>
+                  <ion-select>
+                    <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>
+                  </ion-select>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Taksit Sayısı</ion-label>
+                  <ion-input type="number"></ion-input>
+                </label>
+
+                <label ion-item>
+                  <ion-label>Banka</ion-label>
+                  <ion-select>
+                    <ion-option *ngFor="let bank of banks">{{ bank }}</ion-option>
+                  </ion-select>
+                </label>
+
+                <label ion-item>
+                  <ion-label fixed>Ödeme Not</ion-label>
+                  <ion-textarea></ion-textarea>
+                </label>
+              </ion-list>
+            </ion-card-content>
+          </ion-card>
+        </ion-col>
+      </ion-row>
+    </ion-grid>
+  </form>
+</ion-content>

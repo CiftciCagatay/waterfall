@@ -1,0 +1,31 @@
+<ion-card>
+          <ion-item color="secondBarColor">
+            <h2 style="color: white">Ödemeler</h2>
+            <button color="light" (click)="presentModallyProductFormPage('new', -1)" outline icon-left item-right ion-button>
+              <ion-icon ios="ios-add" md="md-add"></ion-icon>Yeni
+            </button>
+          </ion-item>
+
+          <ion-card-content style="margin-top: 12px">
+            <ion-list>
+              <ion-item-sliding *ngFor="let payment of payments; let i = index">
+                <ion-item>
+                  <div item-start>
+                    <h1>{{ payment.amount }} {{ payment.currency }}</h1>
+                  </div>
+                  
+                  <div style="width: 75%;" item-end>
+                    <h2>{{ payment.type == "Kredi Kartı" ? payment.installments + " Taksit | " + payment.bank : "" }}</h2>
+                    <h3>{{ payment.personnel }} | {{ payment.date| formatDate }}</h3>
+                    <p>{{ payment.note }}</p>
+                  </div>
+                </ion-item>
+
+                <ion-item-options>
+                  <button (click)="presentModallyProductFormPage('edit', i)" ion-button>DÜZENLE</button>
+                  <button (click)="presentDeletionWarning(payment._id, i)" color="danger" ion-button>SİL</button>
+                </ion-item-options>
+              </ion-item-sliding>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>

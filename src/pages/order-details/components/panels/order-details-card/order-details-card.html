@@ -1,0 +1,42 @@
+ <ion-card>
+          <ion-item color="secondBarColor">
+            <h2 style="color: white">Sipariş</h2>
+            <button color="light" (click)="presentModallyOrderDetailsFormPage()" outline icon-left item-right ion-button>
+                <ion-icon ios="ios-create" md="md-create"></ion-icon>Düzenle
+              </button>
+          </ion-item>
+
+          <ion-card-content style="margin-top: 12px">
+            <ion-list>
+              <ion-item>
+                <ion-label>Sipariş Tutarı</ion-label>
+                <ion-label>{{ orderDetails?.totalAmount }} {{ orderDetails?.currency }}</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Kalan Tutar</ion-label>
+                <ion-label><!-- TODO -->{{ orderDetails?.currency }}</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Sipariş Tarihi</ion-label>
+                <ion-label>{{ orderDetails?.orderDate | formatDate }}</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>İş Teslim Tarihi</ion-label>
+                <ion-label>{{ orderDetails?.deliveryDate | formatDate }}</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Personel</ion-label>
+                <ion-label>{{ orderDetails?.personnel }}</ion-label>
+              </ion-item>
+
+              <ion-item>
+                <ion-label>Sipariş Not</ion-label>
+                <ion-label>{{ orderDetails?.note }}</ion-label>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>

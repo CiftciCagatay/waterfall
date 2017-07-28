@@ -1,0 +1,56 @@
+<ion-card>
+  <ion-item color="secondBarColor">
+    <h2 style="color: white">Müşteri</h2>
+    <button (click)="presentModallyCustomerFormPage()" color="light" item-right outline icon-left ion-button>
+      <ion-icon ios="ios-create" md="md-create"></ion-icon>Düzenle
+    </button>
+  </ion-item>
+
+  <ion-card-content style="margin-top: 12px">
+    <ion-list>
+      <ion-item>
+        <ion-label>TC Kimlik No</ion-label>
+        <ion-label>{{ customer?.identificationNumber }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>İsim Soyisim</ion-label>
+        <ion-label>{{ customer?.name }}</ion-label>
+      </ion-item>
+
+      <ion-item-divider></ion-item-divider>
+
+      <ion-item>
+        <ion-label>Telefon 1</ion-label>
+        <ion-label>{{ customer?.telephones[0] }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Telefon 2</ion-label>
+        <ion-label>{{ customer?.telephones[1] }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Email</ion-label>
+        <ion-label>{{ customer?.email }}</ion-label>
+      </ion-item>
+
+      <ion-item-divider></ion-item-divider>
+
+      <ion-item>
+        <ion-label>Adres Satırı</ion-label>
+        <ion-label>{{ customer?.address?.line }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>İlçe / Şehir</ion-label>
+        <ion-label>{{ customer?.address?.district }} / {{ customer?.address?.city }}</ion-label>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Adres Not</ion-label>
+        <ion-label>{{ customer?.address?.note }}</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
