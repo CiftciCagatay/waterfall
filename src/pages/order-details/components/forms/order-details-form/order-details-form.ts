@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 /**
  * Generated class for the OrderInformationFormPage page.
@@ -14,16 +15,20 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 })
 export class OrderDetailsFormPage {
 
+  orderId: string;
   orderDetails: any;
 
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private mdbs: MongoDbServiceProvider
   ) {
+    this.orderId = this.navParams.get('orderId');
     this.orderDetails = this.navParams.get('orderDetails');
 
-    if (!this.orderDetails) {
+    if (!this.orderDetails || !this.orderId) {
       this.navCtrl.pop();
     }
   }
@@ -48,7 +53,13 @@ export class OrderDetailsFormPage {
   }
 
   saveChanges() {
+    let loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
 
+    loading.present();
+
+    this.mdbs.updateOrderInformation(this.orderId, this.orderDetails).subscribe((response) => {
+      loading.dismiss().then(() => this.navCtrl.pop());
+    })
   }
 
 }

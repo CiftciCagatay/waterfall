@@ -8,6 +8,7 @@ import { OrderDetailsFormPage } from "../../forms/order-details-form/order-detai
 })
 export class OrderDetailsCardComponent {
   
+  @Input() orderId: string;
   @Input() orderDetails: any;
 
   constructor(
@@ -18,7 +19,8 @@ export class OrderDetailsCardComponent {
 
   presentModallyOrderDetailsFormPage() {
     this.modalCtrl.create(OrderDetailsFormPage, {
-      orderDetails: this.orderDetails
+      orderDetails: this.orderDetails,
+      orderId: this.orderId
     }).present();
   }
 
