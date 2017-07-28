@@ -1,12 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
-
-/**
- * Generated class for the CustomerFormPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 @Component({
   selector: 'page-customer-form',
@@ -19,7 +13,9 @@ export class CustomerFormPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private mdbs: MongoDbServiceProvider
   ) {
 
     this.customer = this.navParams.get('customer');
@@ -49,7 +45,13 @@ export class CustomerFormPage {
   }
 
   saveChanges() {
+    let loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
 
+    loading.present();
+
+    this.mdbs.updateCustomerInformation(this.customer._id, this.customer).subscribe((response) => {
+      loading.dismiss().then(() => this.navCtrl.pop());
+    })
   }
 
 }
