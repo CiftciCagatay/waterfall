@@ -1,5 +1,7 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
+import { OrderDetailsPage } from "../order-details/order-details";
 
 /**
  * Generated class for the NewOrderFormPage page.
@@ -14,11 +16,50 @@ import { NavController, NavParams, AlertController, LoadingController } from 'io
 })
 export class NewOrderFormPage {
 
+  orderId: string;
+  order = {
+    customer: {
+      identificationNumber: "",
+      name: "",
+      telephones: ["", ""],
+      email: "",
+      address: {
+        line: "",
+        city: "",
+        district: "",
+        note: ""
+      }
+    },
+
+    orderDetails: {
+      orderDate: new Date(),
+      deliveryDate: new Date(),
+      personnel: "Çağatay Çiftçi",
+      amount: null,
+      currency: "TRY",
+      note: ""
+    },
+
+    payments: [
+      {
+        type: "Nakit",
+        currency: "TRY",
+        amount: null,
+        note: "",
+        personnel: "Çağatay",
+        installments: null,
+        bank: ""
+      }
+    ]
+  };
+
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
-    private loadingCtrl: LoadingController
+    private loadingCtrl: LoadingController,
+    private toastCtrl: ToastController,
+    private mdbs: MongoDbServiceProvider
   ) {
   }
 
@@ -33,27 +74,7 @@ export class NewOrderFormPage {
         {
           text: "Kaydet",
           handler: () => {
-            let loading = this.loadingCtrl.create({
-              content: "Sipariş kaydediliyor..."
-            });
-
-            loading.present();
-
-            setTimeout(() => {
-              loading.setContent("Vazgeçtim")
-            }, 1500);
-            
-            this.saveOrder()
-              .then((result) => {
-                loading.dismiss();
-
-                console.log(result)
-              })
-              .catch((error) => {
-                loading.dismiss();
-
-                console.log(error)
-              });
+            this.saveOrder();
           }
         }
       ]
@@ -61,14 +82,30 @@ export class NewOrderFormPage {
   }
 
   saveOrder() {
-    return new Promise((resolve, reject) => {
-      setTimeout(() => {
-        reject("HAHAHAHAH");
-      }, 3000);
-    })
+    let loading = this.loadingCtrl.create({
+      content: "Sipariş kaydediliyor..."
+    });
+
+    loading.present();
+
+    this.mdbs.insertNewOrder(this.order).subscribe((response) => {
+      this.orderId = response.json().orderId;
+
+      loading.dismiss();
+    });
+  }
+
+  showOrderSavedToast() {
+    this.toastCtrl.create({
+      message: "Sipariş başarıyla kaydedildi",
+      closeButtonText: "Detaylara Git",
+      duration: 10
+    }).present();
   }
 
   goToOrderDetailsPage() {
-
+    this.navCtrl.push(OrderDetailsPage, {
+      orderId: this.orderId
+    });
   }
 }

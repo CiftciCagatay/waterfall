@@ -197,12 +197,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(271);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(272);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_orders_list_orders_list__ = __webpack_require__(273);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__angular_http__ = __webpack_require__(275);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -247,6 +251,7 @@ AppModule = __decorate([
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
+            __WEBPACK_IMPORTED_MODULE_20__angular_http__["b" /* HttpModule */],
             __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */])
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["b" /* IonicApp */]],
@@ -264,7 +269,8 @@ AppModule = __decorate([
         providers: [
             __WEBPACK_IMPORTED_MODULE_5__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_splash_screen__["a" /* SplashScreen */],
-            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] }
+            { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicErrorHandler */] },
+            __WEBPACK_IMPORTED_MODULE_19__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]
         ]
     })
 ], AppModule);
@@ -333,15 +339,14 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */]) === "function" && _a || Object)
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar color="navBarColor">\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -353,6 +358,8 @@ var _a, _b, _c, _d;
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewOrderFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(274);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_details_order_details__ = __webpack_require__(192);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -364,6 +371,8 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
+
 /**
  * Generated class for the NewOrderFormPage page.
  *
@@ -371,11 +380,46 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var NewOrderFormPage = (function () {
-    function NewOrderFormPage(navCtrl, navParams, alertCtrl, loadingCtrl) {
+    function NewOrderFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, toastCtrl, mdbs) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
+        this.toastCtrl = toastCtrl;
+        this.mdbs = mdbs;
+        this.order = {
+            customer: {
+                identificationNumber: "",
+                name: "",
+                telephones: ["", ""],
+                email: "",
+                address: {
+                    line: "",
+                    city: "",
+                    district: "",
+                    note: ""
+                }
+            },
+            orderDetails: {
+                orderDate: new Date(),
+                deliveryDate: new Date(),
+                personnel: "Çağatay Çiftçi",
+                amount: null,
+                currency: "TRY",
+                note: ""
+            },
+            payments: [
+                {
+                    type: "Nakit",
+                    currency: "TRY",
+                    amount: null,
+                    note: "",
+                    personnel: "Çağatay",
+                    installments: null,
+                    bank: ""
+                }
+            ]
+        };
     }
     NewOrderFormPage.prototype.showSavingAlert = function () {
         var _this = this;
@@ -389,48 +433,45 @@ var NewOrderFormPage = (function () {
                 {
                     text: "Kaydet",
                     handler: function () {
-                        var loading = _this.loadingCtrl.create({
-                            content: "Sipariş kaydediliyor..."
-                        });
-                        loading.present();
-                        setTimeout(function () {
-                            loading.setContent("Vazgeçtim");
-                        }, 1500);
-                        _this.saveOrder()
-                            .then(function (result) {
-                            loading.dismiss();
-                            console.log(result);
-                        })
-                            .catch(function (error) {
-                            loading.dismiss();
-                            console.log(error);
-                        });
+                        _this.saveOrder();
                     }
                 }
             ]
         }).present();
     };
     NewOrderFormPage.prototype.saveOrder = function () {
-        return new Promise(function (resolve, reject) {
-            setTimeout(function () {
-                reject("HAHAHAHAH");
-            }, 3000);
+        var _this = this;
+        var loading = this.loadingCtrl.create({
+            content: "Sipariş kaydediliyor..."
+        });
+        loading.present();
+        this.mdbs.insertNewOrder(this.order).subscribe(function (response) {
+            _this.orderId = response.json().orderId;
+            loading.dismiss();
         });
     };
+    NewOrderFormPage.prototype.showOrderSavedToast = function () {
+        this.toastCtrl.create({
+            message: "Sipariş başarıyla kaydedildi",
+            closeButtonText: "Detaylara Git",
+            duration: 10
+        }).present();
+    };
     NewOrderFormPage.prototype.goToOrderDetailsPage = function () {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__order_details_order_details__["a" /* OrderDetailsPage */], {
+            orderId: this.orderId
+        });
     };
     return NewOrderFormPage;
 }());
 NewOrderFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    \n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form>\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Şehir</ion-label>\n                  <ion-input></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>İlçe</ion-label>\n                  <ion-input></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select>\n                    <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n          \n          <!-- Kapora -->\n          <ion-card>\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select>\n                    <ion-option *ngFor="let paymentType of paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select>\n                    <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select>\n                    <ion-option *ngFor="let bank of banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/,
+        selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form>\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input name="identificationNumber" [(ngModel)]="order.customer.identificationNumber" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Şehir</ion-label>\n                  <ion-input name="addressCity" [(ngModel)]="order.customer.address.city"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>İlçe</ion-label>\n                  <ion-input name="addressDistrict" [(ngModel)]="order.customer.address.district"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime name="deliveryDate" [(ngModel)]="order.orderDetails.deliveryDate"></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">\n                    <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n          \n          <!-- Kapora -->\n          <ion-card>\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">\n                    <ion-option *ngFor="let paymentType of paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">\n                    <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">\n                    <ion-option *ngFor="let bank of banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* ToastController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _f || Object])
 ], NewOrderFormPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=new-order-form.js.map
 
 /***/ }),
@@ -960,10 +1001,11 @@ CustomerFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-customer-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/order-details/components/forms/customer-form/customer-form.html"*/'<!--\n  Generated template for the CustomerFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>Müşteri Bilgileri Düzenleme Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <form>\n    <ion-list>\n      <ion-item>\n        <ion-label>TC Kimlik</ion-label>\n        <ion-input type="number" name="identificationNumber" [(ngModel)]="customer.identificationNumber"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>İsim</ion-label>\n        <ion-input name="name" [(ngModel)]="customer.name"></ion-input>\n      </ion-item>\n\n      <ion-item-divider></ion-item-divider>\n      \n      <ion-item>\n        <ion-label>Telefon 1</ion-label>\n        <ion-input name="telephone1" [(ngModel)]="customer.telephones[0]"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Telefon 2</ion-label>\n        <ion-input name="telephone2" [(ngModel)]="customer.telephones[1]"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Email</ion-label>\n        <ion-input name="email" [(ngModel)]="customer.email"></ion-input>\n      </ion-item>\n\n      <ion-item-divider></ion-item-divider>\n      \n      <ion-item>\n        <ion-label>Adres Satırı</ion-label>\n        <ion-textarea name="addressLine" [(ngModel)]="customer.address.line"></ion-textarea>\n      </ion-item>\n      \n      <ion-item>\n        <ion-label>Şehir</ion-label>\n        <ion-input name="addressCity" [(ngModel)]="customer.address.city"></ion-input>\n      </ion-item>\n      \n      <ion-item>\n        <ion-label>İlçe</ion-label>\n        <ion-input name="addressDistrict" [(ngModel)]="customer.address.district"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Adres Not</ion-label>\n        <ion-input name="addressNote" [(ngModel)]="customer.address.note"></ion-input>\n      </ion-item>\n    </ion-list>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/order-details/components/forms/customer-form/customer-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
 ], CustomerFormPage);
 
-var _a, _b, _c;
 //# sourceMappingURL=customer-form.js.map
 
 /***/ }),
@@ -1067,716 +1109,7 @@ var OrdersListPage = (function () {
     function OrdersListPage(navCtrl, navParams) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.orders = [
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            },
-            {
-                customer: {
-                    name: "Çağatay Çiftçi",
-                    telephones: ["555"],
-                    email: "im.cgtycftc@gmail.com",
-                    address: {
-                        line: "Örnektepe",
-                        district: "Beyoğlu",
-                        "city": "İstanbul",
-                        note: "Dürümcü karşısı"
-                    }
-                },
-                orderDetails: {
-                    orderDate: new Date(),
-                    deliveryDate: new Date(),
-                    amount: 1200,
-                    currency: "TRY",
-                    note: "Selam",
-                    personnel: "Çağatay Çiftçi"
-                },
-                payments: [
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    },
-                    {
-                        type: "Kredi Kartı",
-                        amount: 1500,
-                        currency: "TRY",
-                        personnel: "Çağatay Çiftçi",
-                        installments: 5,
-                        bank: "Garanti",
-                        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                    }
-                ],
-                products: [
-                    {
-                        patternCode: "A1234",
-                        varietyCode: "CCDE134",
-                        colorCode: "SYH12",
-                        unitPrice: 12.5,
-                        quantity: 10.0
-                    }
-                ]
-            }
-        ];
+        this.orders = [];
     }
     OrdersListPage.prototype.showOrdersDetails = function (orderId) {
         this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__order_details_order_details__["a" /* OrderDetailsPage */], {
@@ -1789,11 +1122,125 @@ OrdersListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-orders-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/orders-list/orders-list.html"*/'<!--\n  Generated template for the OrdersListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Siparişler</ion-title>\n\n  </ion-navbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-searchbar></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>Müşteri</ion-label>\n      <ion-label>Sipariş Tarihi</ion-label>\n      <ion-label>İş Teslim Tarihi</ion-label>\n      <ion-label>Personel</ion-label>\n      <ion-label>Sipariş Tutarı</ion-label>\n      <ion-label>Kalan tutar</ion-label>\n    </ion-item>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let order of orders">\n      <ion-item (click)="showOrdersDetails(order._id)">\n        <ion-label>{{ order.customer.name }}</ion-label>\n        <ion-label>{{ order.orderDetails.orderDate }}</ion-label>\n        <ion-label>{{ order.orderDetails.deliveryDate }}</ion-label>\n        <ion-label>{{ order.orderDetails.personnel }}</ion-label>\n        <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n        <ion-label>TODO</ion-label>\n      </ion-item>\n\n      <ion-item-options>\n        <button color="danger" ion-button>Sil</button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/orders-list/orders-list.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
 ], OrdersListPage);
 
-var _a, _b;
 //# sourceMappingURL=orders-list.js.map
+
+/***/ }),
+
+/***/ 274:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MongoDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(275);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(276);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/*
+  Generated class for the MongoDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var MongoDbServiceProvider = (function () {
+    function MongoDbServiceProvider(http) {
+        this.http = http;
+        this.ref = "http://localhost:5000"; // "https://quiet-chamber-99549.herokuapp.com";
+        console.log('Hello MongoDbServiceProvider Provider');
+    }
+    MongoDbServiceProvider.prototype.insertNewOrder = function (order) {
+        return this.http.post(this.ref + "/orders/new", order);
+    };
+    MongoDbServiceProvider.prototype.insertPayment = function (orderId, paymentInformation) {
+        var url = this.ref + "/orders/" + orderId + "/payments/new";
+        return this.http.post(url, paymentInformation);
+    };
+    MongoDbServiceProvider.prototype.insertProduct = function (orderId, product) {
+        var url = this.ref + "/orders/" + orderId + "/products/new";
+        return this.http.post(url, product);
+    };
+    MongoDbServiceProvider.prototype.updatePayment = function (paymentId, newValue) {
+        var url = this.ref + "/payments/" + paymentId;
+        return this.http.put(url, newValue);
+    };
+    MongoDbServiceProvider.prototype.updateProduct = function (productId, newValue) {
+        var url = this.ref + "/products/" + productId;
+        return this.http.put(url, newValue);
+    };
+    MongoDbServiceProvider.prototype.updateCustomerInformation = function (customerId, newValue) {
+        var url = this.ref + "/customers/" + customerId;
+        return this.http.put(url, newValue);
+    };
+    MongoDbServiceProvider.prototype.updateOrderInformation = function (orderId, newValue) {
+        var url = this.ref + "/orders/" + orderId;
+        return this.http.put(url, newValue);
+    };
+    MongoDbServiceProvider.prototype.deleteOrder = function (id) {
+        var url = this.ref + "/orders/" + id;
+        return this.http.delete(url);
+    };
+    MongoDbServiceProvider.prototype.deletePayment = function (paymentId) {
+        var url = this.ref + "/payments/" + paymentId;
+        return this.http.delete(url);
+    };
+    MongoDbServiceProvider.prototype.deleteProduct = function (productId) {
+        var url = this.ref + "/products/" + productId;
+        return this.http.delete(url);
+    };
+    MongoDbServiceProvider.prototype.getOrdersList = function (customerName, lastOrderKey, limit) {
+        if (limit === void 0) { limit = 10; }
+        var url = this.ref + "/orders?limit=" + limit;
+        if (customerName) {
+            url = url + "&customerName=" + customerName;
+        }
+        if (lastOrderKey) {
+            url = url + "&lastOrderKey=" + lastOrderKey;
+        }
+        console.log("GET ORDER URL : " + url);
+        return this.http.get(url);
+    };
+    MongoDbServiceProvider.prototype.getOrderDetails = function (orderId) {
+        var url = this.ref + "/orders/" + orderId;
+        return this.http.get(url);
+    };
+    MongoDbServiceProvider.prototype.getEvents = function () {
+        var url = this.ref + "/logs";
+        return this.http.get(url);
+    };
+    MongoDbServiceProvider.prototype.logEvent = function (title, detail, personnel, date) {
+        var url = this.ref + "/logs";
+        this.http.post(url, {
+            title: title,
+            detail: detail,
+            personnel: personnel,
+            date: date
+        }).subscribe(function (result) {
+            console.log(result);
+        });
+    };
+    return MongoDbServiceProvider;
+}());
+MongoDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["a" /* Http */]) === "function" && _a || Object])
+], MongoDbServiceProvider);
+
+var _a;
+//# sourceMappingURL=mongo-db-service.js.map
 
 /***/ })
 

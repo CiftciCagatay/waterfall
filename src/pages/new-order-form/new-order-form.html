@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    
+
     <ion-title>Yeni Sipariş Formu</ion-title>
 
     <ion-buttons end>
@@ -34,51 +34,51 @@
               <ion-list>
                 <label ion-item>
                   <ion-label fixed>*TC Kimlik</ion-label>
-                  <ion-input type="number"></ion-input>
+                  <ion-input name="identificationNumber" [(ngModel)]="order.customer.identificationNumber" type="number"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>*İsim</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>
                 </label>
 
                 <ion-item-divider></ion-item-divider>
 
                 <label ion-item>
                   <ion-label fixed>Telefon 1</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Telefon 2</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Email</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>
                 </label>
 
                 <ion-item-divider></ion-item-divider>
 
                 <label ion-item>
                   <ion-label fixed>Adres Satırı</ion-label>
-                  <ion-textarea></ion-textarea>
+                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Şehir</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input name="addressCity" [(ngModel)]="order.customer.address.city"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>İlçe</ion-label>
-                  <ion-input></ion-input>
+                  <ion-input name="addressDistrict" [(ngModel)]="order.customer.address.district"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Adres Not</ion-label>
-                  <ion-textarea></ion-textarea>
+                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>
                 </label>
               </ion-list>
             </ion-card-content>
@@ -95,24 +95,24 @@
               <ion-list>
                 <label ion-item>
                   <ion-label>İş Teslim Tarihi</ion-label>
-                  <ion-datetime></ion-datetime>
+                  <ion-datetime name="deliveryDate" [(ngModel)]="order.orderDetails.deliveryDate"></ion-datetime>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Sipariş Tutarı</ion-label>
-                  <ion-input type="number"></ion-input>
+                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label>Para Birimi</ion-label>
-                  <ion-select>
+                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">
                     <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>
                   </ion-select>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Sipariş Not</ion-label>
-                  <ion-textarea></ion-textarea>
+                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>
                 </label>
               </ion-list>
             </ion-card-content>
@@ -126,38 +126,38 @@
               <ion-list>
                 <label ion-item>
                   <ion-label>Ödeme Türü</ion-label>
-                  <ion-select>
+                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">
                     <ion-option *ngFor="let paymentType of paymentTypes">{{ paymentType }}</ion-option>
                   </ion-select>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Tutar</ion-label>
-                  <ion-input type="number"></ion-input>
+                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label>Para Birimi</ion-label>
-                  <ion-select>
+                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">
                     <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>
                   </ion-select>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Taksit Sayısı</ion-label>
-                  <ion-input type="number"></ion-input>
+                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>
                 </label>
 
                 <label ion-item>
                   <ion-label>Banka</ion-label>
-                  <ion-select>
+                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">
                     <ion-option *ngFor="let bank of banks">{{ bank }}</ion-option>
                   </ion-select>
                 </label>
 
                 <label ion-item>
                   <ion-label fixed>Ödeme Not</ion-label>
-                  <ion-textarea></ion-textarea>
+                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>
                 </label>
               </ion-list>
             </ion-card-content>

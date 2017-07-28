@@ -21,6 +21,8 @@ import { PaymentFormPage } from "../pages/order-details/components/forms/payment
 import { CustomerFormPage } from "../pages/order-details/components/forms/customer-form/customer-form";
 import { OrderDetailsFormPage } from "../pages/order-details/components/forms/order-details-form/order-details-form";
 import { OrdersListPage } from "../pages/orders-list/orders-list";
+import { MongoDbServiceProvider } from '../providers/mongo-db-service/mongo-db-service';
+import { HttpModule } from "@angular/http";
 
 @NgModule({
   declarations: [
@@ -45,6 +47,7 @@ import { OrdersListPage } from "../pages/orders-list/orders-list";
   ],
   imports: [
     BrowserModule,
+    HttpModule,
     IonicModule.forRoot(MyApp)
   ],
   bootstrap: [IonicApp],
@@ -64,7 +67,8 @@ import { OrdersListPage } from "../pages/orders-list/orders-list";
   providers: [
     StatusBar,
     SplashScreen,
-    { provide: ErrorHandler, useClass: IonicErrorHandler }
+    { provide: ErrorHandler, useClass: IonicErrorHandler },
+    MongoDbServiceProvider
   ]
 })
 export class AppModule { }
