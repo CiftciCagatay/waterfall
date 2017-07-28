@@ -38,7 +38,7 @@
 
 
   <ion-list>
-    <ion-item-sliding *ngFor="let order of orders">
+    <ion-item-sliding *ngFor="let order of orders; let i = index">
       <ion-item (click)="showOrdersDetails(order._id)">
         <ion-label>{{ order.customer.name }}</ion-label>
         <!-- 
@@ -51,7 +51,7 @@
       </ion-item>
 
       <ion-item-options>
-        <button color="danger" ion-button>Sil</button>
+        <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>

@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ModalController, AlertController } from "ionic-angular";
+import { ModalController, AlertController, LoadingController } from "ionic-angular";
 import { ProductFormPage } from "../../forms/product-form/product-form";
+import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 /**
  * Generated class for the ProductsListCardComponent component.
@@ -19,13 +20,23 @@ export class ProductsListCardComponent {
 
   constructor(
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private mdbs: MongoDbServiceProvider
   ) {
     console.log('Hello ProductsListCardComponent Component');
   }
 
   deleteProduct(productId: string, index: number) {
-    this.products.splice(index, 1)
+    let loading = this.loadingCtrl.create({ content: "Ürün siliniyor..." });
+
+    loading.present();
+
+    this.mdbs.deleteProduct(productId).subscribe((response) => {
+      this.products.splice(index, 1);
+      
+      loading.dismiss();
+    });
   }
 
   presentDeletionWarning(productId: string, index:number) {

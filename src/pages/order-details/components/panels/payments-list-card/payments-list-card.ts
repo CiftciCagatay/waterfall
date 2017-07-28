@@ -1,6 +1,7 @@
 import { Component, Input } from '@angular/core';
-import { ModalController, AlertController } from "ionic-angular";
+import { ModalController, AlertController, LoadingController } from "ionic-angular";
 import { PaymentFormPage } from "../../forms/payment-form/payment-form";
+import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 /**
  * Generated class for the PaymentsListCardComponent component.
@@ -19,13 +20,23 @@ export class PaymentsListCardComponent {
   
   constructor(
     private modalCtrl: ModalController,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private mdbs: MongoDbServiceProvider
   ) {
     console.log(this.orderId);
   }
 
   deletePayment(paymentId: string, index: number) {
-    this.payments.splice(index, 1)
+    let loading = this.loadingCtrl.create({ content: "Ürün siliniyor..." });
+
+    loading.present();
+
+    this.mdbs.deletePayment(paymentId).subscribe((response) => {
+      this.payments.splice(index, 1)
+      
+      loading.dismiss();
+    });
   }
 
   presentDeletionWarning(paymentId: string, index:number) {
@@ -46,7 +57,7 @@ export class PaymentsListCardComponent {
 
   presentModallyProductFormPage(mode: string, payment?: any) {
     console.log(this.orderId);
-    
+
     this.modalCtrl.create(PaymentFormPage, {
       mode: mode,
       payment: payment,

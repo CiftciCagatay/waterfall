@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { OrderDetailsPage } from "../order-details/order-details";
 import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 
@@ -25,7 +25,8 @@ export class OrdersListPage {
     public navCtrl: NavController, 
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
-    private mdbs: MongoDbServiceProvider
+    private mdbs: MongoDbServiceProvider,
+    private alertCtrl: AlertController
   ) {
     let loading = this.loadingCtrl.create({ content: "Siparişler yükleniyor..." });
 
@@ -34,6 +35,35 @@ export class OrdersListPage {
     this.getOrders().then(() => {
       loading.dismiss();
     });
+  }
+
+  deleteOrder(orderId: string, index: number) {
+    let loading = this.loadingCtrl.create({ content: "Sipariş siliniyor..." });
+
+    loading.present();
+
+    this.mdbs.deleteOrder(orderId).subscribe((response) => {
+      this.orders.splice(index, 1);
+      
+      loading.dismiss();
+    });
+  }
+
+  presentDeletionWarning(orderId: string, index:number) {
+    this.alertCtrl.create({
+      title: "Sipariş silinecek",
+      subTitle: "Bu işlem geri alınmaz. Emin misiniz?",
+      buttons: [
+        {
+          text: "Hayır",
+          handler: () => console.log("Sipariş silmeden vazgeçildi.")
+        },
+        {
+          text: "Evet",
+          handler: () => this.deleteOrder(orderId, index)
+        }
+      ]
+    }).present();
   }
 
   getOrders() {
@@ -50,5 +80,5 @@ export class OrdersListPage {
       orderId: orderId
     });
   }
-  
+
 }
