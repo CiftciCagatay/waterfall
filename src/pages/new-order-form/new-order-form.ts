@@ -93,15 +93,24 @@ export class NewOrderFormPage {
       this.orderId = response.json().orderId;
 
       loading.dismiss();
+
+      this.showOrderSavedToast();
     });
   }
 
   showOrderSavedToast() {
-    this.toastCtrl.create({
+    let toast = this.toastCtrl.create({
       message: "Sipariş başarıyla kaydedildi",
       closeButtonText: "Detaylara Git",
-      duration: 10
-    }).present();
+      showCloseButton: true,
+      duration: 10000
+    });
+
+    toast.onDidDismiss(() => {
+      this.goToOrderDetailsPage();
+    })
+
+    toast.present();
   }
 
   goToOrderDetailsPage() {
