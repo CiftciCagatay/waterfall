@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, LoadingController } from 'ionic-angular';
+import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 
 @Component({
   selector: 'page-order-details',
@@ -7,70 +8,33 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class OrderDetailsPage {
 
-  order = {
-    customer : {
-      name: "Çağatay Çiftçi",
-      telephones: ["555"],
-      email: "im.cgtycftc@gmail.com",
-      address: {
-        line: "Örnektepe",
-        district: "Beyoğlu",
-        "city": "İstanbul",
-        note: "Dürümcü karşısı"
-      }
-    },
+  order= {
+    _id: ""
+  } ;
 
-    orderDetails: {
-      orderDate: new Date(),
-      deliveryDate: new Date(),
-      amount: 1200,
-      currency: "TRY",
-      note: "Selam",
-      personnel: "Çağatay Çiftçi"
-    },
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private mdbs: MongoDbServiceProvider,
+    private loadingCtrl: LoadingController
+  ) {
+    this.order._id = this.navParams.get('orderId');
+    
+    if (!this.order._id) {
+      this.navCtrl.pop();
+    }
 
-    payments: [
-      {
-        type: "Kredi Kartı",
-        amount: 1500,
-        currency: "TRY",
-        personnel: "Çağatay Çiftçi",
-        installments: 5,
-        bank: "Garanti",
-        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-      },
-      {
-        type: "Kredi Kartı",
-        amount: 1500,
-        currency: "TRY",
-        personnel: "Çağatay Çiftçi",
-        installments: 5,
-        bank: "Garanti",
-        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-      },
-      {
-        type: "Kredi Kartı",
-        amount: 1500,
-        currency: "TRY",
-        personnel: "Çağatay Çiftçi",
-        installments: 5,
-        bank: "Garanti",
-        note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-      }
-    ],
+    let loading = this.loadingCtrl.create({ content: "Sipariş Detayları yükleniyor..." });
 
-    products: [
-      {
-        patternCode: "A1234",
-        varietyCode: "CCDE134",
-        colorCode: "SYH12",
-        unitPrice: 12.5,
-        quantity: 10.0
-      }
-    ]
-  }
+    loading.present();
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+    this.mdbs.getOrderDetails(this.order._id).subscribe((response) => {
+      this.order = response.json();
+
+      console.log(response.json());
+
+      loading.dismiss();
+    })
   }
 
   ionViewDidLoad() {

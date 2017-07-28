@@ -68,6 +68,7 @@ HomePage = __decorate([
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(32);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(274);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -79,69 +80,28 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 };
 
 
+
 var OrderDetailsPage = (function () {
-    function OrderDetailsPage(navCtrl, navParams) {
+    function OrderDetailsPage(navCtrl, navParams, mdbs, loadingCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
+        this.mdbs = mdbs;
+        this.loadingCtrl = loadingCtrl;
         this.order = {
-            customer: {
-                name: "Çağatay Çiftçi",
-                telephones: ["555"],
-                email: "im.cgtycftc@gmail.com",
-                address: {
-                    line: "Örnektepe",
-                    district: "Beyoğlu",
-                    "city": "İstanbul",
-                    note: "Dürümcü karşısı"
-                }
-            },
-            orderDetails: {
-                orderDate: new Date(),
-                deliveryDate: new Date(),
-                amount: 1200,
-                currency: "TRY",
-                note: "Selam",
-                personnel: "Çağatay Çiftçi"
-            },
-            payments: [
-                {
-                    type: "Kredi Kartı",
-                    amount: 1500,
-                    currency: "TRY",
-                    personnel: "Çağatay Çiftçi",
-                    installments: 5,
-                    bank: "Garanti",
-                    note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                },
-                {
-                    type: "Kredi Kartı",
-                    amount: 1500,
-                    currency: "TRY",
-                    personnel: "Çağatay Çiftçi",
-                    installments: 5,
-                    bank: "Garanti",
-                    note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                },
-                {
-                    type: "Kredi Kartı",
-                    amount: 1500,
-                    currency: "TRY",
-                    personnel: "Çağatay Çiftçi",
-                    installments: 5,
-                    bank: "Garanti",
-                    note: "Kalanı nakit olacak ve teslm tarihinde verilecek"
-                }
-            ],
-            products: [
-                {
-                    patternCode: "A1234",
-                    varietyCode: "CCDE134",
-                    colorCode: "SYH12",
-                    unitPrice: 12.5,
-                    quantity: 10.0
-                }
-            ]
+            _id: ""
         };
+        this.order._id = this.navParams.get('orderId');
+        if (!this.order._id) {
+            this.navCtrl.pop();
+        }
+        var loading = this.loadingCtrl.create({ content: "Sipariş Detayları yükleniyor..." });
+        loading.present();
+        this.mdbs.getOrderDetails(this.order._id).subscribe(function (response) {
+            _this.order = response.json();
+            console.log(response.json());
+            loading.dismiss();
+        });
     }
     OrderDetailsPage.prototype.ionViewDidLoad = function () {
         console.log('ionViewDidLoad OrderDetailsPage');
@@ -152,9 +112,10 @@ OrderDetailsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-order-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/order-details/order-details.html"*/'<!--\n  Generated template for the OrderDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    \n    <ion-title>Sipariş Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <customer-details-card [customer]="order.customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col>\n        <order-details-card [orderDetails]="order.orderDetails"></order-details-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <payments-list-card [payments]="order.payments"></payments-list-card>\n      </ion-col>\n\n      <ion-col>\n        <products-list-card [products]="order.products"></products-list-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/order-details/order-details.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */], __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["e" /* LoadingController */]) === "function" && _d || Object])
 ], OrderDetailsPage);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=order-details.js.map
 
 /***/ }),
@@ -416,7 +377,8 @@ var NewOrderFormPage = (function () {
                     note: "",
                     personnel: "Çağatay",
                     installments: null,
-                    bank: ""
+                    bank: "",
+                    date: new Date()
                 }
             ]
         };

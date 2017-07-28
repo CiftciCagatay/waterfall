@@ -48,7 +48,8 @@ export class NewOrderFormPage {
         note: "",
         personnel: "Çağatay",
         installments: null,
-        bank: ""
+        bank: "",
+        date: new Date()
       }
     ]
   };
