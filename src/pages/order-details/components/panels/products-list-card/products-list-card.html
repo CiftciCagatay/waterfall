@@ -1,35 +1,35 @@
 <ion-card>
-          <ion-item color="secondBarColor">
-            <h2 style="color: white">Ürünler</h2>
-            <button color="light" (click)="presentModallyProductFormPage('new', undefined)" outline icon-left item-right ion-button>
-              <ion-icon ios="ios-add" md="md-add"></ion-icon>Yeni
-            </button>
-          </ion-item>
+  <ion-item color="secondBarColor">
+    <h2 style="color: white">Ürünler</h2>
+    <button color="light" (click)="presentModallyProductFormPage('new', undefined)" outline icon-left item-right ion-button>
+      <ion-icon ios="ios-add" md="md-add"></ion-icon>Yeni
+    </button>
+  </ion-item>
 
-          <ion-card-content style="margin-top: 12px">
-            <ion-list>
-              <ion-item>
-                <ion-label>Desen/Renk</ion-label>
-                <ion-label>Cins</ion-label>
-                <ion-label>Miktar</ion-label>
-                <ion-label>Birim Fiyat</ion-label>
-                <ion-label>Tutar</ion-label>
-              </ion-item>
+  <ion-card-content style="margin-top: 12px">
+    <ion-list>
+      <ion-item>
+        <ion-label>Desen/Renk</ion-label>
+        <ion-label>Cins</ion-label>
+        <ion-label>Miktar</ion-label>
+        <ion-label>Birim Fiyat</ion-label>
+        <ion-label>Tutar</ion-label>
+      </ion-item>
 
-              <ion-item-sliding *ngFor="let product of products; let i = index">
-                <ion-item>
-                  <ion-label>{{ product.patternCode }}/{{ product.colorCode }}</ion-label>
-                  <ion-label>{{ product.varietyCode }}</ion-label>
-                  <ion-label>{{ product.quantity }}</ion-label>
-                  <ion-label>{{ product.unitPrice }}</ion-label>
-                  <ion-label>{{product.unitPrice * product.quantity }}</ion-label>
-                </ion-item>
+      <ion-item-sliding *ngFor="let product of products; let i = index">
+        <ion-item>
+          <ion-label>{{ product.patternCode }}/{{ product.colorCode }}</ion-label>
+          <ion-label>{{ product.varietyCode }}</ion-label>
+          <ion-label>{{ product.quantity }}</ion-label>
+          <ion-label>{{ product.unitPrice }}</ion-label>
+          <ion-label>{{product.unitPrice * product.quantity }}</ion-label>
+        </ion-item>
 
-                <ion-item-options>
-                  <button (click)="presentModallyProductFormPage('edit', product)" ion-button>Düzenle</button>
-                  <button (click)="presentDeletionWarning(product._id, i)" color="danger" ion-button>Sil</button>
-                </ion-item-options>
-              </ion-item-sliding>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
+        <ion-item-options>
+          <button (click)="presentModallyProductFormPage('edit', product)" ion-button>Düzenle</button>
+          <button (click)="presentDeletionWarning(product._id, i)" color="danger" ion-button>Sil</button>
+        </ion-item-options>
+      </ion-item-sliding>
+    </ion-list>
+  </ion-card-content>
+</ion-card>
