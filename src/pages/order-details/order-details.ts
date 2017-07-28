@@ -33,6 +33,8 @@ export class OrderDetailsPage {
 
       console.log(response.json());
 
+      console.log(this.order._id, "gaha");
+
       loading.dismiss();
     })
   }

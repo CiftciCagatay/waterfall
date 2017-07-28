@@ -50,5 +50,5 @@ export class OrdersListPage {
       orderId: orderId
     });
   }
-
+  
 }

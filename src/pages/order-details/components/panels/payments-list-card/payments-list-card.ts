@@ -13,14 +13,15 @@ import { PaymentFormPage } from "../../forms/payment-form/payment-form";
   templateUrl: 'payments-list-card.html'
 })
 export class PaymentsListCardComponent {
-
+  
+  @Input() orderId: string;
   @Input() payments;
   
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController
   ) {
-    console.log('Hello PaymentsListCardComponent Component');
+    console.log(this.orderId);
   }
 
   deletePayment(paymentId: string, index: number) {
@@ -44,9 +45,12 @@ export class PaymentsListCardComponent {
   }
 
   presentModallyProductFormPage(mode: string, payment?: any) {
+    console.log(this.orderId);
+    
     this.modalCtrl.create(PaymentFormPage, {
       mode: mode,
-      payment: payment
+      payment: payment,
+      orderId: this.orderId
     }).present();
   }
 

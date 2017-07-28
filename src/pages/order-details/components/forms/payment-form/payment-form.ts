@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 /**
  * Generated class for the PaymentFormPage page.
@@ -15,18 +16,27 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 export class PaymentFormPage {
 
   mode: string;
+  orderId: string;
   payment: any;
 
   constructor(
     public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private mdbs: MongoDbServiceProvider
   ) {
     this.mode = this.navParams.get('mode');
+    this.orderId = this.navParams.get('orderId');
 
+    console.log(this.orderId);
+    
     if (this.mode == 'edit') {
+      
       this.payment = this.navParams.get('payment');
-    } else {
+
+    } else if (this.orderId) {
+      
       this.payment = {
         type: "Nakit",
         amount: null,
@@ -35,6 +45,9 @@ export class PaymentFormPage {
         bank: "",
         note: ""
       }
+
+    } else {
+      this.navCtrl.pop();
     }
   }
 
@@ -62,10 +75,22 @@ export class PaymentFormPage {
   }
 
   appendToTheOrder() {
+    let loading = this.loadingCtrl.create({ content: "Yeni ödeme ekleniyor..." });
 
+    loading.present();
+
+    this.mdbs.insertPayment(this.orderId, this.payment).subscribe((response) => {
+      loading.dismiss();
+    });
   }
 
   saveChanges() {
+    let loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
 
+    loading.present();
+
+    this.mdbs.updatePayment(this.payment._id, this.payment).subscribe((response) => {
+      loading.dismiss();
+    });
   }
 }
