@@ -33,7 +33,8 @@ export class ProductsListCardComponent {
       subTitle: "Bu işlem geri alınmaz. Emin misiniz?",
       buttons: [
         {
-          text: "Hayır"
+          text: "Hayır",
+          handler: () => console.log("Ürün silmeden vazgeçildi.")
         },
         {
           text: "Evet",
