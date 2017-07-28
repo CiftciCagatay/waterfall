@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class MongoDbServiceProvider {
   
-  ref = "http://localhost:5000"; // "https://quiet-chamber-99549.herokuapp.com";
+  ref = "http://localhost:5000";
 
   constructor(public http: Http) {
     console.log('Hello MongoDbServiceProvider Provider');

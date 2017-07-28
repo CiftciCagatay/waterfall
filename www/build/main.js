@@ -1142,7 +1142,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 var MongoDbServiceProvider = (function () {
     function MongoDbServiceProvider(http) {
         this.http = http;
-        this.ref = "http://localhost:5000"; // "https://quiet-chamber-99549.herokuapp.com";
+        this.ref = "http://localhost:5000";
         console.log('Hello MongoDbServiceProvider Provider');
     }
     MongoDbServiceProvider.prototype.insertNewOrder = function (order) {
