@@ -1,5 +1,6 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 /**
  * Generated class for the ProductFormPage page.
@@ -15,18 +16,24 @@ import { NavController, NavParams, AlertController } from 'ionic-angular';
 export class ProductFormPage {
 
   mode: string;
+  orderId: string;
   product: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
-    private alertCtrl: AlertController
+    private alertCtrl: AlertController,
+    private loadingCtrl: LoadingController,
+    private mdbs: MongoDbServiceProvider
   ) {
     this.mode = this.navParams.get('mode');
+    this.orderId = this.navParams.get('orderId');
 
     if (this.mode == 'edit') {
       this.product = this.navParams.get('product');
-    } else {
+
+    } else if (this.orderId) {
+      
       this.product = {
         type: "Perde",
         patternCode: "",
@@ -35,7 +42,12 @@ export class ProductFormPage {
         unitPrice: null,
         quantity: null
       }
+
+    } else {
+      this.navCtrl.pop();
     }
+
+    console.log(this.product);
   }
 
   showSubmitAlert() {
@@ -61,12 +73,24 @@ export class ProductFormPage {
     }).present();
   }
 
-  appendToTheOrder() {
+  saveChanges() {
+    let loading = this.loadingCtrl.create({ content: "Yeni ürün ekleniyor..." });
 
+    loading.present();
+
+    this.mdbs.updateProduct(this.product._id, this.product).subscribe((response) => {
+      loading.dismiss().then(() => this.navCtrl.pop());
+    });
   }
 
-  saveChanges() {
+  appendToTheOrder() {
+    let loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
 
+    loading.present();
+
+    this.mdbs.insertProduct(this.orderId, this.product).subscribe((response) => {
+      loading.dismiss().then(() => this.navCtrl.pop());
+    });
   }
 
 }

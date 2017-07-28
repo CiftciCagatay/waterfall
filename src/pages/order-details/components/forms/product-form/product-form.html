@@ -16,6 +16,12 @@
   <form>
     <ion-list>
       <ion-item>
+        <ion-label>Ürün Kategori</ion-label>
+        <ion-select name="productType" [(ngModel)]="product.type">
+          <ion-option *ngFor="let type of productTypes">{{ type }}</ion-option>
+        </ion-select>
+      </ion-item>
+      <ion-item>
         <ion-label fixed>Desen Kodu</ion-label>
         <ion-input name="patternCode" [(ngModel)]="product.patternCode"></ion-input>
       </ion-item>
@@ -37,7 +43,7 @@
 
       <ion-item>
         <ion-label fixed>Miktar</ion-label>
-        <ion-input type="number" name="unitPrice" [(ngModel)]="product.unitPrice"></ion-input>
+        <ion-input type="number" name="unitPrice" [(ngModel)]="product.quantity"></ion-input>
       </ion-item>
 
       <ion-item>

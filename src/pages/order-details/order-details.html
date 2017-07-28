@@ -35,7 +35,7 @@
       </ion-col>
 
       <ion-col>
-        <products-list-card [products]="order.products"></products-list-card>
+        <products-list-card [orderId]="order._id" [products]="order.products"></products-list-card>
       </ion-col>
     </ion-row>
   </ion-grid>

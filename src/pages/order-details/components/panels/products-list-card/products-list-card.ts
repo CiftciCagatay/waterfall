@@ -15,6 +15,7 @@ import { ProductFormPage } from "../../forms/product-form/product-form";
 export class ProductsListCardComponent {
 
   @Input() products: Array<any>;
+  @Input() orderId: string;
 
   constructor(
     private modalCtrl: ModalController,
@@ -47,7 +48,8 @@ export class ProductsListCardComponent {
   presentModallyProductFormPage(mode: string, product?: any) {
     this.modalCtrl.create(ProductFormPage, {
       mode: mode,
-      product: product
+      product: product,
+      orderId: this.orderId
     }).present();
   }
 
