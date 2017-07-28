@@ -20,7 +20,14 @@ export class OrderDetailsPage {
       }
     },
 
-    orderDetails: {},
+    orderDetails: {
+      orderDate: new Date(),
+      deliveryDate: new Date(),
+      amount: 1200,
+      currency: "TRY",
+      note: "Selam",
+      personnel: "Çağatay Çiftçi"
+    },
 
     payments: [
       {
