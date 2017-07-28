@@ -6,13 +6,57 @@
 -->
 <ion-header>
 
-  <ion-navbar>
-    <ion-title>order-information-form</ion-title>
+  <ion-navbar color="navBarColor">
+    <ion-buttons start>
+      <button navPop ion-button>Vazgeç</button>
+    </ion-buttons>
+
+    <ion-title>Sipariş Detayları Düzenleme Formu</ion-title>
+
+    <ion-buttons end>
+      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>
+    </ion-buttons>
   </ion-navbar>
 
 </ion-header>
 
-
 <ion-content padding>
+  <form>
+    <ion-list>
+      <ion-item>
+        <ion-label>Sipariş Tarihi</ion-label>
+        <ion-datetime name="orderDate" [(ngModel)]="orderDetails.orderDate"></ion-datetime>
+      </ion-item>
 
+      <ion-item>
+        <ion-label>İş Teslim Tarihi</ion-label>
+        <ion-datetime name="deliveryDate" [(ngModel)]="orderDetails.deliveryDate"></ion-datetime>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Tutar</ion-label>
+        <ion-input type="number" name="amount" [(ngModel)]="orderDetails.amount">
+        </ion-input>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Para Birimi</ion-label>
+        <ion-select name="currency" [(ngModel)]="orderDetails.currency">
+          <ion-option *ngFor="let currency of currencies">{{ currency }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label>Personel</ion-label>
+        <ion-select name="personnel" [(ngModel)]="orderDetails.personnel">
+          <ion-option *ngFor="let personnel of personnels">{{ personnel }}</ion-option>
+        </ion-select>
+      </ion-item>
+
+      <ion-item>
+        <ion-label fixed>Not</ion-label>
+        <ion-textarea name="note" [(ngModel)]="orderDetails.note"></ion-textarea>
+      </ion-item>
+    </ion-list>
+  </form>
 </ion-content>

@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams } from 'ionic-angular';
+import { NavController, NavParams, AlertController } from 'ionic-angular';
 
 /**
  * Generated class for the OrderInformationFormPage page.
@@ -14,9 +14,41 @@ import { NavController, NavParams } from 'ionic-angular';
 })
 export class OrderDetailsFormPage {
 
-  constructor(public navCtrl: NavController, public navParams: NavParams) {
+  orderDetails: any;
+
+  constructor(
+    public navCtrl: NavController, 
+    public navParams: NavParams,
+    private alertCtrl: AlertController
+  ) {
+    this.orderDetails = this.navParams.get('orderDetails');
+
+    if (!this.orderDetails) {
+      this.navCtrl.pop();
+    }
   }
 
-  
+  showSubmitAlert() {
+    this.alertCtrl.create({
+      title: 'Değişiklikler Kaydedilecek',
+      subTitle: 'Bu değişiklikler geri alınamaz. Emin misiniz?',
+
+      buttons: [
+        {
+          text: "Hayır"
+        },
+        {
+          text: "Evet",
+          handler: () => {
+            this.saveChanges()
+          }
+        }
+      ]
+    }).present();
+  }
+
+  saveChanges() {
+
+  }
 
 }
