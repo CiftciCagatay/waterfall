@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
-
-/**
- * Generated class for the ProductFormPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { MongoDbServiceProvider } from '../../../../../providers/mongo-db-service/mongo-db-service';
+import { ProductTypesProvider } from '../../../../../providers/product-types/product-types';
 
 @Component({
   selector: 'page-product-form',
@@ -24,7 +18,8 @@ export class ProductFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider
+    private mdbs: MongoDbServiceProvider,
+    private productTypesProvider: ProductTypesProvider
   ) {
     this.mode = this.navParams.get('mode');
     this.orderId = this.navParams.get('orderId');
@@ -33,7 +28,7 @@ export class ProductFormPage {
       this.product = this.navParams.get('product');
 
     } else if (this.orderId) {
-      
+
       this.product = {
         type: "Perde",
         patternCode: "",

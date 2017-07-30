@@ -5,7 +5,7 @@
     </ion-buttons>
 
     <ion-title>{{ mode == 'new' ? 'Yeni Ürün' : 'Ürünü Düzenle' }}</ion-title>
-    
+
     <ion-buttons end>
       <button (click)="showSubmitAlert()" ion-button>Kaydet</button>
     </ion-buttons>
@@ -18,7 +18,7 @@
       <ion-item>
         <ion-label>Ürün Kategori</ion-label>
         <ion-select name="productType" [(ngModel)]="product.type">
-          <ion-option *ngFor="let type of productTypes">{{ type }}</ion-option>
+          <ion-option *ngFor="let type of productTypesProvider.types">{{ type }}</ion-option>
         </ion-select>
       </ion-item>
       <ion-item>
