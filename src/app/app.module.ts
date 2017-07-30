@@ -24,6 +24,7 @@ import { OrdersListPage } from "../pages/orders-list/orders-list";
 import { MongoDbServiceProvider } from '../providers/mongo-db-service/mongo-db-service';
 import { HttpModule } from "@angular/http";
 import { CurrencyBankProvider } from '../providers/currency-bank/currency-bank';
+import { ProductTypesProvider } from '../providers/product-types/product-types';
 
 @NgModule({
   declarations: [
@@ -70,7 +71,8 @@ import { CurrencyBankProvider } from '../providers/currency-bank/currency-bank';
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MongoDbServiceProvider,
-    CurrencyBankProvider
+    CurrencyBankProvider,
+    ProductTypesProvider
   ]
 })
 export class AppModule { }
