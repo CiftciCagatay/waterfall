@@ -2,13 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 import { OrderDetailsPage } from "../order-details/order-details";
-
-/**
- * Generated class for the NewOrderFormPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
 
 @Component({
   selector: 'page-new-order-form',
@@ -60,7 +54,8 @@ export class NewOrderFormPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private toastCtrl: ToastController,
-    private mdbs: MongoDbServiceProvider
+    private mdbs: MongoDbServiceProvider,
+    private currencyBankProvider: CurrencyBankProvider
   ) {
   }
 

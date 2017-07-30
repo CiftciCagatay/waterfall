@@ -7,6 +7,8 @@ import { NavController } from 'ionic-angular';
 })
 export class HomePage {
 
+  text = `${'1' + '1'}`;
+
   constructor(public navCtrl: NavController) {
 
   }

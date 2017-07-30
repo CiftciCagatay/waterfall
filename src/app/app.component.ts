@@ -25,7 +25,7 @@ export class MyApp {
     this.pages = [
       { title: 'Anasayfa', component: HomePage },
       { title: 'Yeni Sipariş Formu', component: NewOrderFormPage },
-      { title: 'Siparişler', component: OrdersListPage }    
+      { title: 'Siparişler', component: OrdersListPage }
     ];
 
   }

@@ -23,6 +23,7 @@ import { OrderDetailsFormPage } from "../pages/order-details/components/forms/or
 import { OrdersListPage } from "../pages/orders-list/orders-list";
 import { MongoDbServiceProvider } from '../providers/mongo-db-service/mongo-db-service';
 import { HttpModule } from "@angular/http";
+import { CurrencyBankProvider } from '../providers/currency-bank/currency-bank';
 
 @NgModule({
   declarations: [
@@ -68,7 +69,8 @@ import { HttpModule } from "@angular/http";
     StatusBar,
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
-    MongoDbServiceProvider
+    MongoDbServiceProvider,
+    CurrencyBankProvider
   ]
 })
 export class AppModule { }
