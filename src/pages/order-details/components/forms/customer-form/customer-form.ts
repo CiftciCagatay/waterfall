@@ -11,14 +11,14 @@ export class CustomerFormPage {
   customer: any;
 
   constructor(
-    public navCtrl: NavController, 
+    public navCtrl: NavController,
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider
   ) {
 
-    this.customer = this.navParams.get('customer');
+    this.customer = JSON.parse(JSON.stringify(this.navParams.get('customer')))
 
     if (!this.customer) {
       this.navCtrl.pop();
