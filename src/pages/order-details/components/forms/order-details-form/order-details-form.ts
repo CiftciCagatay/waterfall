@@ -21,7 +21,15 @@ export class OrderDetailsFormPage {
     private currencyBankProvider: CurrencyBankProvider
   ) {
     this.orderId = this.navParams.get('orderId');
-    this.orderDetails = this.navParams.get('orderDetails');
+    
+    this.orderDetails = {
+      orderDate: this.navParams.get('orderDetails').orderDate,
+      deliveryDate: this.navParams.get('orderDetails').deliveryDate,
+      personnel: this.navParams.get('orderDetails').personnel,
+      amount: this.navParams.get('orderDetails').amount,
+      currency: this.navParams.get('orderDetails').currency,
+      note: this.navParams.get('orderDetails').note
+    }
 
     if (!this.orderDetails || !this.orderId) {
       this.navCtrl.pop();
