@@ -11,7 +11,9 @@ export class PaymentFormPage {
 
   mode: string;
   orderId: string;
+
   payment: any;
+  paymentId: string;
 
   constructor(
     public navCtrl: NavController,
@@ -28,7 +30,16 @@ export class PaymentFormPage {
 
     if (this.mode == 'edit') {
 
-      this.payment = this.navParams.get('payment');
+      this.paymentId = this.navParams.get('payment')._id
+
+      this.payment = {
+        type: this.navParams.get('payment').type,
+        amount: this.navParams.get('payment').amount,
+        currency: this.navParams.get('payment').currency,
+        installments: this.navParams.get('payment').installments,
+        bank: this.navParams.get('payment').bank,
+        note: this.navParams.get('payment').note
+      }
 
     } else if (this.orderId) {
 
@@ -84,7 +95,7 @@ export class PaymentFormPage {
 
     loading.present();
 
-    this.mdbs.updatePayment(this.payment._id, this.payment).subscribe((response) => {
+    this.mdbs.updatePayment(this.paymentId, this.payment).subscribe((response) => {
       loading.dismiss();
     });
   }
