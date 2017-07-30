@@ -557,7 +557,7 @@ var ProductFormPage = (function () {
         this.mode = this.navParams.get('mode');
         this.orderId = this.navParams.get('orderId');
         if (this.mode == 'edit') {
-            this.product = this.navParams.get('product');
+            this.product = JSON.parse(JSON.stringify(this.navParams.get('product')));
         }
         else if (this.orderId) {
             this.product = {
