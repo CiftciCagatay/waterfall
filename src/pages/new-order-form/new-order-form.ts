@@ -27,7 +27,7 @@ export class NewOrderFormPage {
 
     orderDetails: {
       orderDate: new Date(),
-      deliveryDate: new Date(),
+      deliveryDate: (new Date()).toISOString(),
       personnel: "Çağatay Çiftçi",
       amount: null,
       currency: "TRY",

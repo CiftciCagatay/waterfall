@@ -46,6 +46,7 @@ export class PaymentFormPage {
       this.payment = {
         type: "Nakit",
         amount: null,
+        date: new Date(),
         currency: "TRY",
         installments: null,
         bank: "",
@@ -87,6 +88,8 @@ export class PaymentFormPage {
 
     this.mdbs.insertPayment(this.orderId, this.payment).subscribe((response) => {
       loading.dismiss();
+
+      this.navCtrl.pop()
     });
   }
 
@@ -97,6 +100,8 @@ export class PaymentFormPage {
 
     this.mdbs.updatePayment(this.paymentId, this.payment).subscribe((response) => {
       loading.dismiss();
+
+      this.navCtrl.pop()
     });
   }
 }

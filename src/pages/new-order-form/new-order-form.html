@@ -14,7 +14,7 @@
     <ion-title>Yeni Sipariş Formu</ion-title>
 
     <ion-buttons end>
-      <button (click)="showSavingAlert()" ion-button>Kaydet</button>
+      <button (click)="showSavingAlert()" [disabled]="!siparisForm.form.valid" ion-button>Kaydet</button>
     </ion-buttons>
   </ion-navbar>
 
@@ -22,7 +22,7 @@
 
 
 <ion-content padding>
-  <form>
+  <form #siparisForm="ngForm">
     <ion-grid>
       <ion-row>
         <!-- Müşteri -->
@@ -34,7 +34,7 @@
               <ion-list>
                 <label ion-item>
                   <ion-label fixed>*TC Kimlik</ion-label>
-                  <ion-input name="identificationNumber" [(ngModel)]="order.customer.identificationNumber" type="number"></ion-input>
+                  <ion-input name="identificationNumber" maxLength="11" [(ngModel)]="order.customer.identificationNumber" type="tel"></ion-input>
                 </label>
 
                 <label ion-item>
