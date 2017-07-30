@@ -1,13 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
-
-/**
- * Generated class for the PaymentFormPage page.
- *
- * See http://ionicframework.com/docs/components/#navigation for more info
- * on Ionic pages and navigation.
- */
+import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
 
 @Component({
   selector: 'page-payment-form',
@@ -24,19 +18,20 @@ export class PaymentFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider
+    private mdbs: MongoDbServiceProvider,
+    private currencyBankProvider: CurrencyBankProvider
   ) {
     this.mode = this.navParams.get('mode');
     this.orderId = this.navParams.get('orderId');
 
     console.log(this.orderId);
-    
+
     if (this.mode == 'edit') {
-      
+
       this.payment = this.navParams.get('payment');
 
     } else if (this.orderId) {
-      
+
       this.payment = {
         type: "Nakit",
         amount: null,
