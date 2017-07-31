@@ -8,13 +8,13 @@
 </ion-header>
 
 <ion-content padding>
-  <h3>Ionic Menu Starter</h3>
+  <ion-list>
+    <ion-item *ngFor="let event of events">
+      <ion-icon name="leaf" item-start></ion-icon>
 
-  <p>
-    If you get lost, the <a href="http://ionicframework.com/docs/v2">docs</a> will show you the way.
-  </p>
-
-  {{ text }}
-
-  <button ion-button secondary menuToggle>Toggle Menu</button>
+      <h1>{{ event.title }}</h1>
+      <h2>{{ event.date }} | {{ event.personnel }}</h2>
+      <p>{{ event.detail }}</p>
+    </ion-item>
+  </ion-list>
 </ion-content>

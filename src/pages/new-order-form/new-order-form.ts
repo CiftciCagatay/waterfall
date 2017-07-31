@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController, ToastController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 import { OrderDetailsPage } from "../order-details/order-details";
 import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
@@ -53,7 +53,6 @@ export class NewOrderFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private toastCtrl: ToastController,
     private mdbs: MongoDbServiceProvider,
     private currencyBankProvider: CurrencyBankProvider
   ) {
@@ -87,6 +86,22 @@ export class NewOrderFormPage {
     this.mdbs.insertNewOrder(this.order).subscribe((response) => {
       this.orderId = response.json().orderId;
 
+      this.mdbs.logEvent(
+        "Yeni Sipariş",
+        `${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`,
+        this.order.orderDetails.personnel,
+        this.order.orderDetails.orderDate
+      )
+
+      if (this.order.payments[0].amount) {
+        this.mdbs.logEvent(
+          "Yeni Ödeme",
+          `${this.order.orderDetails.personnel} tarafından ${this.order.payments[0].amount} ${this.order.payments[0].currency} tutarında ödeme alındı`,
+          this.order.orderDetails.personnel,
+          this.order.orderDetails.orderDate
+        )
+      }
+
       loading.dismiss();
 
       this.showOrderSavedToast();
@@ -94,18 +109,20 @@ export class NewOrderFormPage {
   }
 
   showOrderSavedToast() {
-    let toast = this.toastCtrl.create({
-      message: "Sipariş başarıyla kaydedildi",
-      closeButtonText: "Detaylara Git",
-      showCloseButton: true,
-      duration: 10000
-    });
-
-    toast.onDidDismiss(() => {
-      this.goToOrderDetailsPage();
-    })
-
-    toast.present();
+    this.alertCtrl.create({
+      
+      title: "Sipariş başarıyla kaydedildi",
+      message: "Detaylara gitmek ister misiniz?",
+      buttons: [
+        {
+          text: "Hayır"
+        },
+        {
+          text: "Evet",
+          handler: () => this.goToOrderDetailsPage()
+        }
+      ]
+    }).present();
   }
 
   goToOrderDetailsPage() {

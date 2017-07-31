@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
 @Component({
@@ -15,7 +15,8 @@ export class CustomerFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider
+    private mdbs: MongoDbServiceProvider,
+    private events: Events
   ) {
 
     this.customer = JSON.parse(JSON.stringify(this.navParams.get('customer')))
@@ -51,6 +52,8 @@ export class CustomerFormPage {
 
     this.mdbs.updateCustomerInformation(this.customer._id, this.customer).subscribe((response) => {
       loading.dismiss().then(() => this.navCtrl.pop());
+
+      this.events.publish("customer:updated", this.customer);
     })
   }
 

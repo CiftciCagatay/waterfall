@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController, AlertController, LoadingController } from "ionic-angular";
+import { ModalController, AlertController, LoadingController, Events } from "ionic-angular";
 import { ProductFormPage } from "../../forms/product-form/product-form";
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
@@ -22,9 +22,10 @@ export class ProductsListCardComponent {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider
+    private mdbs: MongoDbServiceProvider,
+    private events: Events
   ) {
-    console.log('Hello ProductsListCardComponent Component');
+    
   }
 
   deleteProduct(productId: string, index: number) {
@@ -56,11 +57,12 @@ export class ProductsListCardComponent {
     }).present();
   }
 
-  presentModallyProductFormPage(mode: string, product?: any) {
+  presentModallyProductFormPage(mode: string, product?: any, index?: number) {
     this.modalCtrl.create(ProductFormPage, {
       mode: mode,
       product: product,
-      orderId: this.orderId
+      orderId: this.orderId,
+      productIndex: index
     }).present();
   }
 

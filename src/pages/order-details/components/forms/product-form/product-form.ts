@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MongoDbServiceProvider } from '../../../../../providers/mongo-db-service/mongo-db-service';
 import { ProductTypesProvider } from '../../../../../providers/product-types/product-types';
 
@@ -12,6 +12,7 @@ export class ProductFormPage {
   mode: string;
   orderId: string;
   product: any;
+  productIndex: number;
 
   constructor(
     public navCtrl: NavController,
@@ -19,9 +20,11 @@ export class ProductFormPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
-    private productTypesProvider: ProductTypesProvider
+    private productTypesProvider: ProductTypesProvider,
+    private events: Events
   ) {
     this.mode = this.navParams.get('mode');
+    this.productIndex = this.navParams.get('productIndex');
     this.orderId = this.navParams.get('orderId');
 
     if (this.mode == 'edit') {
@@ -41,7 +44,7 @@ export class ProductFormPage {
     } else {
       this.navCtrl.pop();
     }
-
+    
     console.log(this.product);
   }
 
@@ -74,6 +77,11 @@ export class ProductFormPage {
     loading.present();
 
     this.mdbs.updateProduct(this.product._id, this.product).subscribe((response) => {
+      this.events.publish("product:updated", {
+        index: this.productIndex,
+        product: this.product
+      })
+
       loading.dismiss().then(() => this.navCtrl.pop());
     });
   }
@@ -84,6 +92,7 @@ export class ProductFormPage {
     loading.present();
 
     this.mdbs.insertProduct(this.orderId, this.product).subscribe((response) => {
+      this.events.publish("product:added", this.product);
       loading.dismiss().then(() => this.navCtrl.pop());
     });
   }

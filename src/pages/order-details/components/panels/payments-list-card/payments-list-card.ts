@@ -55,13 +55,14 @@ export class PaymentsListCardComponent {
     }).present();
   }
 
-  presentModallyProductFormPage(mode: string, payment?: any) {
+  presentModallyProductFormPage(mode: string, payment?: any, index?: number) {
     console.log(this.orderId);
 
     this.modalCtrl.create(PaymentFormPage, {
       mode: mode,
       payment: payment,
-      orderId: this.orderId
+      orderId: this.orderId,
+      paymentIndex: index
     }).present();
   }
 

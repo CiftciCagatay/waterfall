@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
 
@@ -14,6 +14,7 @@ export class PaymentFormPage {
 
   payment: any;
   paymentId: string;
+  paymentIndex: number;
 
   constructor(
     public navCtrl: NavController,
@@ -21,10 +22,12 @@ export class PaymentFormPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
-    private currencyBankProvider: CurrencyBankProvider
+    private currencyBankProvider: CurrencyBankProvider,
+    private events: Events
   ) {
     this.mode = this.navParams.get('mode');
     this.orderId = this.navParams.get('orderId');
+    this.paymentIndex = this.navParams.get('paymentIndex');
 
     console.log(this.orderId);
 
@@ -49,6 +52,7 @@ export class PaymentFormPage {
         date: new Date(),
         currency: "TRY",
         installments: null,
+        personnel: "",
         bank: "",
         note: ""
       }
@@ -87,6 +91,17 @@ export class PaymentFormPage {
     loading.present();
 
     this.mdbs.insertPayment(this.orderId, this.payment).subscribe((response) => {
+      this.events.publish("payment:added", this.payment);
+
+      if (this.payment.amount) {
+        this.mdbs.logEvent(
+          "Yeni Ödeme",
+          `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
+          this.payment.personnel,
+          this.payment.date
+        )
+      }
+      
       loading.dismiss();
 
       this.navCtrl.pop()
@@ -99,6 +114,11 @@ export class PaymentFormPage {
     loading.present();
 
     this.mdbs.updatePayment(this.paymentId, this.payment).subscribe((response) => {
+      this.events.publish("payment:updated", {
+        index: this.paymentIndex,
+        payment: this.payment
+      })
+
       loading.dismiss();
 
       this.navCtrl.pop()
