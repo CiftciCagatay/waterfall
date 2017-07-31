@@ -262,10 +262,11 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let event of events">\n      <ion-icon name="leaf" item-start></ion-icon>\n\n      <h1>{{ event.title }}</h1>\n      <h2>{{ event.date | formatDate }} | {{ event.personnel }}</h2>\n      <p>{{ event.detail }}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _c || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]])
 ], HomePage);
 
-var _a, _b, _c;
 //# sourceMappingURL=home.js.map
 
 /***/ }),
@@ -281,6 +282,7 @@ var _a, _b, _c;
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_details_order_details__ = __webpack_require__(102);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__ = __webpack_require__(51);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__ = __webpack_require__(283);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -296,8 +298,9 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var NewOrderFormPage = (function () {
-    function NewOrderFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, currencyBankProvider, auth) {
+    function NewOrderFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, currencyBankProvider, auth, cityDistrictProvider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
@@ -305,6 +308,7 @@ var NewOrderFormPage = (function () {
         this.mdbs = mdbs;
         this.currencyBankProvider = currencyBankProvider;
         this.auth = auth;
+        this.cityDistrictProvider = cityDistrictProvider;
         this.order = {
             customer: {
                 identificationNumber: "",
@@ -340,6 +344,10 @@ var NewOrderFormPage = (function () {
             ]
         };
     }
+    NewOrderFormPage.prototype.citySelected = function (city) {
+        this.order.customer.address.district = "";
+        this.cityDistrictProvider.getCounties(city);
+    };
     NewOrderFormPage.prototype.showSavingAlert = function () {
         var _this = this;
         this.alertCtrl.create({
@@ -399,12 +407,12 @@ var NewOrderFormPage = (function () {
 }());
 NewOrderFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" [disabled]="!siparisForm.form.valid" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #siparisForm="ngForm">\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input name="identificationNumber" maxLength="11" [(ngModel)]="order.customer.identificationNumber" type="tel"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Şehir</ion-label>\n                  <ion-input name="addressCity" [(ngModel)]="order.customer.address.city"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>İlçe</ion-label>\n                  <ion-input name="addressDistrict" [(ngModel)]="order.customer.address.district"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime name="deliveryDate" [(ngModel)]="order.orderDetails.deliveryDate"></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n\n          <!-- Kapora -->\n          <ion-card>\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">\n                    <ion-option *ngFor="let paymentType of currencyBankProvider.paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">\n                    <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/,
+        selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" [disabled]="!siparisForm.form.valid" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #siparisForm="ngForm">\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input name="identificationNumber" maxLength="11" [(ngModel)]="order.customer.identificationNumber" type="tel"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Şehir</ion-label>\n                  <ion-select\n                    name="city"\n                    [(ngModel)]="order.customer.address.city"\n                    (ionChange)="citySelected($event)"\n                  >\n                    <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label>İlçe</ion-label>\n                  <ion-select\n                    name="addressDistrict"\n                    [disabled]="!order.customer.address.city"\n                    [(ngModel)]="order.customer.address.district"\n                  >\n                    <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime name="deliveryDate" [(ngModel)]="order.orderDetails.deliveryDate"></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n\n          <!-- Kapora -->\n          <ion-card>\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">\n                    <ion-option *ngFor="let paymentType of currencyBankProvider.paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">\n                    <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/new-order-form/new-order-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */]) === "function" && _h || Object])
 ], NewOrderFormPage);
 
-var _a, _b, _c, _d, _e, _f, _g;
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=new-order-form.js.map
 
 /***/ }),
@@ -791,10 +799,16 @@ PaymentFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-payment-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/order-details/components/forms/payment-form/payment-form.html"*/'<!--\n  Generated template for the PaymentFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>{{ mode == \'new\' ? \'Yeni Ödeme Formu\' : \'Ödeme Düzenleme Formu\' }}</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form *ngIf="payment">\n    <ion-list>\n      <ion-item>\n        <ion-label>Ödeme Türü</ion-label>\n        <ion-select name="type" [(ngModel)]="payment.type">\n          <ion-option *ngFor="let type of currencyBankProvider.paymentTypes">{{ type }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Tutar</ion-label>\n        <ion-input\n          type="number"\n          name="amount"\n          [(ngModel)]="payment.amount"\n        >\n        </ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Para Birimi</ion-label>\n        <ion-select name="currency" [(ngModel)]="payment.currency">\n          <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item *ngIf="payment.type == \'Kredi Kartı\'">\n        <ion-label fixed>Taksit Sayısı</ion-label>\n        <ion-input\n          type="number"\n          name="amount"\n          [(ngModel)]="payment.installments"\n        >\n        </ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="payment.type == \'Kredi Kartı\'">\n        <ion-label>Banka</ion-label>\n        <ion-select name="bank" [(ngModel)]="payment.bank">\n          <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Not</ion-label>\n        <ion-textarea\n          name="note"\n          [(ngModel)]="payment.note"\n        >\n        </ion-textarea>\n      </ion-item>\n\n    </ion-list>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/order-details/components/forms/payment-form/payment-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _h || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */],
+        __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]])
 ], PaymentFormPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=payment-form.js.map
 
 /***/ }),
@@ -1013,12 +1027,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_auth_service_auth_service__ = __webpack_require__(280);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(282);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_login_login__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_city_district_city_district__ = __webpack_require__(283);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -1101,7 +1117,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_23__providers_product_types_product_types__["a" /* ProductTypesProvider */],
             __WEBPACK_IMPORTED_MODULE_24__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
             __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]
+            __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */],
+            __WEBPACK_IMPORTED_MODULE_27__providers_city_district_city_district__["a" /* CityDistrictProvider */]
         ]
     })
 ], AppModule);
@@ -1172,15 +1189,14 @@ var MyApp = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */]),
-    __metadata("design:type", typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */]) === "function" && _a || Object)
+    __metadata("design:type", __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["k" /* Nav */])
 ], MyApp.prototype, "nav", void 0);
 MyApp = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/app/app.html"*/'<ion-menu [content]="content">\n  <ion-header>\n    <ion-toolbar color="navBarColor">\n      <ion-title>Menu</ion-title>\n    </ion-toolbar>\n  </ion-header>\n\n  <ion-content>\n    <ion-list>\n      <button menuClose ion-item *ngFor="let p of pages" (click)="openPage(p)">\n        {{p.title}}\n      </button>\n    </ion-list>\n  </ion-content>\n\n</ion-menu>\n\n<!-- Disable swipe-to-go-back because it\'s poor UX to combine STGB with side menus -->\n<ion-nav [root]="rootPage" #content swipeBackEnabled="false"></ion-nav>'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/app/app.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["n" /* Platform */], __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__["a" /* StatusBar */], __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__["a" /* SplashScreen */]])
 ], MyApp);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=app.component.js.map
 
 /***/ }),
@@ -1628,10 +1644,15 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/Users/ogrenci/Desktop/github/waterfall/src/pages/login/login.html"*/'<div style="background-image: url(\'../assets/lowpolyw1.jpg\'); display:flex;justify-content:center;align-items:center;width:100%;height:100%;">\n\n  <div style="width: 50%; min-width: 293.5px; height: 50%">\n    <h1 style="color: white; text-align: center;">\n      Hoş Geldiniz\n    </h1>\n    \n    <form #register="ngForm" *ngIf="mode == \'register\'" (ngSubmit)="registerUser(register.value)">\n      <ion-card>\n        <ion-card-content>\n          <ion-list>\n            <label ion-item>\n              <ion-label>İsim Soyisim</ion-label>\n              <ion-input name="name" type="text" ngModel required>\n              </ion-input>\n            </label>\n\n            <label ion-item>\n                  <ion-label fixed>Mağaza Adı</ion-label>\n                  <ion-input name="shop" type="text" ngModel required>\n                  </ion-input>\n                </label>\n\n            <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" type="email" ngModel required>\n                  </ion-input>\n                </label>\n\n            <label ion-item>\n              <ion-label>Mağaza Sahibi</ion-label>\n              <ion-checkbox name="isManager" [ngModel]="false"></ion-checkbox>\n            </label>\n\n            <label ion-item>\n                  <ion-label>Şifre</ion-label>\n                  <ion-input name="password" type="password" ngModel required>\n                  </ion-input>\n                </label>\n          </ion-list>\n\n          <button type="submit" [disabled]="!register.form.valid" ion-button block>Kayıt Ol</button>\n          <button (click)="loginModeOn()" ion-button outline block>Zaten bir hesabınız var mı? Giriş yapın</button>\n        </ion-card-content>\n      </ion-card>\n    </form>\n\n    <form #login="ngForm" *ngIf="mode == \'login\'">\n      <ion-card>\n        <ion-card-content>\n          <ion-list>\n            <label ion-item>\n                  <ion-label floating>Email</ion-label>\n                  <ion-input name="email" type="email" [(ngModel)]="email" required>\n                  </ion-input>\n                </label>\n\n            <label ion-item>\n                  <ion-label floating>Şifre</ion-label>\n                  <ion-input name="password" type="password" [(ngModel)]="password" required>\n                  </ion-input>\n                </label>\n          </ion-list>\n\n          <button (click)="loginUser()" [disabled]="!login.form.valid" ion-button block>Giriş Yap</button>\n          <button (click)="registerModeOn()" ion-button outline block>Hesabınız mı yok? Kayıt olun</button>\n        </ion-card-content>\n      </ion-card>\n    </form>\n  </div>\n</div>'/*ion-inline-end:"/Users/ogrenci/Desktop/github/waterfall/src/pages/login/login.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__["a" /* OneSignal */]) === "function" && _g || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__["a" /* OneSignal */]])
 ], LoginPage);
 
-var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=login.js.map
 
 /***/ }),
@@ -1689,10 +1710,10 @@ var AuthServiceProvider = (function () {
 }());
 AuthServiceProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _b || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]])
 ], AuthServiceProvider);
 
-var _a, _b;
 //# sourceMappingURL=auth-service.js.map
 
 /***/ }),
@@ -1753,11 +1774,1209 @@ var OnesignalNotificationProvider = (function () {
 }());
 OnesignalNotificationProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
 ], OnesignalNotificationProvider);
 
-var _a;
 //# sourceMappingURL=onesignal-notification.js.map
+
+/***/ }),
+
+/***/ 283:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CityDistrictProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(50);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(101);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/*
+  Generated class for the IlIlceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var CityDistrictProvider = (function () {
+    function CityDistrictProvider(http) {
+        this.http = http;
+        this.ref = "http://services.atiksoftware.com/turkiye/";
+        this.sehirler = [
+            "Adana",
+            "Ad\u0131yaman",
+            "Afyonkarahisar",
+            "A\u011fr\u0131",
+            "Aksaray",
+            "Amasya",
+            "Ankara",
+            "Antalya",
+            "Ardahan",
+            "Artvin",
+            "Ayd\u0131n",
+            "Bal\u0131kesir",
+            "Bart\u0131n",
+            "Batman",
+            "Bayburt",
+            "Bilecik",
+            "Bing\u00f6l",
+            "Bitlis",
+            "Bolu",
+            "Burdur",
+            "Bursa",
+            "\u00c7anakkale",
+            "\u00c7ank\u0131r\u0131",
+            "\u00c7orum",
+            "Denizli",
+            "Diyarbak\u0131r",
+            "D\u00fczce",
+            "Edirne",
+            "Elaz\u0131\u011f",
+            "Erzincan",
+            "Erzurum",
+            "Eski\u015fehir",
+            "Gaziantep",
+            "Giresun",
+            "G\u00fcm\u00fc\u015fhane",
+            "Hakkari",
+            "Hatay",
+            "I\u011fd\u0131r",
+            "Isparta",
+            "\u0130stanbul",
+            "\u0130zmir",
+            "Kahramanmara\u015f",
+            "Karab\u00fck",
+            "Karaman",
+            "Kars",
+            "Kastamonu",
+            "Kayseri",
+            "Kilis",
+            "K\u0131r\u0131kkale",
+            "K\u0131rklareli",
+            "K\u0131r\u015fehir",
+            "Kocaeli",
+            "Konya",
+            "K\u00fctahya",
+            "Malatya",
+            "Manisa",
+            "Mardin",
+            "Mersin",
+            "Mu\u011fla",
+            "Mu\u015f",
+            "Nev\u015fehir",
+            "Ni\u011fde",
+            "Ordu",
+            "Osmaniye",
+            "Rize",
+            "Sakarya",
+            "Samsun",
+            "\u015eanl\u0131urfa",
+            "Siirt",
+            "Sinop",
+            "\u015e\u0131rnak",
+            "Sivas",
+            "Tekirda\u011f",
+            "Tokat",
+            "Trabzon",
+            "Tunceli",
+            "U\u015fak",
+            "Van",
+            "Yalova",
+            "Yozgat",
+            "Zonguldak"
+        ];
+        this.ilceler = [];
+        this.counties = {
+            "Adana": [
+                "Aladağ",
+                "Ceyhan",
+                "Çukurova",
+                "Feke",
+                "İmamoğlu",
+                "Karaisalı",
+                "Karataş",
+                "Kozan",
+                "Pozantı",
+                "Saimbeyli",
+                "Sarıçam",
+                "Seyhan",
+                "Tufanbeyli",
+                "Yumurtalık",
+                "Yüreğir"
+            ],
+            "Ad\u0131yaman": [
+                "Besni",
+                "Çelikhan",
+                "Gerger",
+                "Gölbaşı",
+                "Kahta",
+                "Merkez",
+                "Samsat",
+                "Sincik",
+                "Tut"
+            ],
+            "Afyonkarahisar": [
+                "Başmakçı",
+                "Bayat",
+                "Bolvadin",
+                "Çay",
+                "Çobanlar",
+                "Dazkırı",
+                "Dinar",
+                "Emirdağ",
+                "Evciler",
+                "Hocalar",
+                "İhsaniye",
+                "İscehisar",
+                "Kızılören",
+                "Sandıklı",
+                "Sinanpaşa",
+                "Sultandağı",
+                "Şuhut"
+            ],
+            "A\u011fr\u0131": [
+                "Diyadin",
+                "Doğubeyazıt",
+                "Eleşkirt",
+                "Hamur",
+                "Patnos",
+                "Taşlıçay",
+                "Tutak"
+            ],
+            "Aksaray": [
+                "Ağaçören",
+                "Aksaray",
+                "Eskil",
+                "Gülağaç",
+                "Güzelyurt",
+                "Ortaköy",
+                "Sarıyahşi",
+            ],
+            "Amasya": [
+                "Göynücek",
+                "Gümüşhacıköy",
+                "Hamamözü",
+                "Merzifon",
+                "Suluova",
+                "Taşova",
+            ],
+            "Ankara": [
+                "Akyurt",
+                "Altındağ",
+                "Ayaş",
+                "Bala",
+                "Beypazarı",
+                "Çamlıdere",
+                "Çankaya",
+                "Çubuk",
+                "Elmadağ",
+                "Etimesgut",
+                "Evren",
+                "Gölbaşı",
+                "Güdül",
+                "Haymana",
+                "Kalecik",
+                "Kazan",
+                "Keçiören",
+                "Kızılcahamam",
+                "Mamak",
+                "Nallıhan",
+                "Polatlı",
+                "Pursaklar",
+                "Sincan",
+                "Şereflikoçhisar",
+                "Yenimahalle"
+            ],
+            "Antalya": [
+                "Akseki",
+                "Aksu",
+                "Alanya",
+                "Döşemealtı",
+                "Elmalı",
+                "Finike",
+                "Gazipaşa",
+                "Gündoğmuş",
+                "İbradi",
+                "Kale",
+                "Kaş",
+                "Kemer",
+                "Kepez",
+                "Konyaaltı",
+                "Korkuteli",
+                "Kumluca",
+                "Manavgat",
+                "Muratpaşa",
+                "Serik"
+            ],
+            "Ardahan": [
+                "Çıldır",
+                "Damal",
+                "Göle",
+                "Hanak",
+                "Posof"
+            ],
+            "Artvin": [
+                "Ardanuç",
+                "Arhavi",
+                "Artvin",
+                "Borçka",
+                "Hopa",
+                "Murgul",
+                "Şavşat",
+                "Yusufeli"
+            ],
+            "Ayd\u0131n": [
+                "Bozdoğan",
+                "Buharkent",
+                "Çine",
+                "Didim",
+                "Germencik",
+                "İncirliova",
+                "Karacasu",
+                "Karpuzlu",
+                "Koçarlı",
+                "Köşk",
+                "Kuşadası",
+                "Kuyucak",
+                "Nazilli",
+                "Söke",
+                "Sultanhisar",
+                "Yenipazar"
+            ],
+            "Bal\u0131kesir": [
+                "Ayvalık",
+                "Balya",
+                "Bandırma",
+                "Bigadiç",
+                "Burhaniye",
+                "Dursunbey",
+                "Edremit",
+                "Erdek",
+                "Gömeç",
+                "Gönen",
+                "Havran",
+                "İvrindi",
+                "Kepsut",
+                "Manyas",
+                "Marmara",
+                "Savaştepe",
+                "Sındırgı",
+                "Susurluk"
+            ],
+            "Bart\u0131n": [
+                "Kurucaşile",
+                "Ulus"
+            ],
+            "Batman": [
+                "Beşiri",
+                "Gercüş",
+                "Hasankeyf",
+                "Kozluk",
+                "Sason"
+            ],
+            "Bayburt": [
+                "Aydıntepe",
+                "Demirözü"
+            ],
+            "Bilecik": [
+                "Bozüyük",
+                "Gölpazarı",
+                "İnhisar",
+                "Osmaneli",
+                "Pazaryeri",
+                "Söğüt",
+                "Yenipazar"
+            ],
+            "Bing\u00f6l": [
+                "Adaklı",
+                "Genç",
+                "Karlıova",
+                "Kiğı",
+                "Solhan",
+                "Yayladere",
+                "Yedisu"
+            ],
+            "Bitlis": [
+                "Adilcevaz",
+                "Ahlat",
+                "Güroymak",
+                "Hizan",
+                "Mutki",
+                "Tatvan"
+            ],
+            "Bolu": [
+                "Dörtdivan",
+                "Gerede",
+                "Göynük",
+                "Kıbrıscık",
+                "Mengen",
+                "Mudurnu",
+                "Seben",
+                "Yeniçağa"
+            ],
+            "Burdur": [
+                "Ağlasun",
+                "Altınyayla",
+                "Bucak",
+                "Çavdır",
+                "Çeltikçi",
+                "Gölhisar",
+                "Karamanlı",
+                "Kemer",
+                "Tefenni",
+                "Yeşilova"
+            ],
+            "Bursa": [
+                "Büyükorhan",
+                "Gemlik",
+                "Gürsu",
+                "Harmancık",
+                "İnegöl",
+                "İznik",
+                "Karacabey",
+                "Keles",
+                "Kestel",
+                "Mudanya",
+                "Mustafakemalpaşa",
+                "Nilüfer",
+                "Orhaneli",
+                "Orhangazi",
+                "Osmangazi",
+                "Yenişehir",
+                "Yıldırım"
+            ],
+            "\u00c7anakkale": [
+                "Ayvacık",
+                "Bayramiç",
+                "Biga",
+                "Bozcaada",
+                "Çan",
+                "Eceabat",
+                "Ezine",
+                "Gelibolu",
+                "Gökçeada",
+                "Lapseki",
+                "Yenice"
+            ],
+            "\u00c7ank\u0131r\u0131": [
+                "Atkaracalar",
+                "Bayramören",
+                "Çerkeş",
+                "Eldivan",
+                "Ilgaz",
+                "Kızılırmak",
+                "Korgun",
+                "Kurşunlu",
+                "Orta",
+                "Şabanözü",
+                "Yapraklı"
+            ],
+            "\u00c7orum": [
+                "Alaca",
+                "Bayat",
+                "Boğazkale",
+                "Dodurga",
+                "İskilip",
+                "Kargı",
+                "Laçin",
+                "Mecitözü",
+                "Oğuzlar",
+                "Ortaköy",
+                "Osmancık",
+                "Sungurlu",
+                "Uğurludağ"
+            ],
+            "Denizli": [
+                "Acıpayam",
+                "Akköy",
+                "Babadağ",
+                "Baklan",
+                "Bekilli",
+                "Beyağaç",
+                "Bozkurt",
+                "Buldan",
+                "Çal",
+                "Çameli",
+                "Çardak",
+                "Çivril",
+                "Güney",
+                "Honaz",
+                "Kale",
+                "Sarayköy",
+                "Serinhisar",
+                "Tavas"
+            ],
+            "Diyarbak\u0131r": [
+                "Bağlar",
+                "Bismil",
+                "Çermik",
+                "Çınar",
+                "Çüngüş",
+                "Dicle",
+                "Eğil",
+                "Ergani",
+                "Hani",
+                "Hazro",
+                "Kayapınar",
+                "Kocaköy",
+                "Kulp",
+                "Lice",
+                "Silvan",
+                "Sur",
+                "Yenişehir"
+            ],
+            "D\u00fczce": [
+                "Akçakoca",
+                "Cumayeri",
+                "Çilimli",
+                "Gölyaka",
+                "Gümüşova",
+                "Kaynaşlı",
+                "Yığılca"
+            ],
+            "Edirne": [
+                "Enez",
+                "Havsa",
+                "İpsala",
+                "Keşan",
+                "Lalapaşa",
+                "Meriç",
+                "Süloğlu",
+                "Uzunköprü"
+            ],
+            "Elaz\u0131\u011f": [
+                "Ağın",
+                "Alacakaya",
+                "Arıcak",
+                "Baskil",
+                "Karakoçan",
+                "Keban",
+                "Kovancılar",
+                "Maden",
+                "Palu",
+                "Sivrice"
+            ],
+            "Erzincan": [
+                "Çayırlı",
+                "İliç",
+                "Kemah",
+                "Kemaliye",
+                "Otlukbeli",
+                "Refahiye",
+                "Tercan",
+                "Üzümlü"
+            ],
+            "Erzurum": [
+                "Aşkale",
+                "Aziziye",
+                "Çat",
+                "Hınıs",
+                "Horasan",
+                "İspir",
+                "Karaçoban",
+                "Karayazı",
+                "Köprüköy",
+                "Narman",
+                "Oltu",
+                "Olur",
+                "Palandöken",
+                "Pasinler",
+                "Pazaryolu",
+                "Şenkaya",
+                "Tekman",
+                "Tortum",
+                "Uzundere",
+                "Yakutiye"
+            ],
+            "Eski\u015fehir": [
+                "Alpu",
+                "Beylikova",
+                "Çifteler",
+                "Günyüzü",
+                "Han",
+                "İnönü",
+                "Mahmudiye",
+                "Mihalgazi",
+                "Mihalıççık",
+                "Odunpazarı",
+                "Sarıcakaya",
+                "Seyitgazi",
+                "Sivrihisar",
+                "Tepebaşı"
+            ],
+            "Gaziantep": [
+                "Araban",
+                "İslahiye",
+                "Karkamış",
+                "Nizip",
+                "Nurdağı",
+                "Oğuzeli",
+                "Şahinbey",
+                "Şehitkamil",
+                "Yavuzeli"
+            ],
+            "Giresun": [
+                "Alucra",
+                "Bulancak",
+                "Çamoluk",
+                "Çanakçı",
+                "Dereli",
+                "Doğankent",
+                "Espiye",
+                "Eynesil",
+                "Görele",
+                "Güce",
+                "Keşap",
+                "Piraziz",
+                "Şebinkarahisar",
+                "Tirebolu",
+                "Yağlıdere"
+            ],
+            "G\u00fcm\u00fc\u015fhane": [
+                "Kelkit",
+                "Köse",
+                "Kürtün",
+                "Şiran",
+                "Torul"
+            ],
+            "Hakkari": [
+                "Çukurca",
+                "Şemdinli",
+                "Yüksekova"
+            ],
+            "Hatay": [
+                "Altınözü",
+                "Antakya",
+                "Belen",
+                "Dörtyol",
+                "Erzin",
+                "Hassa",
+                "İskenderun",
+                "Kırıkhan",
+                "Kumlu",
+                "Reyhanlı",
+                "Samandağ",
+                "Yayladağı"
+            ],
+            "I\u011fd\u0131r": [
+                "Aralık",
+                "Karakoyunlu",
+                "Tuzluca"
+            ],
+            "Isparta": [
+                "Aksu",
+                "Atabey",
+                "Eğirdir",
+                "Gelendost",
+                "Gönen",
+                "Keçiborlu",
+                "Senirkent",
+                "Sütçüler",
+                "Şarkikaraağaç",
+                "Uluborlu",
+                "Yalvaç",
+                "Yenişarbademli"
+            ],
+            "\u0130stanbul": [
+                "Adalar",
+                "Arnavutköy",
+                "Ataşehir",
+                "Avcılar",
+                "Bağcılar",
+                "Bahçelievler",
+                "Bakırköy",
+                "Başakşehir",
+                "Bayrampaşa",
+                "Beşiktaş",
+                "Beykoz",
+                "Beylikdüzü",
+                "Beyoğlu",
+                "Büyükçekmece",
+                "Çatalca",
+                "Çekmeköy",
+                "Esenler",
+                "Esenyurt",
+                "Eyüp",
+                "Fatih",
+                "Gaziosmanpaşa",
+                "Güngören",
+                "Kadıköy",
+                "Kağıthane",
+                "Kartal",
+                "Küçükçekmece",
+                "Maltepe",
+                "Pendik",
+                "Sancaktepe",
+                "Sarıyer",
+                "Silivri",
+                "Sultanbeyli",
+                "Sultangazi",
+                "Şile",
+                "Şişli",
+                "Tuzla",
+                "Ümraniye",
+                "Üsküdar",
+                "Zeytinburnu"
+            ],
+            "\u0130zmir": [
+                "Aliağa",
+                "Balçova",
+                "Bayındır",
+                "Bayraklı",
+                "Bergama",
+                "Beydağ",
+                "Bornova",
+                "Buca",
+                "Çeşme",
+                "Çiğli",
+                "Dikili",
+                "Foça",
+                "Gaziemir",
+                "Güzelbahçe",
+                "Karabağlar",
+                "Karaburun",
+                "Karşıyaka",
+                "Kemalpaşa",
+                "Kınık",
+                "Kiraz",
+                "Konak",
+                "Menderes",
+                "Menemen",
+                "Narlıdere",
+                "Ödemiş",
+                "Seferihisar",
+                "Selçuk",
+                "Tire",
+                "Torbalı",
+                "Urla"
+            ],
+            "Kahramanmara\u015f": [
+                "Afşin",
+                "Andırın",
+                "Çağlayancerit",
+                "Ekinözü",
+                "Elbistan",
+                "Göksun",
+                "Nurhak",
+                "Pazarcık",
+                "Türkoğlu"
+            ],
+            "Karab\u00fck": [
+                "Eflani",
+                "Eskipazar",
+                "Ovacık",
+                "Safranbolu",
+                "Yenice"
+            ],
+            "Karaman": [
+                "Ayrancı",
+                "Başyayla",
+                "Ermenek",
+                "Kazımkarabekir",
+                "Sarıveliler"
+            ],
+            "Kars": [
+                "Akyaka",
+                "Arpaçay",
+                "Digor",
+                "Kağızman",
+                "Sarıkamış",
+                "Selim",
+                "Susuz"
+            ],
+            "Kastamonu": [
+                "Abana",
+                "Ağlı",
+                "Araç",
+                "Azdavay",
+                "Bozkurt",
+                "Cide",
+                "Çatalzeytin",
+                "Daday",
+                "Devrekani",
+                "Doğanyurt",
+                "Hanönü",
+                "İhsangazi",
+                "İnebolu",
+                "Küre",
+                "Pınarbaşı",
+                "Seydiler",
+                "Şenpazar",
+                "Taşköprü",
+                "Tosya"
+            ],
+            "Kayseri": [
+                "Akkışla",
+                "Bünyan",
+                "Develi",
+                "Felahiye",
+                "Hacılar",
+                "İncesu",
+                "Kocasinan",
+                "Melikgazi",
+                "Özvatan",
+                "Pınarbaşı",
+                "Sarıoğlan",
+                "Sarız",
+                "Talas",
+                "Tomarza",
+                "Yahyalı",
+                "Yeşilhisar",
+            ],
+            "Kilis": [
+                "Merkez",
+                "Musabeyli",
+                "Elbeyli",
+                "Polateli"
+            ],
+            "K\u0131r\u0131kkale": [
+                "Bahşılı",
+                "Balışeyh",
+                "Çelebi",
+                "Delice",
+                "Karakeçili",
+                "Keskin",
+                "Sulakyurt",
+                "Yahşihan"
+            ],
+            "K\u0131rklareli": [
+                "Babaeski",
+                "Demirköy",
+                "Kofçaz",
+                "Lüleburgaz",
+                "Pehlivanköy",
+                "Pınarhisar",
+                "Vize"
+            ],
+            "K\u0131r\u015fehir": [
+                "Akçakent",
+                "Akpınar",
+                "Boztepe",
+                "Çiçekdağı",
+                "Kaman",
+                "Mucur"
+            ],
+            "Kocaeli": [
+                "Başiskele",
+                "Çayırova",
+                "Darıca",
+                "Derince",
+                "Dilovası",
+                "Gebze",
+                "Gölcük",
+                "İzmit",
+                "Kandıra",
+                "Karamürsel",
+                "Kartepe",
+                "Körfez"
+            ],
+            "Konya": [
+                "Ahırlı",
+                "Akören",
+                "Akşehir",
+                "Altınekin",
+                "Beyşehir",
+                "Bozkır",
+                "Cihanbeyli",
+                "Çeltik",
+                "Çumra",
+                "Derbent",
+                "Derebucak",
+                "Doğanhisar",
+                "Emirgazi",
+                "Ereğli",
+                "Güneysınır",
+                "Hadım",
+                "Halkapınar",
+                "Hüyük",
+                "Ilgın",
+                "Kadınhanı",
+                "Karapınar",
+                "Karatay",
+                "Kulu",
+                "Meram",
+                "Sarayönü",
+                "Selçuklu",
+                "Seydişehir",
+                "Taşkent",
+                "Tuzlukçu",
+                "Yalıhüyük",
+                "Yeniceoba",
+                "Yunak"
+            ],
+            "K\u00fctahya": [
+                "Altıntaş",
+                "Aslanapa",
+                "Çavdarhisar",
+                "Domaniç",
+                "Dumlupınar",
+                "Emet",
+                "Gediz",
+                "Hisarcık",
+                "Pazarlar",
+                "Şaphane",
+                "Simav",
+                "Tavşanlı"
+            ],
+            "Malatya": [
+                "Akçadağ",
+                "Arapgir",
+                "Arguvan",
+                "Battalgazi",
+                "Darende",
+                "Doğanşehir",
+                "Doğanyol",
+                "Hekimhan",
+                "Kale",
+                "Kuluncak",
+                "Pütürge",
+                "Yazıhan",
+                "Yeşilyurt",
+                "Gürün"
+            ],
+            "Manisa": [
+                "Ahmetli",
+                "Akhisar",
+                "Alaşehir",
+                "Demirci",
+                "Gölmarmara",
+                "Gördes",
+                "Kırkağaç",
+                "Kula",
+                "Salihli",
+                "Sarıgöl",
+                "Saruhanlı",
+                "Selendi",
+                "Soma",
+                "Turgutlu"
+            ],
+            "Mardin": [
+                "Dargeçit",
+                "Derik",
+                "Kızıltepe",
+                "Mazıdağı",
+                "Midyat",
+                "Nusaybin",
+                "Ömerli",
+                "Savur",
+                "Yeşilli"
+            ],
+            "Mersin": [
+                "Akdeniz",
+                "Anamur",
+                "Aydıncık",
+                "Bozyazı",
+                "Çamlıyayla",
+                "Erdemli",
+                "Gülnar",
+                "Mezitli",
+                "Mut",
+                "Silifke",
+                "Tarsus",
+                "Toroslar",
+                "Yenişehir"
+            ],
+            "Mu\u011fla": [
+                "Bodrum",
+                "Dalaman",
+                "Datça",
+                "Fethiye",
+                "Kavaklıdere",
+                "Köyceğiz",
+                "Marmaris",
+                "Milas",
+                "Ortaca",
+                "Ula",
+                "Yatağan"
+            ],
+            "Mu\u015f": [
+                "Bulanık",
+                "Hasköy",
+                "Korkut",
+                "Malazgirt",
+                "Varto"
+            ],
+            "Nev\u015fehir": [
+                "Acıgöl",
+                "Avanos",
+                "Derinkuyu",
+                "Gülşehir",
+                "Hacıbektaş",
+                "Kozaklı",
+                "Ürgüp"
+            ],
+            "Ni\u011fde": [
+                "Altunhisar",
+                "Bor",
+                "Çamardı",
+                "Çiftlik",
+                "Ulukışla"
+            ],
+            "Ordu": [
+                "Akkuş",
+                "Aybastı",
+                "Çamaş",
+                "Çatalpınar",
+                "Çaybaşı",
+                "Fatsa",
+                "Gölköy",
+                "Gülyalı",
+                "Gürgentepe",
+                "İkizce",
+                "Kabadüz",
+                "Kabataş",
+                "Korgan",
+                "Kumru",
+                "Mesudiye",
+                "Perşembe",
+                "Ulubey",
+                "Ünye"
+            ],
+            "Osmaniye": [
+                "Bahçe",
+                "Düziçi",
+                "Hasanbeyli",
+                "Kadirli",
+                "Sumbas",
+                "Toprakkale"
+            ],
+            "Rize": [
+                "Ardeşen",
+                "Çamlıhemşin",
+                "Çayeli",
+                "Derepazarı",
+                "Fındıklı",
+                "Güneysu",
+                "Hemşin",
+                "İkizdere",
+                "İyidere",
+                "Kalkandere",
+                "Pazar"
+            ],
+            "Sakarya": [
+                "Adapazarı",
+                "Akyazı",
+                "Arifiye",
+                "Erenler",
+                "Ferizli",
+                "Geyve",
+                "Hendek",
+                "Karapürçek",
+                "Karasu",
+                "Kaynarca",
+                "Kocaali",
+                "Pamukova",
+                "Sapanca",
+                "Serdivan",
+                "Söğütlü",
+                "Taraklı"
+            ],
+            "Samsun": [
+                "Alaçam",
+                "Asarcık",
+                "Atakum",
+                "Ayvacık",
+                "Bafra",
+                "Canik",
+                "Çarşamba",
+                "Havza",
+                "İlkadım",
+                "Kavak",
+                "Ladik",
+                "Ondokuzmayıs",
+                "Salıpazarı",
+                "Tekkeköy",
+                "Terme",
+                "Vezirköprü",
+                "Yakakent"
+            ],
+            "\u015eanl\u0131urfa": [
+                "Akçakale",
+                "Birecik",
+                "Bozova",
+                "Ceylanpınar",
+                "Halfeti",
+                "Harran",
+                "Hilvan",
+                "Siverek",
+                "Suruç",
+                "Viranşehir"
+            ],
+            "Siirt": [
+                "Aydınlar",
+                "Baykan",
+                "Eruh",
+                "Kurtalan",
+                "Pervari",
+                "Şirvan"
+            ],
+            "Sinop": [
+                "Ayancık",
+                "Boyabat",
+                "Dikmen",
+                "Durağan",
+                "Erfelek",
+                "Gerze",
+                "Saraydüzü",
+                "Türkeli"
+            ],
+            "\u015e\u0131rnak": [
+                "Beytüşşebap",
+                "Cizre",
+                "Güçlükonak",
+                "İdil",
+                "Silopi",
+                "Uludere"
+            ],
+            "Sivas": [
+                "Akıncılar",
+                "Altınyayla",
+                "Divriği",
+                "Doğanşar",
+                "Gemerek",
+                "Gölova",
+                "Hafik",
+                "İmranlı",
+                "Kangal",
+                "Koyulhisar",
+                "Suşehri",
+                "Şarkışla",
+                "Ulaş",
+                "Yıldızeli",
+                "Zara",
+                "Gürün"
+            ],
+            "Tekirda\u011f": [
+                "Çerkezköy",
+                "Çorlu",
+                "Hayrabolu",
+                "Malkara",
+                "Marmara Ereğlisi",
+                "Muratlı",
+                "Saray",
+                "Şarköy"
+            ],
+            "Tokat": [
+                "Almus",
+                "Artova",
+                "Başçiftlik",
+                "Erbaa",
+                "Niksar",
+                "Pazar",
+                "Reşadiye",
+                "Sulusaray",
+                "Turhal",
+                "Yeşilyurt",
+                "Zile"
+            ],
+            "Trabzon": [
+                "Akçaabat",
+                "Araklı",
+                "Arsin",
+                "Beşikdüzü",
+                "Çarşıbaşı",
+                "Çaykara",
+                "Dernekpazarı",
+                "Düzköy",
+                "Hayrat",
+                "Köprübaşı",
+                "Maçka",
+                "Of",
+                "Sürmene",
+                "Şalpazarı",
+                "Tonya",
+                "Vakfıkebir",
+                "Yomra"
+            ],
+            "Tunceli": [
+                "Çemişgezek",
+                "Hozat",
+                "Mazgirt",
+                "Nazimiye",
+                "Ovacık",
+                "Pertek",
+                "Pülümür"
+            ],
+            "U\u015fak": [
+                "Banaz",
+                "Eşme",
+                "Karahallı",
+                "Sivaslı",
+                "Ulubey"
+            ],
+            "Van": [
+                "Bahçesaray",
+                "Başkale",
+                "Çaldıran",
+                "Çatak",
+                "Edremit",
+                "Erciş",
+                "Gevaş",
+                "Gürpınar",
+                "Muradiye",
+                "Özalp",
+                "Saray"
+            ],
+            "Yalova": [
+                "Altınova",
+                "Armutlu",
+                "Çınarcık",
+                "Çiftlikköy",
+                "Termal"
+            ],
+            "Yozgat": [
+                "Akdağmadeni",
+                "Aydıncık",
+                "Boğazlıyan",
+                "Çandır",
+                "Çayıralan",
+                "Çekerek",
+                "Kadışehri",
+                "Saraykent",
+                "Sarıkaya",
+                "Sorgun",
+                "Şefaatli",
+                "Yenifakılı",
+                "Yerköy"
+            ],
+            "Zonguldak": [
+                "Alaplı",
+                "Çaycuma",
+                "Devrek",
+                "Gökçebey",
+                "Kilimli",
+                "Kozlu",
+                "Karadeniz Ereğli"
+            ]
+        };
+        console.log('Hello IlIlceProvider Provider');
+    }
+    CityDistrictProvider.prototype.getCities = function () {
+        return this.sehirler;
+    };
+    CityDistrictProvider.prototype.getCounties = function (id) {
+        this.ilceler = this.counties[id];
+        console.log(id);
+    };
+    return CityDistrictProvider;
+}());
+CityDistrictProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+], CityDistrictProvider);
+
+var _a;
+//# sourceMappingURL=city-district.js.map
 
 /***/ }),
 

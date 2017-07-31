@@ -67,13 +67,25 @@
                 </label>
 
                 <label ion-item>
-                  <ion-label fixed>Şehir</ion-label>
-                  <ion-input name="addressCity" [(ngModel)]="order.customer.address.city"></ion-input>
+                  <ion-label>Şehir</ion-label>
+                  <ion-select
+                    name="city"
+                    [(ngModel)]="order.customer.address.city"
+                    (ionChange)="citySelected($event)"
+                  >
+                    <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>
+                  </ion-select>
                 </label>
 
                 <label ion-item>
-                  <ion-label fixed>İlçe</ion-label>
-                  <ion-input name="addressDistrict" [(ngModel)]="order.customer.address.district"></ion-input>
+                  <ion-label>İlçe</ion-label>
+                  <ion-select
+                    name="addressDistrict"
+                    [disabled]="!order.customer.address.city"
+                    [(ngModel)]="order.customer.address.district"
+                  >
+                    <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>
+                  </ion-select>
                 </label>
 
                 <label ion-item>

@@ -4,6 +4,7 @@ import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-d
 import { OrderDetailsPage } from "../order-details/order-details";
 import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { CityDistrictProvider } from "../../providers/city-district/city-district";
 
 @Component({
   selector: 'page-new-order-form',
@@ -56,8 +57,15 @@ export class NewOrderFormPage {
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
     private currencyBankProvider: CurrencyBankProvider,
-    private auth: AuthServiceProvider
+    private auth: AuthServiceProvider,
+    private cityDistrictProvider: CityDistrictProvider
   ) {
+  }
+
+  citySelected(city) {
+    this.order.customer.address.district = "";
+
+    this.cityDistrictProvider.getCounties(city)
   }
 
   showSavingAlert() {
