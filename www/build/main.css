@@ -32877,3 +32877,13 @@ page-home p {
   word-break: normal;
   white-space: normal;
 }
+
+customer-details-card ion-label {
+  word-break: keep-all;
+  white-space: normal;
+}
+
+order-details-card ion-label {
+  word-break: keep-all;
+  white-space: normal;
+}

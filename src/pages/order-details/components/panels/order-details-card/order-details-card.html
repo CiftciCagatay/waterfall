@@ -8,7 +8,7 @@
 
           <ion-card-content style="margin-top: 12px">
             <ion-list>
-              <ion-item>
+              <ion-item *ngIf="orderDetails?.amount && orderDetails?.currency">
                 <ion-label>Sipariş Tutarı</ion-label>
                 <ion-label>{{ orderDetails?.amount }} {{ orderDetails?.currency }}</ion-label>
               </ion-item>
@@ -18,22 +18,22 @@
                 <ion-label><!-- TODO -->{{ orderDetails?.currency }}</ion-label>
               </ion-item>
 
-              <ion-item>
+              <ion-item *ngIf="orderDetails?.orderDate">
                 <ion-label>Sipariş Tarihi</ion-label>
                 <ion-label>{{ orderDetails?.orderDate | formatDate }}</ion-label>
               </ion-item>
 
-              <ion-item>
+              <ion-item *ngIf="orderDetails?.deliveryDate">
                 <ion-label>İş Teslim Tarihi</ion-label>
                 <ion-label>{{ orderDetails?.deliveryDate | formatDate }}</ion-label>
               </ion-item>
 
-              <ion-item>
+              <ion-item *ngIf="orderDetails?.personnel">
                 <ion-label>Personel</ion-label>
                 <ion-label>{{ orderDetails?.personnel }}</ion-label>
               </ion-item>
 
-              <ion-item>
+              <ion-item *ngIf="orderDetails?.note">
                 <ion-label>Sipariş Not</ion-label>
                 <ion-label>{{ orderDetails?.note }}</ion-label>
               </ion-item>
