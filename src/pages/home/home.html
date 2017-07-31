@@ -13,7 +13,7 @@
       <ion-icon name="leaf" item-start></ion-icon>
 
       <h1>{{ event.title }}</h1>
-      <h2>{{ event.date }} | {{ event.personnel }}</h2>
+      <h2>{{ event.date | formatDate }} | {{ event.personnel }}</h2>
       <p>{{ event.detail }}</p>
     </ion-item>
   </ion-list>
