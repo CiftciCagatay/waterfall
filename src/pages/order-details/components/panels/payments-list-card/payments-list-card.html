@@ -10,15 +10,14 @@
     <ion-list>
       <ion-item-sliding *ngFor="let payment of payments; let i = index">
         <ion-item>
-          <div item-start>
-            <h1>{{ payment.amount }} {{ payment.currency }}</h1>
-          </div>
 
-          <div style="width: 75%;" item-end>
+            <h1>{{ payment.amount }} {{ payment.currency }}</h1>
+
+
             <h2>{{ payment.type == "Kredi Kartı" ? payment.installments + " Taksit | " + payment.bank : "" }}</h2>
             <h3>{{ payment.personnel }} | {{ payment.date| formatDate }}</h3>
             <p>{{ payment.note }}</p>
-          </div>
+
         </ion-item>
 
         <ion-item-options>
