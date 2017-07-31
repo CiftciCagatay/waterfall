@@ -38,6 +38,7 @@ export class AuthServiceProvider {
   }
 
   register(user: any) {
+    console.log(this.ref);
     return this.http.post(this.ref + "/personnels/new", user);
   }
 

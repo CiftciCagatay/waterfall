@@ -3,6 +3,7 @@ import { NavController, NavParams, AlertController, LoadingController } from 'io
 import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 import { OrderDetailsPage } from "../order-details/order-details";
 import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
+import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 
 @Component({
   selector: 'page-new-order-form',
@@ -28,7 +29,7 @@ export class NewOrderFormPage {
     orderDetails: {
       orderDate: new Date(),
       deliveryDate: (new Date()).toISOString(),
-      personnel: "Çağatay Çiftçi",
+      personnel: this.auth.getUser(),
       amount: null,
       currency: "TRY",
       note: ""
@@ -40,7 +41,7 @@ export class NewOrderFormPage {
         currency: "TRY",
         amount: null,
         note: "",
-        personnel: "Çağatay",
+        personnel: this.auth.getUser(),
         installments: null,
         bank: "",
         date: new Date()
@@ -54,7 +55,8 @@ export class NewOrderFormPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
-    private currencyBankProvider: CurrencyBankProvider
+    private currencyBankProvider: CurrencyBankProvider,
+    private auth: AuthServiceProvider
   ) {
   }
 

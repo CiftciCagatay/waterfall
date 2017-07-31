@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
+import { AuthServiceProvider } from "../../../../../providers/auth-service/auth-service";
 
 @Component({
   selector: 'page-payment-form',
@@ -23,7 +24,8 @@ export class PaymentFormPage {
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
     private currencyBankProvider: CurrencyBankProvider,
-    private events: Events
+    private events: Events,
+    private auth: AuthServiceProvider
   ) {
     this.mode = this.navParams.get('mode');
     this.orderId = this.navParams.get('orderId');
@@ -52,7 +54,7 @@ export class PaymentFormPage {
         date: new Date(),
         currency: "TRY",
         installments: null,
-        personnel: "",
+        personnel: this.auth.getUser(),
         bank: "",
         note: ""
       }

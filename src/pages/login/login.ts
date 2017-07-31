@@ -66,7 +66,7 @@ export class LoginPage {
       
       let data = response.json()
 
-      if (data.result == "OK") {
+      if (data.result == "OK" && data.userData[0]) {
         this.authService.setUser(data.userData[0]);
 
         if (this.authService.user.isManager) {
