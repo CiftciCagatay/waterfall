@@ -11,6 +11,8 @@ import { NewOrderFormPage } from "../pages/new-order-form/new-order-form";
 import { OrderDetailsPage } from "../pages/order-details/order-details";
 import { ComponentsModule } from "../components/components.module";
 
+import { OneSignal } from '@ionic-native/onesignal';
+
 import { ProductsListCardComponent } from "../pages/order-details/components/panels/products-list-card/products-list-card";
 import { PaymentsListCardComponent } from "../pages/order-details/components/panels/payments-list-card/payments-list-card";
 import { OrderDetailsCardComponent } from "../pages/order-details/components/panels/order-details-card/order-details-card";
@@ -25,11 +27,15 @@ import { MongoDbServiceProvider } from '../providers/mongo-db-service/mongo-db-s
 import { HttpModule } from "@angular/http";
 import { CurrencyBankProvider } from '../providers/currency-bank/currency-bank';
 import { ProductTypesProvider } from '../providers/product-types/product-types';
+import { AuthServiceProvider } from '../providers/auth-service/auth-service';
+import { OnesignalNotificationProvider } from '../providers/onesignal-notification/onesignal-notification';
+import { LoginPage } from "../pages/login/login";
 
 @NgModule({
   declarations: [
     MyApp,
 
+    LoginPage,
     HomePage,
     NewOrderFormPage,
     OrdersListPage,
@@ -56,6 +62,7 @@ import { ProductTypesProvider } from '../providers/product-types/product-types';
   entryComponents: [
     MyApp,
 
+    LoginPage,
     HomePage,
     NewOrderFormPage,
     OrdersListPage,
@@ -72,7 +79,10 @@ import { ProductTypesProvider } from '../providers/product-types/product-types';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
     MongoDbServiceProvider,
     CurrencyBankProvider,
-    ProductTypesProvider
+    ProductTypesProvider,
+    AuthServiceProvider,
+    OneSignal,
+    OnesignalNotificationProvider
   ]
 })
 export class AppModule { }

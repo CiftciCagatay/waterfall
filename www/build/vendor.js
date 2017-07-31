@@ -18944,7 +18944,7 @@ function copyInputAttributes(srcElement, destElement) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__components_app_app_root__ = __webpack_require__(57);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return __WEBPACK_IMPORTED_MODULE_0__components_app_app_root__["b"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__components_app_menu_controller__ = __webpack_require__(27);
-/* unused harmony reexport MenuController */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_1__components_app_menu_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__components_action_sheet_action_sheet__ = __webpack_require__(59);
 /* unused harmony reexport ActionSheet */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__components_action_sheet_action_sheet_controller__ = __webpack_require__(115);
@@ -19032,7 +19032,7 @@ function copyInputAttributes(srcElement, destElement) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_44__components_loading_loading__ = __webpack_require__(144);
 /* unused harmony reexport Loading */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_45__components_loading_loading_controller__ = __webpack_require__(145);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_45__components_loading_loading_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_45__components_loading_loading_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_46__components_loading_loading_component__ = __webpack_require__(75);
 /* unused harmony reexport LoadingCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_47__components_menu_menu__ = __webpack_require__(146);
@@ -19048,9 +19048,9 @@ function copyInputAttributes(srcElement, destElement) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_52__components_modal_modal_component__ = __webpack_require__(77);
 /* unused harmony reexport ModalCmp */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_53__components_modal_modal_controller__ = __webpack_require__(154);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_53__components_modal_modal_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_53__components_modal_modal_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_54__components_nav_nav__ = __webpack_require__(76);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "h", function() { return __WEBPACK_IMPORTED_MODULE_54__components_nav_nav__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_54__components_nav_nav__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_55__components_nav_nav_pop__ = __webpack_require__(79);
 /* unused harmony reexport NavPop */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_56__components_nav_nav_pop_anchor__ = __webpack_require__(155);
@@ -19163,20 +19163,20 @@ function copyInputAttributes(srcElement, destElement) {
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_108__platform_dom_controller__ = __webpack_require__(8);
 /* unused harmony reexport DomController */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_109__platform_platform__ = __webpack_require__(3);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "k", function() { return __WEBPACK_IMPORTED_MODULE_109__platform_platform__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "n", function() { return __WEBPACK_IMPORTED_MODULE_109__platform_platform__["a"]; });
 /* unused harmony reexport setupPlatform */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_110__tap_click_haptic__ = __webpack_require__(37);
 /* unused harmony reexport Haptic */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_111__navigation_deep_linker__ = __webpack_require__(15);
 /* unused harmony reexport DeepLinker */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_112__navigation_ionic_page__ = __webpack_require__(257);
-/* unused harmony reexport IonicPage */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "f", function() { return __WEBPACK_IMPORTED_MODULE_112__navigation_ionic_page__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_113__navigation_nav_controller__ = __webpack_require__(23);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "i", function() { return __WEBPACK_IMPORTED_MODULE_113__navigation_nav_controller__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "l", function() { return __WEBPACK_IMPORTED_MODULE_113__navigation_nav_controller__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_114__navigation_nav_controller_base__ = __webpack_require__(42);
 /* unused harmony reexport NavControllerBase */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_115__navigation_nav_params__ = __webpack_require__(14);
-/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "j", function() { return __WEBPACK_IMPORTED_MODULE_115__navigation_nav_params__["a"]; });
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "m", function() { return __WEBPACK_IMPORTED_MODULE_115__navigation_nav_params__["a"]; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_116__navigation_nav_util__ = __webpack_require__(22);
 /* unused harmony reexport DeepLinkMetadata */
 /* unused harmony reexport DeepLinkMetadataFactory */
@@ -19236,7 +19236,7 @@ function copyInputAttributes(srcElement, destElement) {
 /* unused harmony reexport IonicGestureConfig */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_136__module__ = __webpack_require__(262);
 /* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "e", function() { return __WEBPACK_IMPORTED_MODULE_136__module__["a"]; });
-/* unused harmony reexport IonicPageModule */
+/* harmony reexport (binding) */ __webpack_require__.d(__webpack_exports__, "g", function() { return __WEBPACK_IMPORTED_MODULE_136__module__["b"]; });
 /* unused harmony reexport provideLocationStrategy */
 
 
@@ -46125,10 +46125,10 @@ function Toolbar_tsickle_Closure_declarations() {
 /* unused harmony export RequestMethod */
 /* unused harmony export ResponseContentType */
 /* unused harmony export ResponseType */
-/* unused harmony export Headers */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Http; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return Headers; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return Http; });
 /* unused harmony export Jsonp */
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return HttpModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "c", function() { return HttpModule; });
 /* unused harmony export JsonpModule */
 /* unused harmony export Connection */
 /* unused harmony export ConnectionBackend */
@@ -110480,7 +110480,7 @@ var /** @type {?} */ REQUIRED_DOM_READS = 2;
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
-/* unused harmony export IonicPage */
+/* harmony export (immutable) */ __webpack_exports__["a"] = IonicPage;
 /**
  * \@name IonicPage
  * \@description
@@ -113296,7 +113296,7 @@ var IonicErrorHandler = (function (_super) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return IonicModule; });
-/* unused harmony export IonicPageModule */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "b", function() { return IonicPageModule; });
 /* unused harmony export provideLocationStrategy */
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_common__ = __webpack_require__(40);
@@ -114696,6 +114696,563 @@ var IonicNativePlugin = (function () {
 }());
 
 //# sourceMappingURL=ionic-native-plugin.js.map
+
+/***/ }),
+/* 273 */,
+/* 274 */,
+/* 275 */,
+/* 276 */,
+/* 277 */,
+/* 278 */,
+/* 279 */,
+/* 280 */,
+/* 281 */
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* unused harmony export OSLockScreenVisibility */
+/* unused harmony export OSDisplayType */
+/* unused harmony export OSActionType */
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OneSignal; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__ionic_native_core__ = __webpack_require__(194);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__);
+var __extends = (this && this.__extends) || (function () {
+    var extendStatics = Object.setPrototypeOf ||
+        ({ __proto__: [] } instanceof Array && function (d, b) { d.__proto__ = b; }) ||
+        function (d, b) { for (var p in b) if (b.hasOwnProperty(p)) d[p] = b[p]; };
+    return function (d, b) {
+        extendStatics(d, b);
+        function __() { this.constructor = d; }
+        d.prototype = b === null ? Object.create(b) : (__.prototype = b.prototype, new __());
+    };
+})();
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+/**
+ * **ANDROID** - Privacy setting for how the notification should be shown on the lockscreen of Android 5+ devices.
+ */
+var OSLockScreenVisibility;
+(function (OSLockScreenVisibility) {
+    /**
+     * Fully visible (default)
+     */
+    OSLockScreenVisibility[OSLockScreenVisibility["Public"] = 1] = "Public";
+    /**
+     * Contents are hidden
+     */
+    OSLockScreenVisibility[OSLockScreenVisibility["Private"] = 0] = "Private";
+    /**
+     * Not shown
+     */
+    OSLockScreenVisibility[OSLockScreenVisibility["Secret"] = -1] = "Secret";
+})(OSLockScreenVisibility || (OSLockScreenVisibility = {}));
+/**
+ * How the notification was displayed to the user. Part of OSNotification. See inFocusDisplaying for more information on how this is used.
+ */
+var OSDisplayType;
+(function (OSDisplayType) {
+    /**
+     * notification is silent, or inFocusDisplaying is disabled.
+     */
+    OSDisplayType[OSDisplayType["None"] = 0] = "None";
+    /**
+     * (**DEFAULT**) - native alert dialog display.
+     */
+    OSDisplayType[OSDisplayType["InAppAlert"] = 1] = "InAppAlert";
+    /**
+     * native notification display.
+     */
+    OSDisplayType[OSDisplayType["Notification"] = 2] = "Notification";
+})(OSDisplayType || (OSDisplayType = {}));
+var OSActionType;
+(function (OSActionType) {
+    OSActionType[OSActionType["Opened"] = 0] = "Opened";
+    OSActionType[OSActionType["ActionTake"] = 1] = "ActionTake";
+})(OSActionType || (OSActionType = {}));
+/**
+ * @name OneSignal
+ * @description
+ * The OneSignal plugin is an client implementation for using the [OneSignal](https://onesignal.com/) Service.
+ * OneSignal is a simple implementation for delivering push notifications.
+ *
+ * Requires Cordova plugin: `onesignal-cordova-plugin`. For more info, please see the [OneSignal Cordova Docs](https://documentation.onesignal.com/docs/phonegap-sdk-installation).
+ *
+ * #### Icons
+ * If you want to use generated icons with command `ionic cordova resources`:
+ *
+ * 1. Add a file to your `hooks` directory inside the `after_prepare` folder called `030_copy_android_notification_icons.js`
+ *
+ * 2. Put the following code in it:
+ *
+ * ```
+ * #!/usr/bin/env node
+ *
+ * var filestocopy = [{
+ *     "resources/android/icon/drawable-hdpi-icon.png":
+ *         "platforms/android/res/drawable-hdpi/ic_stat_onesignal_default.png"
+ * }, {
+ *     "resources/android/icon/drawable-mdpi-icon.png":
+ *         "platforms/android/res/drawable-mdpi/ic_stat_onesignal_default.png"
+ * }, {
+ *     "resources/android/icon/drawable-xhdpi-icon.png":
+ *         "platforms/android/res/drawable-xhdpi/ic_stat_onesignal_default.png"
+ * }, {
+ *     "resources/android/icon/drawable-xxhdpi-icon.png":
+ *         "platforms/android/res/drawable-xxhdpi/ic_stat_onesignal_default.png"
+ * }, {
+ *     "resources/android/icon/drawable-xxxhdpi-icon.png":
+ *         "platforms/android/res/drawable-xxxhdpi/ic_stat_onesignal_default.png"
+ * } ];
+ *
+ * var fs = require('fs');
+ * var path = require('path');
+ *
+ * // no need to configure below
+ * var rootdir = process.argv[2];
+ *
+ * filestocopy.forEach(function(obj) {
+ *     Object.keys(obj).forEach(function(key) {
+ *         var val = obj[key];
+ *         var srcfile = path.join(rootdir, key);
+ *         var destfile = path.join(rootdir, val);
+ *         //console.log("copying "+srcfile+" to "+destfile);
+ *         var destdir = path.dirname(destfile);
+ *         if (fs.existsSync(srcfile) && fs.existsSync(destdir)) {
+ *             fs.createReadStream(srcfile).pipe(
+ *                 fs.createWriteStream(destfile));
+ *         }
+ *     });
+ * });
+ * ```
+ *
+ * 3. From the root of your project make the file executable:
+ * `$ chmod +x hooks/after_prepare/030_copy_android_notification_icons.js`
+ *
+ *
+ * @usage
+ * ```typescript
+ * import { OneSignal } from '@ionic-native/onesignal';
+ *
+ * constructor(private oneSignal: OneSignal) { }
+ *
+ * ...
+ *
+ * this.oneSignal.startInit('b2f7f966-d8cc-11e4-bed1-df8f05be55ba', '703322744261');
+ *
+ * this.oneSignal.inFocusDisplaying(this.oneSignal.OSInFocusDisplayOption.InAppAlert);
+ *
+ * this.oneSignal.handleNotificationReceived().subscribe(() => {
+ *  // do something when notification is received
+ * });
+ *
+ * this.oneSignal.handleNotificationOpened().subscribe(() => {
+ *   // do something when a notification is opened
+ * });
+ *
+ * this.oneSignal.endInit();
+ * ```
+ * @interfaces
+ * OSNotification
+ * OSLockScreenVisibility
+ * OSDisplayType
+ * OSNotificationPayload
+ * OSActionButton
+ * OSBackgroundImageLayout
+ * OSNotificationOpenedResult
+ * OSActionType
+ */
+var OneSignal = (function (_super) {
+    __extends(OneSignal, _super);
+    function OneSignal() {
+        var _this = _super !== null && _super.apply(this, arguments) || this;
+        /**
+         * constants to use in inFocusDisplaying()
+         */
+        _this.OSInFocusDisplayOption = {
+            None: 0,
+            InAppAlert: 1,
+            Notification: 2
+        };
+        return _this;
+    }
+    /**
+     * Start the initialization process. Once you are done configuring OneSignal, call the `endInit` function.
+     *
+     * @param {string} appId Your OneSignal app id
+     * @param {string} googleProjectNumber **ANDROID** - your Google project number; only required for Android GCM/FCM pushes.
+     * @returns {any}
+     */
+    OneSignal.prototype.startInit = function (appId, googleProjectNumber) { return; };
+    /**
+     * Callback to run when a notification is received, whether it was displayed or not.
+     *
+     * @return {Observable<OneSignalReceivedNotification>}
+     */
+    OneSignal.prototype.handleNotificationReceived = function () { return; };
+    /**
+     * Callback to run when a notification is tapped on from the notification shade (**ANDROID**) or notification
+     * center (**iOS**), or when closing an Alert notification shown in the app (if InAppAlert is enabled in
+     * inFocusDisplaying).
+     *
+     * @return {Observable<OneSignalOpenedNotification>}
+     */
+    OneSignal.prototype.handleNotificationOpened = function () { return; };
+    /**
+     * **iOS** - Settings for iOS apps
+     *
+     * @param settings
+     *  kOSSettingsKeyAutoPrompt: boolean = true
+     *  Auto prompt user for notification permissions.
+     *
+     *  kOSSettingsKeyInAppLaunchURL: boolean = false
+     *  Launch notifications with a launch URL as an in app webview.
+     * @returns {any}
+     */
+    OneSignal.prototype.iOSSettings = function (settings) { return; };
+    /**
+     * Must be called after `startInit` to complete initialization of OneSignal.
+     *
+     * @returns {any}
+     */
+    OneSignal.prototype.endInit = function () { return; };
+    /**
+     * Prompt the user for notification permissions. Callback fires as soon as the user accepts or declines notifications.
+     * @returns {Promise<boolean>}
+     */
+    OneSignal.prototype.promptForPushNotificationsWithUserResponse = function () { return; };
+    /**
+     * Retrieve a list of tags that have been set on the user from the OneSignal server.
+     *
+     * **Quirk**: You must wait for `getTags` to resolve before calling it again, as the plugin will only process the last method call and discard any previous ones.
+     *
+     * @returns {Promise<any>} Returns a Promise that resolves when tags are recieved.
+     */
+    OneSignal.prototype.getTags = function () { return; };
+    /**
+     * Lets you retrieve the OneSignal user id and device token.
+     * Your handler is called after the device is successfully registered with OneSignal.
+     *
+     * @returns {Promise<Object>} Returns a Promise that resolves if the device was successfully registered.
+     *
+     *  userId {string} OneSignal userId is a UUID formatted string. (unique per device per app)
+     *
+     *  pushToken {string} A push token is a Google/Apple assigned identifier(unique per device per app).
+     */
+    OneSignal.prototype.getIds = function () { return; };
+    /**
+     * Tag a user based on an app event of your choosing so later you can create segments on [onesignal.com](https://onesignal.com/) to target these users.
+     * Recommend using sendTags over sendTag if you need to set more than one tag on a user at a time.
+     *
+     * @param {string} Key of your choosing to create or update.
+     * @param {string} Value to set on the key. NOTE: Passing in a blank String deletes the key, you can also call deleteTag.
+     */
+    OneSignal.prototype.sendTag = function (key, value) { };
+    /**
+     * Tag a user based on an app event of your choosing so later you can create segments on [onesignal.com](https://onesignal.com/) to target these users.
+     * Recommend using sendTags over sendTag if you need to set more than one tag on a user at a time.
+     *
+     * @param {string} Pass a json object with key/value pairs like: {key: "value", key2: "value2"}
+     */
+    OneSignal.prototype.sendTags = function (json) { };
+    /**
+     * Deletes a tag that was previously set on a user with `sendTag` or `sendTags`. Use `deleteTags` if you need to delete more than one.
+     *
+     * @param {string} Key to remove.
+     */
+    OneSignal.prototype.deleteTag = function (key) { };
+    /**
+     * Deletes tags that were previously set on a user with `sendTag` or `sendTags`.
+     *
+     * @param {Array<string>} Keys to remove.
+     */
+    OneSignal.prototype.deleteTags = function (keys) { };
+    /**
+     * Call this when you would like to prompt an iOS user to accept push notifications with the default system prompt.
+     * Only works if you set `kOSSettingsAutoPrompt` to `false` in `iOSSettings`
+     */
+    OneSignal.prototype.registerForPushNotifications = function () { };
+    /**
+     * Warning:
+     * Only applies to Android and Amazon. You can call this from your UI from a button press for example to give your user's options for your notifications.
+     *
+     * By default OneSignal always vibrates the device when a notification is displayed unless the device is in a total silent mode.
+     * Passing false means that the device will only vibrate lightly when the device is in it's vibrate only mode.
+     *
+     * @param {boolean} false to disable vibrate, true to re-enable it.
+     */
+    OneSignal.prototype.enableVibrate = function (enable) { };
+    /**
+     * Warning:
+     * Only applies to Android and Amazon. You can call this from your UI from a button press for example to give your user's options for your notifications.
+     *
+     * By default OneSignal plays the system's default notification sound when the device's notification system volume is turned on.
+     * Passing false means that the device will only vibrate unless the device is set to a total silent mode.
+     *
+     * @param {boolean} false to disable sound, true to re-enable it.
+     */
+    OneSignal.prototype.enableSound = function (enable) { };
+    /**
+     *
+     * Setting to control how OneSignal notifications will be shown when one is received while your app is in focus. By default this is set to inAppAlert, which can be helpful during development.
+     *
+     * @param {DisplayType} displayOption
+     * @returns {any}
+     */
+    OneSignal.prototype.inFocusDisplaying = function (displayOption) { return; };
+    /**
+     * You can call this method with false to opt users out of receiving all notifications through OneSignal.
+     * You can pass true later to opt users back into notifications.
+     *
+     * @param {boolean} enable
+     */
+    OneSignal.prototype.setSubscription = function (enable) { };
+    /**
+     * Get the current notification and permission state. Returns a OSPermissionSubscriptionState type described below.
+     *
+     * @returns {Promise<OSPermissionSubscriptionState>}
+     */
+    OneSignal.prototype.getPermissionSubscriptionState = function () { return; };
+    /**
+     *
+     * @param {notificationObj} Parameters see POST [documentation](https://documentation.onesignal.com/v2.0/docs/notifications-create-notification)
+     * @returns {Promise<any>} Returns a Promise that resolves if the notification was send successfully.
+     */
+    OneSignal.prototype.postNotification = function (notificationObj) { return; };
+    /**
+     * Cancels a single OneSignal notification based on its Android notification integer id. Use instead of NotificationManager.cancel(id); otherwise the notification will be restored when your app is restarted.
+     * @param notificationId {string}
+     */
+    OneSignal.prototype.cancelNotification = function (notificationId) { };
+    /**
+     * Prompts the user for location permission to allow geotagging based on the "Location radius" filter on the OneSignal dashboard.
+     */
+    OneSignal.prototype.promptLocation = function () { };
+    /**
+     *
+     * @param email {string}
+     */
+    OneSignal.prototype.syncHashedEmail = function (email) { };
+    /**
+     * Enable logging to help debug if you run into an issue setting up OneSignal.
+     * The logging levels are as follows: 0 = None, 1= Fatal, 2 = Errors, 3 = Warnings, 4 = Info, 5 = Debug, 6 = Verbose
+  
+     * The higher the value the more information is shown.
+     *
+     * @param {loglevel} contains two properties: logLevel (for console logging) and visualLevel (for dialog messages)
+     */
+    OneSignal.prototype.setLogLevel = function (logLevel) { };
+    /**
+     * The passed in function will be fired when a notification permission setting changes.
+     * This includes the following events:
+     * - Notification permission prompt shown
+     * - The user accepting or declining the permission prompt
+     * - Enabling/disabling notifications for your app in the device Settings after returning to your app.
+     * @return {Observable<any>}
+     */
+    OneSignal.prototype.addPermissionObserver = function () { return; };
+    /**
+     * The passed in function will be fired when a notification subscription property changes.
+     * This includes the following events:
+     * - Getting a push token from Apple / Google.
+     * - Getting a player / user id from OneSignal
+     * - OneSignal.setSubscription is called
+     * - User disables or enables notifications
+     * @return {Observable<any>}
+     */
+    OneSignal.prototype.addSubscriptionObserver = function () { return; };
+    return OneSignal;
+}(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["c" /* IonicNativePlugin */]));
+OneSignal.decorators = [
+    { type: __WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */] },
+];
+/** @nocollapse */
+OneSignal.ctorParameters = function () { return []; };
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", Object)
+], OneSignal.prototype, "startInit", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+        observable: true
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"])
+], OneSignal.prototype, "handleNotificationReceived", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+        observable: true
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"])
+], OneSignal.prototype, "handleNotificationOpened", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+        sync: true,
+        platforms: ['iOS']
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Object)
+], OneSignal.prototype, "iOSSettings", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Object)
+], OneSignal.prototype, "endInit", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+        platforms: ['iOS']
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], OneSignal.prototype, "promptForPushNotificationsWithUserResponse", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], OneSignal.prototype, "getTags", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], OneSignal.prototype, "getIds", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String, String]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "sendTag", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "sendTags", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "deleteTag", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Array]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "deleteTags", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "registerForPushNotifications", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Boolean]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "enableVibrate", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Boolean]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "enableSound", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Number]),
+    __metadata("design:returntype", Object)
+], OneSignal.prototype, "inFocusDisplaying", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Boolean]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "setSubscription", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", Promise)
+], OneSignal.prototype, "getPermissionSubscriptionState", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])(),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", Promise)
+], OneSignal.prototype, "postNotification", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "cancelNotification", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "promptLocation", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [String]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "syncHashedEmail", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({ sync: true }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", [Object]),
+    __metadata("design:returntype", void 0)
+], OneSignal.prototype, "setLogLevel", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+        observable: true
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"])
+], OneSignal.prototype, "addPermissionObserver", null);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["a" /* Cordova */])({
+        observable: true
+    }),
+    __metadata("design:type", Function),
+    __metadata("design:paramtypes", []),
+    __metadata("design:returntype", __WEBPACK_IMPORTED_MODULE_2_rxjs_Observable__["Observable"])
+], OneSignal.prototype, "addSubscriptionObserver", null);
+OneSignal = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1__ionic_native_core__["d" /* Plugin */])({
+        pluginName: 'OneSignal',
+        plugin: 'onesignal-cordova-plugin',
+        pluginRef: 'plugins.OneSignal',
+        repo: 'https://github.com/OneSignal/OneSignal-Cordova-SDK',
+        platforms: ['Amazon Fire OS', 'Android', 'iOS', 'Windows']
+    })
+], OneSignal);
+
+//# sourceMappingURL=index.js.map
 
 /***/ })
 /******/ ]);
