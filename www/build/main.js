@@ -1465,15 +1465,21 @@ var FormatDatePipe = (function () {
         for (var _i = 1; _i < arguments.length; _i++) {
             args[_i - 1] = arguments[_i];
         }
-        var value = new Date(val);
         var dateString = '';
-        var day = value.getDay() > 9 ? value.getDay() : '0' + value.getDay();
-        var month = value.getMonth() > 8 ? value.getMonth() + 1 : '0' + (value.getMonth() + 1);
-        var year = value.getFullYear();
-        var hours = value.getHours() > 9 ? value.getHours() : '0' + value.getHours();
-        var minutes = value.getMinutes() > 9 ? value.getMinutes() : '0' + value.getMinutes();
-        if (value) {
-            dateString = "\n        " + day + "/" + month + "/" + year + " " + hours + ":" + minutes;
+        if (val) {
+            var value = void 0;
+            if (typeof val.getMonth === 'function') {
+                value = val;
+            }
+            else {
+                value = new Date(val);
+            }
+            var day = value.getDay() > 9 ? value.getDay() : '0' + value.getDay();
+            var month = value.getMonth() > 8 ? value.getMonth() + 1 : '0' + (value.getMonth() + 1);
+            var year = value.getFullYear();
+            var hours = value.getHours() > 9 ? value.getHours() : '0' + value.getHours();
+            var minutes = value.getMinutes() > 9 ? value.getMinutes() : '0' + value.getMinutes();
+            dateString = day + "/" + month + "/" + year + " " + hours + ":" + minutes;
         }
         return dateString;
     };
