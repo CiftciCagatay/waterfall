@@ -31,6 +31,7 @@ import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { OnesignalNotificationProvider } from '../providers/onesignal-notification/onesignal-notification';
 import { LoginPage } from "../pages/login/login";
 import { CityDistrictProvider } from '../providers/city-district/city-district';
+import { CalculateBalancePipe } from "../pipes/calculate-balance/calculate-balance";
 
 @NgModule({
   declarations: [
@@ -52,7 +53,8 @@ import { CityDistrictProvider } from '../providers/city-district/city-district';
     PaymentsListCardComponent,
     ProductsListCardComponent,
     
-    FormatDatePipe
+    FormatDatePipe,
+    CalculateBalancePipe
   ],
   imports: [
     BrowserModule,

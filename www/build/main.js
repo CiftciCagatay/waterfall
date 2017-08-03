@@ -85,12 +85,15 @@ var OrderDetailsPage = (function () {
 }());
 OrderDetailsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-order-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/order-details.html"*/'<!--\n  Generated template for the OrderDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    \n    <ion-title>Sipariş Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <customer-details-card [customer]="order.customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col>\n        <order-details-card [orderId]="order._id" [orderDetails]="order.orderDetails"></order-details-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <payments-list-card [orderId]="order._id" [payments]="order.payments"></payments-list-card>\n      </ion-col>\n\n      <ion-col>\n        <products-list-card [orderId]="order._id" [products]="order.products"></products-list-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/order-details.html"*/
+        selector: 'page-order-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/order-details.html"*/'<!--\n  Generated template for the OrderDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    \n    <ion-title>Sipariş Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <customer-details-card [customer]="order.customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col>\n        <order-details-card [orderId]="order._id" [orderDetails]="order.orderDetails" [balance]="order.payments | calculateBalance"></order-details-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <payments-list-card [orderId]="order._id" [payments]="order.payments"></payments-list-card>\n      </ion-col>\n\n      <ion-col>\n        <products-list-card [orderId]="order._id" [products]="order.products"></products-list-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/order-details.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _e || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]])
 ], OrderDetailsPage);
 
-var _a, _b, _c, _d, _e;
 //# sourceMappingURL=order-details.js.map
 
 /***/ }),
@@ -1749,10 +1752,17 @@ NewOrderFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" [disabled]="!siparisForm.form.valid" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #siparisForm="ngForm">\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input name="identificationNumber" maxLength="11" [(ngModel)]="order.customer.identificationNumber" type="tel"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Şehir</ion-label>\n                  <ion-select\n                    name="city"\n                    [(ngModel)]="order.customer.address.city"\n                    (ionChange)="citySelected($event)"\n                  >\n                    <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label>İlçe</ion-label>\n                  <ion-select\n                    name="addressDistrict"\n                    [disabled]="!order.customer.address.city"\n                    [(ngModel)]="order.customer.address.district"\n                  >\n                    <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime name="deliveryDate" [(ngModel)]="order.orderDetails.deliveryDate"></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n\n          <!-- Kapora -->\n          <ion-card>\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">\n                    <ion-option *ngFor="let paymentType of currencyBankProvider.paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">\n                    <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n                <!--\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>\n                </label>\n                -->\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/new-order-form/new-order-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_7__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */],
+        __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */],
+        __WEBPACK_IMPORTED_MODULE_7__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]])
 ], NewOrderFormPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=new-order-form.js.map
 
 /***/ }),
@@ -1845,7 +1855,7 @@ var OrdersListPage = (function () {
 }());
 OrdersListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-orders-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/orders-list/orders-list.html"*/'<!--\n  Generated template for the OrdersListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Siparişler</ion-title>\n\n  </ion-navbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-searchbar></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>Müşteri</ion-label>\n      <!--\n        <ion-label>Sipariş Tarihi</ion-label>\n        <ion-label>İş Teslim Tarihi</ion-label>\n        <ion-label>Personel</ion-label>\n      -->\n      <ion-label>Sipariş Tutarı</ion-label>\n      <ion-label>Kalan tutar</ion-label>\n    </ion-item>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let order of orders; let i = index">\n      <ion-item (click)="showOrdersDetails(order._id)">\n        <ion-label>{{ order.customer.name }}</ion-label>\n        <!-- \n          <ion-label>{{ order.orderDetails.orderDate }}</ion-label>\n          <ion-label>{{ order.orderDetails.deliveryDate }}</ion-label>\n          <ion-label>{{ order.orderDetails.personnel }}</ion-label>\n        -->\n        <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n        <ion-label>TODO</ion-label>\n      </ion-item>\n\n      <ion-item-options>\n        <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/orders-list/orders-list.html"*/,
+        selector: 'page-orders-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/orders-list/orders-list.html"*/'<!--\n  Generated template for the OrdersListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Siparişler</ion-title>\n\n  </ion-navbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-searchbar></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>Müşteri</ion-label>\n      <!--\n        <ion-label>Sipariş Tarihi</ion-label>\n        <ion-label>İş Teslim Tarihi</ion-label>\n        <ion-label>Personel</ion-label>\n      -->\n      <ion-label>Sipariş Tutarı</ion-label>\n      <ion-label>Kalan tutar</ion-label>\n    </ion-item>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let order of orders; let i = index">\n      <ion-item (click)="showOrdersDetails(order._id)">\n        <ion-label>{{ order.customer.name }}</ion-label>\n        <!-- \n          <ion-label>{{ order.orderDetails.orderDate }}</ion-label>\n          <ion-label>{{ order.orderDetails.deliveryDate }}</ion-label>\n          <ion-label>{{ order.orderDetails.personnel }}</ion-label>\n        -->\n        <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n        <ion-label>{{ order.orderDetails.amount - (order.payments | calculateBalance) }} {{ order.orderDetails.currency }}</ion-label>\n      </ion-item>\n\n      <ion-item-options>\n        <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/orders-list/orders-list.html"*/,
     }),
     __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
         __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
@@ -2038,10 +2048,9 @@ var ProductTypesProvider = (function () {
 }());
 ProductTypesProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
 ], ProductTypesProvider);
 
-var _a;
 //# sourceMappingURL=product-types.js.map
 
 /***/ }),
@@ -2406,12 +2415,14 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(107);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pages_login_login__ = __webpack_require__(108);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_city_district_city_district__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pipes_calculate_balance_calculate_balance__ = __webpack_require__(284);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -2462,7 +2473,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_12__pages_order_details_components_panels_order_details_card_order_details_card__["a" /* OrderDetailsCardComponent */],
             __WEBPACK_IMPORTED_MODULE_11__pages_order_details_components_panels_payments_list_card_payments_list_card__["a" /* PaymentsListCardComponent */],
             __WEBPACK_IMPORTED_MODULE_10__pages_order_details_components_panels_products_list_card_products_list_card__["a" /* ProductsListCardComponent */],
-            __WEBPACK_IMPORTED_MODULE_14__pipes_format_date_format_date__["a" /* FormatDatePipe */]
+            __WEBPACK_IMPORTED_MODULE_14__pipes_format_date_format_date__["a" /* FormatDatePipe */],
+            __WEBPACK_IMPORTED_MODULE_28__pipes_calculate_balance_calculate_balance__["a" /* CalculateBalancePipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -2824,13 +2836,18 @@ __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
     __metadata("design:type", Object)
 ], OrderDetailsCardComponent.prototype, "orderDetails", void 0);
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
+    __metadata("design:type", Object)
+], OrderDetailsCardComponent.prototype, "balance", void 0);
 OrderDetailsCardComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'order-details-card',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/order-details-card/order-details-card.html"*/' <ion-card>\n          <ion-item color="secondBarColor">\n            <h2 style="color: white">Sipariş</h2>\n            <button color="light" (click)="presentModallyOrderDetailsFormPage()" outline icon-left item-right ion-button>\n                <ion-icon ios="ios-create" md="md-create"></ion-icon>Düzenle\n              </button>\n          </ion-item>\n\n          <ion-card-content style="margin-top: 12px">\n            <ion-list>\n              <ion-item *ngIf="orderDetails?.amount && orderDetails?.currency">\n                <ion-label>Sipariş Tutarı</ion-label>\n                <ion-label>{{ orderDetails?.amount }} {{ orderDetails?.currency }}</ion-label>\n              </ion-item>\n\n              <ion-item>\n                <ion-label>Kalan Tutar</ion-label>\n                <ion-label><!-- TODO -->{{ orderDetails?.currency }}</ion-label>\n              </ion-item>\n\n              <ion-item *ngIf="orderDetails?.orderDate">\n                <ion-label>Sipariş Tarihi</ion-label>\n                <ion-label>{{ orderDetails?.orderDate | formatDate }}</ion-label>\n              </ion-item>\n\n              <ion-item *ngIf="orderDetails?.deliveryDate">\n                <ion-label>İş Teslim Tarihi</ion-label>\n                <ion-label>{{ orderDetails?.deliveryDate | formatDate }}</ion-label>\n              </ion-item>\n\n              <ion-item *ngIf="orderDetails?.personnel">\n                <ion-label>Personel</ion-label>\n                <ion-label>{{ orderDetails?.personnel }}</ion-label>\n              </ion-item>\n\n              <ion-item *ngIf="orderDetails?.note">\n                <ion-label>Sipariş Not</ion-label>\n                <ion-label>{{ orderDetails?.note }}</ion-label>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/order-details-card/order-details-card.html"*/
+        selector: 'order-details-card',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/order-details-card/order-details-card.html"*/'<ion-card>\n  <ion-item color="secondBarColor">\n    <h2 style="color: white">Sipariş</h2>\n    <button color="light" (click)="presentModallyOrderDetailsFormPage()" outline icon-left item-right ion-button>\n                <ion-icon ios="ios-create" md="md-create"></ion-icon>Düzenle\n              </button>\n  </ion-item>\n\n  <ion-card-content style="margin-top: 12px">\n    <ion-list>\n      <ion-item *ngIf="orderDetails?.amount && orderDetails?.currency">\n        <ion-label>Sipariş Tutarı</ion-label>\n        <ion-label>{{ orderDetails?.amount }} {{ orderDetails?.currency }}</ion-label>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Kalan Tutar</ion-label>\n        <ion-label>{{ orderDetails?.amount - balance }} {{ orderDetails?.currency }}</ion-label>\n      </ion-item>\n\n      <ion-item *ngIf="orderDetails?.orderDate">\n        <ion-label>Sipariş Tarihi</ion-label>\n        <ion-label>{{ orderDetails?.orderDate | formatDate }}</ion-label>\n      </ion-item>\n\n      <ion-item *ngIf="orderDetails?.deliveryDate">\n        <ion-label>İş Teslim Tarihi</ion-label>\n        <ion-label>{{ orderDetails?.deliveryDate | formatDate }}</ion-label>\n      </ion-item>\n\n      <ion-item *ngIf="orderDetails?.personnel">\n        <ion-label>Personel</ion-label>\n        <ion-label>{{ orderDetails?.personnel }}</ion-label>\n      </ion-item>\n\n      <ion-item *ngIf="orderDetails?.note">\n        <ion-label>Sipariş Not</ion-label>\n        <ion-label>{{ orderDetails?.note }}</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-card-content>\n</ion-card>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/order-details-card/order-details-card.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]) === "function" && _a || Object])
 ], OrderDetailsCardComponent);
 
+var _a;
 //# sourceMappingURL=order-details-card.js.map
 
 /***/ }),
@@ -2944,6 +2961,58 @@ FormatDatePipe = __decorate([
 ], FormatDatePipe);
 
 //# sourceMappingURL=format-date.js.map
+
+/***/ }),
+
+/***/ 284:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CalculateBalancePipe; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+
+/**
+ * Generated class for the CalculateBalancePipe pipe.
+ *
+ * See https://angular.io/docs/ts/latest/guide/pipes.html for more info on
+ * Angular Pipes.
+ */
+var CalculateBalancePipe = (function () {
+    function CalculateBalancePipe() {
+    }
+    /**
+     * Takes a value and makes it lowercase.
+     */
+    CalculateBalancePipe.prototype.transform = function (payments) {
+        var args = [];
+        for (var _i = 1; _i < arguments.length; _i++) {
+            args[_i - 1] = arguments[_i];
+        }
+        var balance = 0.0;
+        if (payments) {
+            for (var _a = 0, payments_1 = payments; _a < payments_1.length; _a++) {
+                var payment = payments_1[_a];
+                balance += payment.amount;
+            }
+        }
+        return balance;
+    };
+    return CalculateBalancePipe;
+}());
+CalculateBalancePipe = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["W" /* Pipe */])({
+        name: 'calculateBalance',
+        pure: false
+    })
+], CalculateBalancePipe);
+
+//# sourceMappingURL=calculate-balance.js.map
 
 /***/ }),
 

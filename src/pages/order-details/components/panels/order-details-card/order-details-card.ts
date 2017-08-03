@@ -11,6 +11,8 @@ export class OrderDetailsCardComponent {
   @Input() orderId: string;
   @Input() orderDetails: any;
 
+  @Input() balance;
+
   constructor(
     private modalCtrl: ModalController
   ) {
