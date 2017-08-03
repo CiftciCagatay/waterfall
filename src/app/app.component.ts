@@ -8,6 +8,7 @@ import { NewOrderFormPage } from "../pages/new-order-form/new-order-form";
 import { OrderDetailsPage } from "../pages/order-details/order-details";
 import { OrdersListPage } from "../pages/orders-list/orders-list";
 import { LoginPage } from "../pages/login/login";
+import { OnesignalNotificationProvider } from "../providers/onesignal-notification/onesignal-notification";
 
 @Component({
   templateUrl: 'app.html'
@@ -19,7 +20,12 @@ export class MyApp {
 
   pages: Array<{title: string, component: any}>;
 
-  constructor(public platform: Platform, public statusBar: StatusBar, public splashScreen: SplashScreen) {
+  constructor(
+    public platform: Platform, 
+    public statusBar: StatusBar, 
+    public splashScreen: SplashScreen,
+    private onesignal: OnesignalNotificationProvider
+  ) {
     this.initializeApp();
 
     // used for an example of ngFor and navigation
@@ -33,8 +39,20 @@ export class MyApp {
 
   initializeApp() {
     this.platform.ready().then(() => {
-      // Okay, so the platform is ready and our plugins are available.
-      // Here you can do any higher level native things you might need.
+      
+      if (window["plugins"]) {
+        var notificationOpenedCallback = function (jsonData) {
+          console.log('notificationOpenedCallback: ' + JSON.stringify(jsonData));
+        };
+
+        window["plugins"].OneSignal
+          .startInit(this.onesignal.appId, this.onesignal.androidProjectNumber)
+          .handleNotificationOpened(notificationOpenedCallback)
+          .endInit();
+      } else {
+        console.log("Notifications are GG my friend");
+      }
+
       this.statusBar.styleDefault();
       this.splashScreen.hide();
     });

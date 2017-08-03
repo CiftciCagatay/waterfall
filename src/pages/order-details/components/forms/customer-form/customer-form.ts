@@ -1,6 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
+import { CityDistrictProvider } from "../../../../../providers/city-district/city-district";
 
 @Component({
   selector: 'page-customer-form',
@@ -16,7 +17,8 @@ export class CustomerFormPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
-    private events: Events
+    private events: Events,
+    private cityDistrictProvider: CityDistrictProvider
   ) {
 
     this.customer = JSON.parse(JSON.stringify(this.navParams.get('customer')))
@@ -24,6 +26,12 @@ export class CustomerFormPage {
     if (!this.customer) {
       this.navCtrl.pop();
     }
+  }
+
+  citySelected(city) {
+    this.customer.address.district = "";
+
+    this.cityDistrictProvider.getCounties(city)
   }
 
   showSubmitAlert() {

@@ -25,7 +25,16 @@ export class OrderDetailsPage {
   ) {
     this.events.subscribe("customer:updated", (data) => this.order.customer = data);
     
-    this.events.subscribe("orderDetails:updated", (data) => this.order.orderDetails = data);
+    this.events.subscribe("orderDetails:updated", (data) => {
+      this.order.orderDetails = {
+        orderDate: data.orderDate,
+        deliveryDate: data.deliveryDate,
+        personnel: data.personnel,
+        amount: data.amount,
+        currency: data.currency,
+        note: data.note
+      }
+    });
     
     this.events.subscribe("payment:added", (data) => this.order.payments.push(data))
 

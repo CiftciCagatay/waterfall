@@ -93,17 +93,21 @@ export class PaymentFormPage {
     loading.present();
 
     this.mdbs.insertPayment(this.orderId, this.payment).subscribe((response) => {
-      this.events.publish("payment:added", this.payment);
+      if (response.json().result) {
+        this.payment._id = response.json().paymentId;
 
-      if (this.payment.amount) {
-        this.mdbs.logEvent(
-          "Yeni Ödeme",
-          `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
-          this.payment.personnel,
-          this.payment.date
-        )
+        this.events.publish("payment:added", this.payment);
+
+        if (this.payment.amount) {
+          this.mdbs.logEvent(
+            "Yeni Ödeme",
+            `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
+            this.payment.personnel,
+            this.payment.date
+          )
+        }
       }
-      
+
       loading.dismiss();
 
       this.navCtrl.pop()

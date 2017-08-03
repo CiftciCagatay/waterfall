@@ -5,6 +5,7 @@ import { OrderDetailsPage } from "../order-details/order-details";
 import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { CityDistrictProvider } from "../../providers/city-district/city-district";
+import { OnesignalNotificationProvider } from "../../providers/onesignal-notification/onesignal-notification";
 
 @Component({
   selector: 'page-new-order-form',
@@ -58,7 +59,8 @@ export class NewOrderFormPage {
     private mdbs: MongoDbServiceProvider,
     private currencyBankProvider: CurrencyBankProvider,
     private auth: AuthServiceProvider,
-    private cityDistrictProvider: CityDistrictProvider
+    private cityDistrictProvider: CityDistrictProvider,
+    private oneSignalNotificationProvider: OnesignalNotificationProvider
   ) {
   }
 
@@ -111,6 +113,8 @@ export class NewOrderFormPage {
           this.order.orderDetails.orderDate
         )
       }
+
+      this.oneSignalNotificationProvider.notifyManagers(`${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`);
 
       loading.dismiss();
 

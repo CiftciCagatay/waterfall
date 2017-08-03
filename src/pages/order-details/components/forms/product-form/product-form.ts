@@ -92,7 +92,11 @@ export class ProductFormPage {
     loading.present();
 
     this.mdbs.insertProduct(this.orderId, this.product).subscribe((response) => {
-      this.events.publish("product:added", this.product);
+      if (response.json().result) {
+        this.product._id = response.json().productId;
+        this.events.publish("product:added", this.product);
+      }
+
       loading.dismiss().then(() => this.navCtrl.pop());
     });
   }

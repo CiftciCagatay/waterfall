@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
+import { CityDistrictProvider } from "../../../../../providers/city-district/city-district";
 
 @Component({
   selector: 'page-order-details-form',

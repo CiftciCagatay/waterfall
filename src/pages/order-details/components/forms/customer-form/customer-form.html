@@ -34,7 +34,7 @@
       </ion-item>
 
       <ion-item-divider></ion-item-divider>
-      
+
       <ion-item>
         <ion-label>Telefon 1</ion-label>
         <ion-input name="telephone1" [(ngModel)]="customer.telephones[0]"></ion-input>
@@ -51,21 +51,34 @@
       </ion-item>
 
       <ion-item-divider></ion-item-divider>
-      
+
       <ion-item>
         <ion-label>Adres Satırı</ion-label>
         <ion-textarea name="addressLine" [(ngModel)]="customer.address.line"></ion-textarea>
       </ion-item>
-      
-      <ion-item>
+
+      <label ion-item>
         <ion-label>Şehir</ion-label>
-        <ion-input name="addressCity" [(ngModel)]="customer.address.city"></ion-input>
-      </ion-item>
-      
-      <ion-item>
+        <ion-select
+          name="city"
+          [(ngModel)]="customer.address.city"
+          (ionChange)="citySelected($event)"
+        >
+          <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>
+        </ion-select>
+      </label>
+
+      <label ion-item>
         <ion-label>İlçe</ion-label>
-        <ion-input name="addressDistrict" [(ngModel)]="customer.address.district"></ion-input>
-      </ion-item>
+        <ion-select
+          name="addressDistrict"
+          [disabled]="!customer.address.city"
+          [(ngModel)]="customer.address.district"
+        >
+          <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>
+        </ion-select>
+      </label>
+
 
       <ion-item>
         <ion-label>Adres Not</ion-label>
