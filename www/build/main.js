@@ -57,7 +57,13 @@ var OrderDetailsPage = (function () {
         });
         this.events.subscribe("product:added", function (data) { return _this.order.products.push(data); });
         this.events.subscribe("product:updated", function (data) {
-            _this.order.products[data.index] = data.product;
+            _this.order.products[data.index].type = data.product.type;
+            _this.order.products[data.index].patternCode = data.product.patternCode;
+            _this.order.products[data.index].colorCode = data.product.colorCode;
+            _this.order.products[data.index].varietyCode = data.product.varietyCode;
+            _this.order.products[data.index].unitPrice = data.product.unitPrice;
+            _this.order.products[data.index].laborCost = data.product.laborCost;
+            _this.order.products[data.index].quantity = data.product.quantity;
         });
         this.order._id = this.navParams.get('orderId');
         if (!this.order._id) {

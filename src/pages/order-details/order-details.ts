@@ -50,7 +50,13 @@ export class OrderDetailsPage {
     this.events.subscribe("product:added", (data) => this.order.products.push(data))
 
     this.events.subscribe("product:updated", (data) => {
-      this.order.products[data.index] = data.product;
+      this.order.products[data.index].type = data.product.type;
+      this.order.products[data.index].patternCode = data.product.patternCode;
+      this.order.products[data.index].colorCode = data.product.colorCode;
+      this.order.products[data.index].varietyCode = data.product.varietyCode;
+      this.order.products[data.index].unitPrice = data.product.unitPrice;
+      this.order.products[data.index].laborCost = data.product.laborCost;
+      this.order.products[data.index].quantity = data.product.quantity;
     })
 
     this.order._id = this.navParams.get('orderId');
