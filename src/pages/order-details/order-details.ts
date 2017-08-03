@@ -39,7 +39,12 @@ export class OrderDetailsPage {
     this.events.subscribe("payment:added", (data) => this.order.payments.push(data))
 
     this.events.subscribe("payment:updated", (data) => {
-      this.order.payments[data.index] = data.payment;
+      this.order.payments[data.index].type = data.payment.type;
+      this.order.payments[data.index].amount = data.payment.amount;
+      this.order.payments[data.index].currency = data.payment.currency;
+      this.order.payments[data.index].installments = data.payment.installments;
+      this.order.payments[data.index].bank = data.payment.bank;
+      //this.order.payments[data.index].note = data.payment.note;
     })
 
     this.events.subscribe("product:added", (data) => this.order.products.push(data))
