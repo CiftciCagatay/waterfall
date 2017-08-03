@@ -22,7 +22,7 @@ export class NewOrderFormPage {
       email: "",
       address: {
         line: "",
-        city: "",
+        city: "İstanbul",
         district: "",
         note: ""
       }
@@ -62,6 +62,7 @@ export class NewOrderFormPage {
     private cityDistrictProvider: CityDistrictProvider,
     private oneSignalNotificationProvider: OnesignalNotificationProvider
   ) {
+    this.citySelected(this.order.customer.address.city);
   }
 
   citySelected(city) {
