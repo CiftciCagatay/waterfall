@@ -13,6 +13,7 @@
         <ion-label>Cins</ion-label>
         <ion-label>Miktar</ion-label>
         <ion-label>Birim Fiyat</ion-label>
+        <ion-label>İşçilik Maliyeti</ion-label>
         <ion-label>Tutar</ion-label>
       </ion-item>
 
@@ -22,7 +23,8 @@
           <ion-label>{{ product.varietyCode }}</ion-label>
           <ion-label>{{ product.quantity }}</ion-label>
           <ion-label>{{ product.unitPrice }}</ion-label>
-          <ion-label>{{product.unitPrice * product.quantity }}</ion-label>
+          <ion-label>{{ product.laborCost }}</ion-label>
+          <ion-label>{{ product.quantity * (product.unitPrice + product.laborCost) }}</ion-label>
         </ion-item>
 
         <ion-item-options>

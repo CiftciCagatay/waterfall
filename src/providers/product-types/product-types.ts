@@ -12,7 +12,13 @@ import 'rxjs/add/operator/map';
 export class ProductTypesProvider {
 
   types = [
-    "Perde"
+    "Tül",
+    "Kumaş",
+    "Güneşlik",
+    "Renso",
+    "Store",
+    "Zebra",
+    "Astar"
   ]
 
   constructor(public http: Http) {

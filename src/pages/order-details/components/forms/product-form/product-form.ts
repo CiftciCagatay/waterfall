@@ -33,19 +33,36 @@ export class ProductFormPage {
     } else if (this.orderId) {
 
       this.product = {
-        type: "Perde",
+        type: "Kumaş",
         patternCode: "",
         colorCode: "",
         varietyCode: "",
         unitPrice: null,
-        quantity: null
+        quantity: null,
+        laborCost: null
       }
 
     } else {
       this.navCtrl.pop();
     }
-    
+
     console.log(this.product);
+  }
+
+  setProducts(property, e) {
+    switch (property) {
+      case 'unitPrice':
+        this.product.unitPrice = (e.value ? Number(e.value) : 0.0)
+        break
+      case 'laborCost':
+        this.product.laborCost = (e.value ? Number(e.value) : 0.0)
+        break
+      case 'quantity':
+        this.product.quantity = (e.value ? Number(e.value) : 0.0)
+        break
+      default:
+        break;
+    }
   }
 
   showSubmitAlert() {
