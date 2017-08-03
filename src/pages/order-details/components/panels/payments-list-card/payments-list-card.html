@@ -14,7 +14,7 @@
             <h1>{{ payment.amount }} {{ payment.currency }}</h1>
             <h2 *ngIf="payment.type == 'Kredi Kartı'">{{ payment.installments + " Taksit | " + payment.bank }}</h2>
             <h3>{{ payment.personnel ? payment.personnel : "---" }} | {{ payment.date ? (payment.date | formatDate) : "---" }}</h3>
-            <p *ngIf="payment.note">{{ payment.note }}</p>
+            <!--<p *ngIf="payment.note">{{ payment.note }}</p>-->
 
         </ion-item>
 
