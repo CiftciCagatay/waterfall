@@ -15,12 +15,14 @@
 <ion-content>
   <form>
     <ion-list>
+
       <ion-item>
         <ion-label>Ürün Kategori</ion-label>
         <ion-select name="productType" [(ngModel)]="product.type">
           <ion-option *ngFor="let type of productTypesProvider.types">{{ type }}</ion-option>
         </ion-select>
       </ion-item>
+
       <ion-item>
         <ion-label fixed>Desen Kodu</ion-label>
         <ion-input name="patternCode" [(ngModel)]="product.patternCode"></ion-input>
@@ -38,26 +40,24 @@
 
       <ion-item>
         <ion-label fixed>Miktar</ion-label>
-        <ion-input type="number" name="quantity" (ionChange)="setProducts('quantity', $event)" [ngModel]="product.quantity"></ion-input>
+        <ion-input type="number" name="quantity" (ionChange)="calculateTotal()" [(ngModel)]="product.quantity"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>Birim Fiyat</ion-label>
-        <ion-input type="number" name="unitPrice" (ionChange)="setProducts('unitPrice', $event)" [ngModel]="product.unitPrice"></ion-input>
+        <ion-input type="number" name="unitPrice" (ionChange)="calculateTotal()" [(ngModel)]="product.unitPrice"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>İşçilik Maliyeti</ion-label>
-        <ion-input type="number" name="laborCost" (ionChange)="setProducts('laborCost', $event)" [ngModel]="product.laborCost"></ion-input>
+        <ion-input type="number" name="laborCost" (ionChange)="calculateTotal()" [(ngModel)]="product.laborCost"></ion-input>
       </ion-item>
 
       <ion-item>
         <ion-label fixed>Tutar</ion-label>
-        <ion-input 
-          [disabled]="true" 
-          [value]="product.quantity * (product.unitPrice + product.laborCost)"
-        ></ion-input>
+        <ion-input [disabled]="true" [value]="total"></ion-input>
       </ion-item>
+
     </ion-list>
   </form>
 </ion-content>

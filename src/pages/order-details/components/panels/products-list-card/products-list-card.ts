@@ -30,6 +30,32 @@ export class ProductsListCardComponent {
     
   }
 
+  showProductMenuAlert (product, index) {
+    let alert = this.alertCtrl.create({
+      title: "Ürün Menüsü",
+      subTitle: "Ne yapmak istiyorsunuz?",
+      buttons: [
+        {
+          text: "Düzenle",
+          handler: () => {
+            this.presentModallyProductFormPage('edit', product, index);
+          }
+        },
+        {
+          text: "Sil",
+          handler: () => {
+            this.presentDeletionWarning(product._id, index);
+          }
+        },
+        {
+          text: "Geri Dön"
+        }
+      ]
+    });
+
+    alert.present();
+  }
+
   deleteProduct(productId: string, index: number) {
     let loading = this.loadingCtrl.create({ content: "Ürün siliniyor..." });
 

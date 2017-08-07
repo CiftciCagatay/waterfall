@@ -13,6 +13,7 @@ export class ProductFormPage {
   orderId: string;
   product: any;
   productIndex: number;
+  total = 0.0;
 
   constructor(
     public navCtrl: NavController,
@@ -29,6 +30,8 @@ export class ProductFormPage {
 
     if (this.mode == 'edit') {
       this.product = JSON.parse(JSON.stringify(this.navParams.get('product')))
+
+      this.calculateTotal();
 
     } else if (this.orderId) {
 
@@ -47,6 +50,20 @@ export class ProductFormPage {
     }
 
     console.log(this.product);
+  }
+
+  calculateTotal () {
+    let laborCost = this.product.laborCost ? parseFloat(this.product.laborCost) : 0.0;
+    let unitPrice = this.product.unitPrice ? parseFloat(this.product.unitPrice) : 0.0;
+    let quantity = this.product.quantity ? parseFloat(this.product.quantity) : 0.0;
+
+    this.total = quantity * (unitPrice + laborCost);
+  }
+
+  deneme() {
+    this.product.laborCost = this.product.laborCost ? parseFloat(this.product.laborCost) : 0.0;
+    this.product.unitPrice = this.product.unitPrice ? parseFloat(this.product.unitPrice) : 0.0;
+    this.product.quantity = this.product.quantity ? parseFloat(this.product.quantity) : 0.0;
   }
 
   setProducts(property, e) {
@@ -77,6 +94,8 @@ export class ProductFormPage {
         {
           text: "Evet",
           handler: () => {
+            this.deneme();
+            
             if (this.mode == 'edit') {
               this.saveChanges();
             } else {

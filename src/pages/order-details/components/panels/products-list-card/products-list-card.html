@@ -25,6 +25,9 @@
           <ion-label>{{ product.unitPrice }}</ion-label>
           <ion-label>{{ product.laborCost }}</ion-label>
           <ion-label>{{ product.quantity * (product.unitPrice + product.laborCost) }}</ion-label>
+          <button (click)="showProductMenuAlert(product, i)" ion-button clear>
+            <ion-icon name="more"></ion-icon>
+          </button>
         </ion-item>
 
         <ion-item-options>
