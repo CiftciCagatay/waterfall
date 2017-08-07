@@ -19,7 +19,11 @@ export class CalculateBalancePipe implements PipeTransform {
 
     if (payments) {
       for(var payment of payments) {
-        balance += payment.amount;
+        if (typeof(payment.amount) == 'string') {
+          balance += parseFloat(payment.amount);
+        } else {
+          balance += parseFloat(payment.amount);
+        }
       }
     }
 
