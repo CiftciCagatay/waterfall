@@ -78,14 +78,18 @@
                 </label>
 
                 <label ion-item>
-                  <ion-label>İlçe</ion-label>
-                  <ion-select
+                  <ion-label fixed>İlçe</ion-label>
+                  <ion-input
+                    name="addressDistrict"
+                    [(ngModel)]="order.customer.address.district"
+                  ></ion-input>
+                  <!-- <ion-select
                     name="addressDistrict"
                     [disabled]="!order.customer.address.city"
                     [(ngModel)]="order.customer.address.district"
                   >
                     <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>
-                  </ion-select>
+                  </ion-select> -->
                 </label>
 
                 <label ion-item>
