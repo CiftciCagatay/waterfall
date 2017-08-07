@@ -27,7 +27,7 @@ export class ProductsListCardComponent {
     private po: PopoverController,
     public renderer: Renderer
   ) {
-    
+
   }
 
   showProductMenuAlert (product, index) {
@@ -63,12 +63,12 @@ export class ProductsListCardComponent {
 
     this.mdbs.deleteProduct(productId).subscribe((response) => {
       this.products.splice(index, 1);
-      
+
       loading.dismiss();
     });
   }
 
-  presentDeletionWarning(productId: string, index:number) {
+  presentDeletionWarning(productId: string, index: number) {
     this.alertCtrl.create({
       title: "Ürün silinecek",
       subTitle: "Bu işlem geri alınmaz. Emin misiniz?",

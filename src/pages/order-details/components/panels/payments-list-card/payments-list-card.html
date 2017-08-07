@@ -15,10 +15,12 @@
             <h2 *ngIf="payment.type == 'Kredi Kartı'">{{ payment.installments + " Taksit | " + payment.bank }}</h2>
             <h3>{{ payment.personnel ? payment.personnel : "---" }} | {{ payment.date ? (payment.date | formatDate) : "---" }}</h3>
             <!--<p *ngIf="payment.note">{{ payment.note }}</p>-->
-
+            <button item-end (click)="showPaymentMenuAlert(payment, i)" ion-button clear>
+              <ion-icon md="md-more" ios="ios-more"></ion-icon>
+            </button>
         </ion-item>
 
-        <ion-item-options>
+        <ion-item-options *ngIf="false">
           <button (click)="presentModallyProductFormPage('edit', payment, i)" ion-button>DÜZENLE</button>
           <button (click)="presentDeletionWarning(payment._id, i)" color="danger" ion-button>SİL</button>
         </ion-item-options>

@@ -27,8 +27,36 @@ export class PaymentsListCardComponent {
     console.log(this.orderId);
   }
 
+  showPaymentMenuAlert (payment, index) {
+    let alert = this.alertCtrl.create({
+      title: "Ürün Menüsü",
+      subTitle: "Ne yapmak istiyorsunuz?",
+      buttons: [
+        {
+          text: "Düzenle",
+          handler: () => {
+            this.presentModallyPaymentFormPage('edit', payment, index);
+          }
+        },
+        {
+          text: "Sil",
+          handler: () => {
+            this.presentDeletionWarning(payment._id, index);
+          }
+        },
+        {
+          text: "Geri Dön"
+        }
+      ]
+    
+
+    });
+
+    alert.present();
+  }
+
   deletePayment(paymentId: string, index: number) {
-    let loading = this.loadingCtrl.create({ content: "Ürün siliniyor..." });
+    let loading = this.loadingCtrl.create({ content: "Ödeme siliniyor..." });
 
     loading.present();
 
@@ -55,7 +83,7 @@ export class PaymentsListCardComponent {
     }).present();
   }
 
-  presentModallyProductFormPage(mode: string, payment?: any, index?: number) {
+  presentModallyPaymentFormPage(mode: string, payment?: any, index?: number) {
     console.log(this.orderId);
 
     this.modalCtrl.create(PaymentFormPage, {
