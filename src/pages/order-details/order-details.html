@@ -10,7 +10,7 @@
     <button ion-button menuToggle>
       <ion-icon name="menu"></ion-icon>
     </button>
-    
+
     <ion-title>Sipariş Detayları</ion-title>
   </ion-navbar>
 
@@ -31,11 +31,11 @@
 
     <ion-row>
       <ion-col>
-        <payments-list-card [orderId]="order._id" [payments]="order.payments"></payments-list-card>
+        <products-list-card [orderId]="order._id" [products]="order.products"></products-list-card>
       </ion-col>
 
       <ion-col>
-        <products-list-card [orderId]="order._id" [products]="order.products"></products-list-card>
+        <payments-list-card [orderId]="order._id" [payments]="order.payments"></payments-list-card>
       </ion-col>
     </ion-row>
   </ion-grid>

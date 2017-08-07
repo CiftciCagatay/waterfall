@@ -1,5 +1,5 @@
-import { Component, Input } from '@angular/core';
-import { ModalController, AlertController, LoadingController, Events } from "ionic-angular";
+import { Component, Input, Renderer } from '@angular/core';
+import { ModalController, AlertController, LoadingController, Events, ItemSliding, Item, PopoverController } from "ionic-angular";
 import { ProductFormPage } from "../../forms/product-form/product-form";
 import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 
@@ -23,7 +23,9 @@ export class ProductsListCardComponent {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private mdbs: MongoDbServiceProvider,
-    private events: Events
+    private events: Events,
+    private po: PopoverController,
+    public renderer: Renderer
   ) {
     
   }
