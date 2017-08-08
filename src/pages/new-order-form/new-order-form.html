@@ -138,7 +138,7 @@
           </ion-card>
 
           <!-- Kapora -->
-          <ion-card>
+          <ion-card *ngIf="order.payments.length > 0">
             <ion-card-header>Kapora</ion-card-header>
 
             <ion-card-content>

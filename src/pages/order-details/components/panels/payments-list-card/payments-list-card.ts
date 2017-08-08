@@ -29,7 +29,7 @@ export class PaymentsListCardComponent {
 
   showPaymentMenuAlert (payment, index) {
     let alert = this.alertCtrl.create({
-      title: "Ürün Menüsü",
+      title: "Ödeme Menüsü",
       subTitle: "Ne yapmak istiyorsunuz?",
       buttons: [
         {

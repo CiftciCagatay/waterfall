@@ -89,7 +89,31 @@ export class NewOrderFormPage {
     }).present();
   }
 
+  logOrderSavedEvent() {
+    this.mdbs.logEvent(
+      "Yeni Sipariş",
+      `${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`,
+      this.order.orderDetails.personnel,
+      this.order.orderDetails.orderDate
+    )
+
+    if (this.order.payments.length > 0) {
+      this.mdbs.logEvent(
+        "Yeni Ödeme",
+        `${this.order.orderDetails.personnel} tarafından ${this.order.payments[0].amount} ${this.order.payments[0].currency} tutarında ödeme alındı`,
+        this.order.orderDetails.personnel,
+        this.order.orderDetails.orderDate
+      )
+    }
+
+    this.oneSignalNotificationProvider.notifyManagers(`${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`);
+  }
+
   saveOrder() {
+    if (!this.order.payments[0].amount) {
+      this.order.payments.pop();
+    }
+
     let loading = this.loadingCtrl.create({
       content: "Sipariş kaydediliyor..."
     });
@@ -99,33 +123,19 @@ export class NewOrderFormPage {
     this.mdbs.insertNewOrder(this.order).subscribe((response) => {
       this.orderId = response.json().orderId;
 
-      this.mdbs.logEvent(
-        "Yeni Sipariş",
-        `${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`,
-        this.order.orderDetails.personnel,
-        this.order.orderDetails.orderDate
-      )
+      this.logOrderSavedEvent();
 
-      if (this.order.payments[0].amount) {
-        this.mdbs.logEvent(
-          "Yeni Ödeme",
-          `${this.order.orderDetails.personnel} tarafından ${this.order.payments[0].amount} ${this.order.payments[0].currency} tutarında ödeme alındı`,
-          this.order.orderDetails.personnel,
-          this.order.orderDetails.orderDate
-        )
-      }
-
-      this.oneSignalNotificationProvider.notifyManagers(`${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`);
+      this.showOrderSavedAlert();
 
       loading.dismiss();
-
-      this.showOrderSavedToast();
     });
+
   }
 
-  showOrderSavedToast() {
+  showOrderSavedAlert() {
+    this.resetOrder();
+    
     this.alertCtrl.create({
-      
       title: "Sipariş başarıyla kaydedildi",
       message: "Detaylara gitmek ister misiniz?",
       buttons: [
@@ -134,15 +144,56 @@ export class NewOrderFormPage {
         },
         {
           text: "Evet",
-          handler: () => this.goToOrderDetailsPage()
+          handler: () => {
+            this.goToOrderDetailsPage();
+          }
         }
       ]
     }).present();
   }
 
+  resetOrder() {
+    this.order = {
+      customer: {
+        identificationNumber: "",
+        name: "",
+        telephones: ["", ""],
+        email: "",
+        address: {
+          line: "",
+          city: "İstanbul",
+          district: "",
+          note: ""
+        }
+      },
+
+      orderDetails: {
+        orderDate: new Date(),
+        deliveryDate: (new Date()).toISOString(),
+        personnel: this.auth.getUser(),
+        amount: null,
+        currency: "TRY",
+        note: ""
+      },
+
+      payments: [
+        {
+          type: "Nakit",
+          currency: "TRY",
+          amount: null,
+          note: "",
+          personnel: this.auth.getUser(),
+          installments: null,
+          bank: "",
+          date: new Date()
+        }
+      ]
+    };
+  }
+
   goToOrderDetailsPage() {
     this.navCtrl.push(OrderDetailsPage, {
       orderId: this.orderId
-    });
+    }).then(() => this.orderId = "");
   }
 }

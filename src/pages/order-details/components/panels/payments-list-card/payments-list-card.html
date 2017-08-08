@@ -1,7 +1,7 @@
 <ion-card>
   <ion-item color="secondBarColor">
     <h2 style="color: white">Ödemeler</h2>
-    <button color="light" (click)="presentModallyProductFormPage('new', -1, undefined)" outline icon-left item-right ion-button>
+    <button color="light" (click)="presentModallyPaymentFormPage('new', -1, undefined)" outline icon-left item-right ion-button>
               <ion-icon ios="ios-add" md="md-add"></ion-icon>Yeni
             </button>
   </ion-item>
@@ -21,7 +21,7 @@
         </ion-item>
 
         <ion-item-options *ngIf="false">
-          <button (click)="presentModallyProductFormPage('edit', payment, i)" ion-button>DÜZENLE</button>
+          <button (click)="presentModallyPaymentFormPage('edit', payment, i)" ion-button>DÜZENLE</button>
           <button (click)="presentDeletionWarning(payment._id, i)" color="danger" ion-button>SİL</button>
         </ion-item-options>
       </ion-item-sliding>
