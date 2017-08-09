@@ -65,6 +65,39 @@ export class NewOrderFormPage {
     this.citySelected(this.order.customer.address.city);
   }
 
+  isIdentificationNumberValid (id: String) {
+    if (id[0] == '0') {
+      console.log("TC Kimlik numarasının ilk karakteri 0 olamaz");
+      return false;
+    } else if(id.length != 11) {
+      console.log("TC Kimlik numarası 11 haneli olmalıdır");
+      return false
+    } else if (Number(id) % 2 != 0) {
+      console.log("TC Kimlik numarası tek sayı olamaz");
+      return false;
+    } else {
+
+      var tekIndexToplam = Number(id[0]) + Number(id[2]) + Number(id[4]) + Number(id[6]) + Number(id[8]);
+      var ciftIndexToplam = Number(id[1]) + Number(id[3]) + Number(id[5]) + Number(id[7]);
+
+
+      var farkMod10 = ((tekIndexToplam * 7) - ciftIndexToplam) % 10;
+
+      if (farkMod10 != Number(id[9])) {
+        console.log("10. hanen doğru değil")
+        return false
+      }
+
+      var ilkOnHaneToplam = tekIndexToplam + ciftIndexToplam + Number(id[9]);
+
+      if (ilkOnHaneToplam % 10 != Number(id[10])) {
+        console.log("11. hanen doğru değil")
+        return false;
+      }
+
+    }
+  }
+
   citySelected(city) {
     this.order.customer.address.district = "";
 
@@ -110,6 +143,10 @@ export class NewOrderFormPage {
   }
 
   saveOrder() {
+    if (!this.isIdentificationNumberValid(this.order.customer.identificationNumber)) {
+      return;
+    }
+
     if (!this.order.payments[0].amount) {
       this.order.payments.pop();
     }
