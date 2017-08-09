@@ -1,14 +1,14 @@
-webpackJsonp([0],{
+webpackJsonp([3],{
 
-/***/ 293:
+/***/ 291:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerDetailsPageModule", function() { return CustomerDetailsPageModule; });
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "CustomerListPageModule", function() { return CustomerListPageModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_details__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__customer_list__ = __webpack_require__(292);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -18,25 +18,25 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 
 
 
-var CustomerDetailsPageModule = (function () {
-    function CustomerDetailsPageModule() {
+var CustomerListPageModule = (function () {
+    function CustomerListPageModule() {
     }
-    return CustomerDetailsPageModule;
+    return CustomerListPageModule;
 }());
-CustomerDetailsPageModule = __decorate([
+CustomerListPageModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_2__customer_details__["a" /* CustomerDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_2__customer_list__["a" /* CustomerListPage */],
         ],
         imports: [
-            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_details__["a" /* CustomerDetailsPage */]),
+            __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["g" /* IonicPageModule */].forChild(__WEBPACK_IMPORTED_MODULE_2__customer_list__["a" /* CustomerListPage */]),
         ],
     })
-], CustomerDetailsPageModule);
+], CustomerListPageModule);
 
-//# sourceMappingURL=customer-details.module.js.map
+//# sourceMappingURL=customer-list.module.js.map
 
 /***/ })
 
 });
-//# sourceMappingURL=0.js.map
+//# sourceMappingURL=3.js.map

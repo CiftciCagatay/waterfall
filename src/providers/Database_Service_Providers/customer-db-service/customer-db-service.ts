@@ -19,6 +19,22 @@ export class CustomerDbServiceProvider {
     console.log('Hello PaymentDbServiceProvider Provider');
   }
 
+  getCustomerById (id: String) {
+    let url = this.globals.ref + "/customers/" + id;
+
+    return this.http.get(url);
+  }
+
+  getCustomers (searchtext?: String, limit = 20) {
+    let url = this.globals.ref + "/customers?limit=" + limit;
+
+    if (searchtext) {
+      url += "&searchText=" + searchtext;
+    }
+
+    return this.http.get(url);
+  }
+
   updateCustomerInformation(customerId: string, newValue: any) {
     let url = this.globals.ref + "/customers/" + customerId;
 

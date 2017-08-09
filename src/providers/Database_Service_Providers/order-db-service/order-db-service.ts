@@ -46,6 +46,12 @@ export class OrderDbServiceProvider {
     return this.http.get(url);
   }
 
+  getOrdersByCustomerId (customerId: String) {
+    let url = this.globals.ref + "/customers/" + customerId + "/orders";
+
+    return this.http.get(url);
+  }
+
   getOrderDetails(orderId: string) {
     let url = this.globals.ref + "/orders/" + orderId;
 

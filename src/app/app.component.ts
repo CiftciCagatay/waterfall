@@ -9,6 +9,7 @@ import { OrderDetailsPage } from "../pages/order-details/order-details";
 import { OrdersListPage } from "../pages/orders-list/orders-list";
 import { LoginPage } from "../pages/login/login";
 import { OnesignalNotificationProvider } from "../providers/onesignal-notification/onesignal-notification";
+import { CustomerListPage } from "../pages/customer-list/customer-list";
 
 @Component({
   templateUrl: 'app.html'
@@ -32,7 +33,8 @@ export class MyApp {
     this.pages = [
       { title: 'Anasayfa', component: HomePage },
       { title: 'Yeni Sipariş Formu', component: NewOrderFormPage },
-      { title: 'Siparişler', component: OrdersListPage }
+      { title: 'Siparişler', component: OrdersListPage },
+      { title: 'Müşteriler', component: CustomerListPage }
     ];
 
   }

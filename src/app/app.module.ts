@@ -40,6 +40,8 @@ import { ProductDbServiceProvider } from '../providers/Database_Service_Provider
 import { PaymentDbServiceProvider } from '../providers/Database_Service_Providers/payment-db-service/payment-db-service';
 import { EventDbServiceProvider } from '../providers/Database_Service_Providers/event-db-service/event-db-service';
 import { GlobalsProvider } from '../providers/globals/globals';
+import { CustomerListPage } from "../pages/customer-list/customer-list";
+import { CustomerDetailsPage } from "../pages/customer-details/customer-details";
 
 @NgModule({
   declarations: [
@@ -50,6 +52,9 @@ import { GlobalsProvider } from '../providers/globals/globals';
     NewOrderFormPage,
     OrdersListPage,
     OrderDetailsPage,
+
+    CustomerListPage,
+    CustomerDetailsPage,
 
     CustomerFormPage,
     OrderDetailsFormPage,
@@ -84,6 +89,9 @@ import { GlobalsProvider } from '../providers/globals/globals';
     OrdersListPage,
     OrderDetailsPage,
 
+    CustomerListPage,
+    CustomerDetailsPage,
+    
     CustomerFormPage,
     OrderDetailsFormPage,
     ProductFormPage,

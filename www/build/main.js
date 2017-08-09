@@ -1476,9 +1476,17 @@ webpackEmptyAsyncContext.id = 118;
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
+	"../pages/customer-details/customer-details.module": [
+		293,
+		0
+	],
+	"../pages/customer-list/customer-list.module": [
+		291,
+		6
+	],
 	"../pages/login/login.module": [
 		290,
-		0
+		5
 	]
 };
 function webpackAsyncContext(req) {
@@ -1717,10 +1725,18 @@ NewOrderFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" [disabled]="!siparisForm.form.valid" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #siparisForm="ngForm">\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input name="identificationNumber" maxLength="11" [(ngModel)]="order.customer.identificationNumber" type="tel"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Şehir</ion-label>\n                  <ion-select\n                    name="city"\n                    [(ngModel)]="order.customer.address.city"\n                    (ionChange)="citySelected($event)"\n                  >\n                    <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>İlçe</ion-label>\n                  <ion-input\n                    name="addressDistrict"\n                    [(ngModel)]="order.customer.address.district"\n                  ></ion-input>\n                  <!-- <ion-select\n                    name="addressDistrict"\n                    [disabled]="!order.customer.address.city"\n                    [(ngModel)]="order.customer.address.district"\n                  >\n                    <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>\n                  </ion-select> -->\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime \n                    name="deliveryDate" \n                    [(ngModel)]="order.orderDetails.deliveryDate"\n                  ></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">\n                    <ion-option *ngFor="let currency of pds.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n\n          <!-- Kapora -->\n          <ion-card *ngIf="order.payments.length > 0">\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">\n                    <ion-option *ngFor="let paymentType of pds.paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">\n                    <ion-option *ngFor="let currency of pds.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">\n                    <ion-option *ngFor="let bank of pds.banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n                <!--\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>\n                </label>\n                -->\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/new-order-form/new-order-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_6__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_4__providers_city_district_city_district__["a" /* CityDistrictProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_city_district_city_district__["a" /* CityDistrictProvider */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_5__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]) === "function" && _k || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_6__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_4__providers_city_district_city_district__["a" /* CityDistrictProvider */],
+        __WEBPACK_IMPORTED_MODULE_5__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]])
 ], NewOrderFormPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 //# sourceMappingURL=new-order-form.js.map
 
 /***/ }),
@@ -1884,6 +1900,10 @@ var OrderDbServiceProvider = (function () {
         console.log("GET ORDER URL : " + url);
         return this.http.get(url);
     };
+    OrderDbServiceProvider.prototype.getOrdersByCustomerId = function (customerId) {
+        var url = this.globals.ref + "/customers/" + customerId + "/orders";
+        return this.http.get(url);
+    };
     OrderDbServiceProvider.prototype.getOrderDetails = function (orderId) {
         var url = this.globals.ref + "/orders/" + orderId;
         return this.http.get(url);
@@ -2032,10 +2052,14 @@ ProductFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-product-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/product-form/product-form.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>{{ mode == \'new\' ? \'Yeni Ürün\' : \'Ürünü Düzenle\' }}</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form>\n    <ion-list>\n      <ion-item>\n        <ion-label>Ürün Kategori</ion-label>\n        <ion-select name="productType" [(ngModel)]="product.type">\n          <ion-option *ngFor="let type of pds.types">{{ type }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Desen Kodu</ion-label>\n        <ion-input name="patternCode" [(ngModel)]="product.patternCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Renk Kodu</ion-label>\n        <ion-input name="colorCode" [(ngModel)]="product.colorCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Cins</ion-label>\n        <ion-input name="varietyCode" [(ngModel)]="product.varietyCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Miktar</ion-label>\n        <ion-input type="number" name="quantity" (ionChange)="calculateTotal()" [(ngModel)]="product.quantity"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Birim Fiyat</ion-label>\n        <ion-input type="number" name="unitPrice" (ionChange)="calculateTotal()" [(ngModel)]="product.unitPrice"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>İşçilik Maliyeti</ion-label>\n        <ion-input type="number" name="laborCost" (ionChange)="calculateTotal()" [(ngModel)]="product.laborCost"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Tutar</ion-label>\n        <ion-input [disabled]="true" [value]="total"></ion-input>\n      </ion-item>\n\n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/product-form/product-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _f || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]])
 ], ProductFormPage);
 
-var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=product-form.js.map
 
 /***/ }),
@@ -2404,12 +2428,16 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(288);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(289);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_globals_globals__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__pages_customer_list_customer_list__ = __webpack_require__(292);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__pages_customer_details_customer_details__ = __webpack_require__(294);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -2456,6 +2484,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */],
             __WEBPACK_IMPORTED_MODULE_11__pages_orders_list_orders_list__["a" /* OrdersListPage */],
             __WEBPACK_IMPORTED_MODULE_12__pages_order_details_order_details__["a" /* OrderDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_32__pages_customer_list_customer_list__["a" /* CustomerListPage */],
+            __WEBPACK_IMPORTED_MODULE_33__pages_customer_details_customer_details__["a" /* CustomerDetailsPage */],
             __WEBPACK_IMPORTED_MODULE_15__pages_order_details_components_forms_customer_form_customer_form__["a" /* CustomerFormPage */],
             __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_order_details_form_order_details_form__["a" /* OrderDetailsFormPage */],
             __WEBPACK_IMPORTED_MODULE_13__pages_order_details_components_forms_product_form_product_form__["a" /* ProductFormPage */],
@@ -2477,7 +2507,9 @@ AppModule = __decorate([
                 dayShortNames: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'],
             }, {
                 links: [
-                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] }
+                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/customer-list/customer-list.module#CustomerListPageModule', name: 'CustomerListPage', segment: 'customer-list', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/customer-details/customer-details.module#CustomerDetailsPageModule', name: 'CustomerDetailsPage', segment: 'customer-details', priority: 'low', defaultHistory: [] }
                 ]
             })
         ],
@@ -2489,6 +2521,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */],
             __WEBPACK_IMPORTED_MODULE_11__pages_orders_list_orders_list__["a" /* OrdersListPage */],
             __WEBPACK_IMPORTED_MODULE_12__pages_order_details_order_details__["a" /* OrderDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_32__pages_customer_list_customer_list__["a" /* CustomerListPage */],
+            __WEBPACK_IMPORTED_MODULE_33__pages_customer_details_customer_details__["a" /* CustomerDetailsPage */],
             __WEBPACK_IMPORTED_MODULE_15__pages_order_details_components_forms_customer_form_customer_form__["a" /* CustomerFormPage */],
             __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_order_details_form_order_details_form__["a" /* OrderDetailsFormPage */],
             __WEBPACK_IMPORTED_MODULE_13__pages_order_details_components_forms_product_form_product_form__["a" /* ProductFormPage */],
@@ -2530,6 +2564,7 @@ AppModule = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__ = __webpack_require__(205);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(109);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_customer_list_customer_list__ = __webpack_require__(292);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2539,6 +2574,7 @@ var __decorate = (this && this.__decorate) || function (decorators, target, key,
 var __metadata = (this && this.__metadata) || function (k, v) {
     if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
 };
+
 
 
 
@@ -2560,7 +2596,8 @@ var MyApp = (function () {
         this.pages = [
             { title: 'Anasayfa', component: __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */] },
             { title: 'Yeni Sipariş Formu', component: __WEBPACK_IMPORTED_MODULE_5__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */] },
-            { title: 'Siparişler', component: __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__["a" /* OrdersListPage */] }
+            { title: 'Siparişler', component: __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__["a" /* OrdersListPage */] },
+            { title: 'Müşteriler', component: __WEBPACK_IMPORTED_MODULE_9__pages_customer_list_customer_list__["a" /* CustomerListPage */] }
         ];
     }
     MyApp.prototype.initializeApp = function () {
@@ -3106,6 +3143,18 @@ var CustomerDbServiceProvider = (function () {
         this.globals = globals;
         console.log('Hello PaymentDbServiceProvider Provider');
     }
+    CustomerDbServiceProvider.prototype.getCustomerById = function (id) {
+        var url = this.globals.ref + "/customers/" + id;
+        return this.http.get(url);
+    };
+    CustomerDbServiceProvider.prototype.getCustomers = function (searchtext, limit) {
+        if (limit === void 0) { limit = 20; }
+        var url = this.globals.ref + "/customers?limit=" + limit;
+        if (searchtext) {
+            url += "&searchText=" + searchtext;
+        }
+        return this.http.get(url);
+    };
     CustomerDbServiceProvider.prototype.updateCustomerInformation = function (customerId, newValue) {
         var url = this.globals.ref + "/customers/" + customerId;
         return this.http.put(url, newValue);
@@ -3326,6 +3375,151 @@ EventDbServiceProvider = __decorate([
 ], EventDbServiceProvider);
 
 //# sourceMappingURL=event-db-service.js.map
+
+/***/ }),
+
+/***/ 292:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerListPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__customer_details_customer_details__ = __webpack_require__(294);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the CustomerListPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var CustomerListPage = (function () {
+    function CustomerListPage(navCtrl, loadingCtrl, navParams, cds) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.loadingCtrl = loadingCtrl;
+        this.navParams = navParams;
+        this.cds = cds;
+        this.customers = [];
+        var loading = this.loadingCtrl.create({ content: "Müşteriler yükleniyor..." });
+        //loading.present();
+        this.cds.getCustomers().subscribe(function (response) {
+            _this.customers = response.json();
+            //loading.dismiss();
+        });
+    }
+    CustomerListPage.prototype.goToCustomerDetailsPage = function (customerId) {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__customer_details_customer_details__["a" /* CustomerDetailsPage */], {
+            customerId: customerId
+        });
+    };
+    CustomerListPage.prototype.filterCustomers = function (text) {
+        var _this = this;
+        this.cds.getCustomers(text).subscribe(function (response) {
+            _this.customers = response.json();
+            console.log(response);
+            //loading.dismiss();
+        });
+    };
+    return CustomerListPage;
+}());
+CustomerListPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-customer-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/customer-list/customer-list.html"*/'<!--\n  Generated template for the CustomerListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon md="md-menu" ios="ios-menu"></ion-icon>\n    </button>\n\n    <ion-title>Müşteriler</ion-title>\n  </ion-navbar>\n  \n  <ion-toolbar color="navBarColor">\n    <ion-searchbar color="navBarColor" (ionChange)="filterCustomers($event.value)"></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>TC Kimlik No</ion-label>\n      <ion-label>İsim</ion-label>\n    </ion-item>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item (click)="goToCustomerDetailsPage(customer._id)" *ngFor="let customer of customers">\n      <ion-label>{{ customer.identificationNumber }}</ion-label>\n      <ion-label>{{ customer.name }}</ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/customer-list/customer-list.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */]])
+], CustomerListPage);
+
+//# sourceMappingURL=customer-list.js.map
+
+/***/ }),
+
+/***/ 294:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDetailsPage; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(206);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/**
+ * Generated class for the CustomerDetailsPage page.
+ *
+ * See http://ionicframework.com/docs/components/#navigation for more info
+ * on Ionic pages and navigation.
+ */
+var CustomerDetailsPage = (function () {
+    function CustomerDetailsPage(navCtrl, navParams, cds, ods, loadingCtrl) {
+        var _this = this;
+        this.navCtrl = navCtrl;
+        this.navParams = navParams;
+        this.cds = cds;
+        this.ods = ods;
+        this.loadingCtrl = loadingCtrl;
+        this.orders = [];
+        var customerId = this.navParams.get('customerId');
+        if (!customerId)
+            this.navCtrl.pop();
+        var loading = this.loadingCtrl.create({ content: "Müşteri bilgileri yükleniyor..." });
+        loading.present();
+        this.cds.getCustomerById(customerId).subscribe(function (response) {
+            _this.customer = response.json();
+            loading.setContent("Müşteriye ait siparişler yükleniyor...");
+            _this.ods.getOrdersByCustomerId(customerId).subscribe(function (ordersResponse) {
+                _this.orders = ordersResponse.json();
+                loading.dismiss();
+            });
+        });
+    }
+    CustomerDetailsPage.prototype.ionViewDidLoad = function () {
+        console.log('ionViewDidLoad CustomerDetailsPage');
+    };
+    return CustomerDetailsPage;
+}());
+CustomerDetailsPage = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["f" /* IonicPage */])(),
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'page-customer-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/customer-details/customer-details.html"*/'<!--\n  Generated template for the CustomerDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-title>Müşteri Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-md-6>\n        <customer-details-card [customer]="customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col col-12 col-md-6>\n        <ion-card>\n          <ion-item color="secondBarColor">\n            <h2 style="color: white">Siparişler</h2>\n          </ion-item>\n\n          <ion-card-content style="margin-top: 12px">\n            <ion-list>\n              <ion-item-sliding *ngFor="let order of orders; let i = index">\n                <ion-item (click)="showOrdersDetails(order._id)">\n                  <ion-label>{{ order.orderDetails.orderDate | formatDate }}</ion-label>\n                  <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n                  <ion-label>{{ order.orderDetails.amount - (order.payments | calculateBalance) }} {{ order.orderDetails.currency }}</ion-label>\n                </ion-item>\n\n                <ion-item-options>\n                  <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>\n                </ion-item-options>\n              </ion-item-sliding>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/customer-details/customer-details.html"*/,
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+], CustomerDetailsPage);
+
+//# sourceMappingURL=customer-details.js.map
 
 /***/ }),
 
