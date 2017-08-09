@@ -18,7 +18,7 @@
       <ion-item>
         <ion-label>Ürün Kategori</ion-label>
         <ion-select name="productType" [(ngModel)]="product.type">
-          <ion-option *ngFor="let type of productTypesProvider.types">{{ type }}</ion-option>
+          <ion-option *ngFor="let type of pds.types">{{ type }}</ion-option>
         </ion-select>
       </ion-item>
 

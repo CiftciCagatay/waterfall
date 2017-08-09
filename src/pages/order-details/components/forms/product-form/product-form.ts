@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { ProductTypesProvider } from '../../../../../providers/product-types/product-types';
 
 import { ProductDbServiceProvider } from "../../../../../providers/Database_Service_Providers/product-db-service/product-db-service";
 
@@ -24,7 +23,6 @@ export class ProductFormPage {
     
     private pds: ProductDbServiceProvider,
 
-    private productTypesProvider: ProductTypesProvider,
     private events: Events
   ) {
     this.mode = this.navParams.get('mode');

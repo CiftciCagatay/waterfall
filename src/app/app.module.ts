@@ -8,7 +8,6 @@ import { HomePage } from '../pages/home/home';
 import { HttpModule } from "@angular/http";
 import { StatusBar } from '@ionic-native/status-bar';
 import { SplashScreen } from '@ionic-native/splash-screen';
-import { ComponentsModule } from "../components/components.module";
 
 import { OneSignal } from '@ionic-native/onesignal';
 
@@ -31,7 +30,6 @@ import { CustomerDetailsCardComponent } from "../pages/order-details/components/
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { OnesignalNotificationProvider } from '../providers/onesignal-notification/onesignal-notification';
 import { CityDistrictProvider } from '../providers/city-district/city-district';
-import { ProductTypesProvider } from '../providers/product-types/product-types';
 
 import { CalculateBalancePipe } from "../pipes/calculate-balance/calculate-balance";
 import { FormatDatePipe } from "../pipes/format-date/format-date";
@@ -100,8 +98,7 @@ import { GlobalsProvider } from '../providers/globals/globals';
     
     OneSignal,
     OnesignalNotificationProvider,
-    
-    ProductTypesProvider,
+
     CityDistrictProvider,
 
     OrderDbServiceProvider,
