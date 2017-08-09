@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
+
 import { CityDistrictProvider } from "../../../../../providers/city-district/city-district";
+
 import { OrderDbServiceProvider } from "../../../../../providers/Database_Service_Providers/order-db-service/order-db-service";
+import { PaymentDbServiceProvider } from "../../../../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
 
 @Component({
   selector: 'page-order-details-form',
@@ -19,7 +21,7 @@ export class OrderDetailsFormPage {
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private ods: OrderDbServiceProvider,
-    private currencyBankProvider: CurrencyBankProvider,
+    private pds: PaymentDbServiceProvider,
     private events: Events
   ) {
     this.orderId = this.navParams.get('orderId');

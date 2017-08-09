@@ -12,6 +12,17 @@ import { GlobalsProvider } from "../../globals/globals";
 @Injectable()
 export class ProductDbServiceProvider {
 
+  types = [
+    "Tül",
+    "Kumaş",
+    "Korniş",
+    "Güneşlik",
+    "Renso",
+    "Store",
+    "Zebra",
+    "Astar"
+  ]
+  
   constructor(
     public http: Http,
     private globals: GlobalsProvider

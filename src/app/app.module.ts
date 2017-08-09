@@ -31,7 +31,6 @@ import { CustomerDetailsCardComponent } from "../pages/order-details/components/
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { OnesignalNotificationProvider } from '../providers/onesignal-notification/onesignal-notification';
 import { CityDistrictProvider } from '../providers/city-district/city-district';
-import { CurrencyBankProvider } from '../providers/currency-bank/currency-bank';
 import { ProductTypesProvider } from '../providers/product-types/product-types';
 
 import { CalculateBalancePipe } from "../pipes/calculate-balance/calculate-balance";
@@ -102,7 +101,6 @@ import { GlobalsProvider } from '../providers/globals/globals';
     OneSignal,
     OnesignalNotificationProvider,
     
-    CurrencyBankProvider,
     ProductTypesProvider,
     CityDistrictProvider,
 

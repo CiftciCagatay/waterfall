@@ -125,7 +125,7 @@
                 <label ion-item>
                   <ion-label>Para Birimi</ion-label>
                   <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">
-                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>
+                    <ion-option *ngFor="let currency of pds.currencies">{{ currency }}</ion-option>
                   </ion-select>
                 </label>
 
@@ -146,7 +146,7 @@
                 <label ion-item>
                   <ion-label>Ödeme Türü</ion-label>
                   <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">
-                    <ion-option *ngFor="let paymentType of currencyBankProvider.paymentTypes">{{ paymentType }}</ion-option>
+                    <ion-option *ngFor="let paymentType of pds.paymentTypes">{{ paymentType }}</ion-option>
                   </ion-select>
                 </label>
 
@@ -158,7 +158,7 @@
                 <label ion-item>
                   <ion-label>Para Birimi</ion-label>
                   <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">
-                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>
+                    <ion-option *ngFor="let currency of pds.currencies">{{ currency }}</ion-option>
                   </ion-select>
                 </label>
 
@@ -170,7 +170,7 @@
                 <label *ngIf="order.payments[0].type == 'Kredi Kartı'" ion-item>
                   <ion-label>Banka</ion-label>
                   <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">
-                    <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>
+                    <ion-option *ngFor="let bank of pds.banks">{{ bank }}</ion-option>
                   </ion-select>
                 </label>
                 <!--

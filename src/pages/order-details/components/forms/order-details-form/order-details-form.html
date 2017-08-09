@@ -42,7 +42,7 @@
       <ion-item>
         <ion-label>Para Birimi</ion-label>
         <ion-select name="currency" [(ngModel)]="orderDetails.currency">
-          <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>
+          <ion-option *ngFor="let currency of pds.currencies">{{ currency }}</ion-option>
         </ion-select>
       </ion-item>
 

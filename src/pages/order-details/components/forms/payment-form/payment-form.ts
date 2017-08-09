@@ -1,6 +1,5 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
 import { AuthServiceProvider } from "../../../../../providers/auth-service/auth-service";
 
 import { PaymentDbServiceProvider } from "../../../../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
@@ -28,7 +27,6 @@ export class PaymentFormPage {
     private pds: PaymentDbServiceProvider,
     private eds: EventDbServiceProvider,
 
-    private currencyBankProvider: CurrencyBankProvider,
     private events: Events,
     private auth: AuthServiceProvider
   ) {

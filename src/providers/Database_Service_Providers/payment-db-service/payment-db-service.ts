@@ -12,6 +12,26 @@ import { GlobalsProvider } from "../../globals/globals";
 @Injectable()
 export class PaymentDbServiceProvider {
 
+  banks = [
+    "Garanti",
+    "Ziraat",
+    "Akbank",
+    "Finansbank",
+    "İş Bankası",
+    "Yapı Kredi"
+  ];
+
+  currencies = [
+    "TRY",
+    "EUR",
+    "USD"
+  ];
+
+  paymentTypes = [
+    "Nakit",
+    "Kredi Kartı"
+  ]
+
   constructor(
     public http: Http,
     private globals: GlobalsProvider

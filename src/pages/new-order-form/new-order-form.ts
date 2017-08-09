@@ -1,12 +1,14 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
 import { OrderDetailsPage } from "../order-details/order-details";
-import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
+
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { CityDistrictProvider } from "../../providers/city-district/city-district";
 import { OnesignalNotificationProvider } from "../../providers/onesignal-notification/onesignal-notification";
+
 import { OrderDbServiceProvider } from "../../providers/Database_Service_Providers/order-db-service/order-db-service";
 import { EventDbServiceProvider } from "../../providers/Database_Service_Providers/event-db-service/event-db-service";
+import { PaymentDbServiceProvider } from "../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
 
 @Component({
   selector: 'page-new-order-form',
@@ -60,8 +62,8 @@ export class NewOrderFormPage {
     
     private ods: OrderDbServiceProvider,
     private eds: EventDbServiceProvider,
+    private pds: PaymentDbServiceProvider,
 
-    private currencyBankProvider: CurrencyBankProvider,
     private auth: AuthServiceProvider,
     private cityDistrictProvider: CityDistrictProvider,
     private oneSignalNotificationProvider: OnesignalNotificationProvider

@@ -27,7 +27,7 @@
       <ion-item>
         <ion-label>Ödeme Türü</ion-label>
         <ion-select name="type" [(ngModel)]="payment.type">
-          <ion-option *ngFor="let type of currencyBankProvider.paymentTypes">{{ type }}</ion-option>
+          <ion-option *ngFor="let type of pds.paymentTypes">{{ type }}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -44,7 +44,7 @@
       <ion-item>
         <ion-label>Para Birimi</ion-label>
         <ion-select name="currency" [(ngModel)]="payment.currency">
-          <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>
+          <ion-option *ngFor="let currency of pds.currencies">{{ currency }}</ion-option>
         </ion-select>
       </ion-item>
 
@@ -61,7 +61,7 @@
       <ion-item *ngIf="payment.type == 'Kredi Kartı'">
         <ion-label>Banka</ion-label>
         <ion-select name="bank" [(ngModel)]="payment.bank">
-          <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>
+          <ion-option *ngFor="let bank of pds.banks">{{ bank }}</ion-option>
         </ion-select>
       </ion-item>
 
