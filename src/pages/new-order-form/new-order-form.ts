@@ -149,10 +149,6 @@ export class NewOrderFormPage {
   }
 
   saveOrder() {
-    if (!this.isIdentificationNumberValid(this.order.customer.identificationNumber)) {
-      return;
-    }
-
     if (!this.order.payments[0].amount) {
       this.order.payments.pop();
     }
