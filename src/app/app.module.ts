@@ -28,7 +28,6 @@ import { PaymentsListCardComponent } from "../pages/order-details/components/pan
 import { OrderDetailsCardComponent } from "../pages/order-details/components/panels/order-details-card/order-details-card";
 import { CustomerDetailsCardComponent } from "../pages/order-details/components/panels/customer-details-card/customer-details-card";
 
-import { MongoDbServiceProvider } from '../providers/mongo-db-service/mongo-db-service';
 import { AuthServiceProvider } from '../providers/auth-service/auth-service';
 import { OnesignalNotificationProvider } from '../providers/onesignal-notification/onesignal-notification';
 import { CityDistrictProvider } from '../providers/city-district/city-district';
@@ -37,6 +36,13 @@ import { ProductTypesProvider } from '../providers/product-types/product-types';
 
 import { CalculateBalancePipe } from "../pipes/calculate-balance/calculate-balance";
 import { FormatDatePipe } from "../pipes/format-date/format-date";
+
+import { OrderDbServiceProvider } from '../providers/Database_Service_Providers/order-db-service/order-db-service';
+import { CustomerDbServiceProvider } from '../providers/Database_Service_Providers/customer-db-service/customer-db-service';
+import { ProductDbServiceProvider } from '../providers/Database_Service_Providers/product-db-service/product-db-service';
+import { PaymentDbServiceProvider } from '../providers/Database_Service_Providers/payment-db-service/payment-db-service';
+import { EventDbServiceProvider } from '../providers/Database_Service_Providers/event-db-service/event-db-service';
+import { GlobalsProvider } from '../providers/globals/globals';
 
 @NgModule({
   declarations: [
@@ -91,7 +97,6 @@ import { FormatDatePipe } from "../pipes/format-date/format-date";
     SplashScreen,
     { provide: ErrorHandler, useClass: IonicErrorHandler },
 
-    MongoDbServiceProvider,
     AuthServiceProvider,
     
     OneSignal,
@@ -99,7 +104,15 @@ import { FormatDatePipe } from "../pipes/format-date/format-date";
     
     CurrencyBankProvider,
     ProductTypesProvider,
-    CityDistrictProvider
+    CityDistrictProvider,
+
+    OrderDbServiceProvider,
+    CustomerDbServiceProvider,
+    ProductDbServiceProvider,
+    PaymentDbServiceProvider,
+    EventDbServiceProvider,
+
+    GlobalsProvider
   ]
 })
 export class AppModule { }

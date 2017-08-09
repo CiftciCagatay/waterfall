@@ -1,13 +1,13 @@
 webpackJsonp([1],{
 
-/***/ 105:
+/***/ 106:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -21,11 +21,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var OrderDetailsPage = (function () {
-    function OrderDetailsPage(navCtrl, navParams, mdbs, loadingCtrl, events) {
+    function OrderDetailsPage(navCtrl, navParams, ods, loadingCtrl, events) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
-        this.mdbs = mdbs;
+        this.ods = ods;
         this.loadingCtrl = loadingCtrl;
         this.events = events;
         this.order = {
@@ -53,7 +53,6 @@ var OrderDetailsPage = (function () {
             _this.order.payments[data.index].currency = data.payment.currency;
             _this.order.payments[data.index].installments = data.payment.installments;
             _this.order.payments[data.index].bank = data.payment.bank;
-            //this.order.payments[data.index].note = data.payment.note;
         });
         this.events.subscribe("product:added", function (data) { return _this.order.products.push(data); });
         this.events.subscribe("product:updated", function (data) {
@@ -71,41 +70,35 @@ var OrderDetailsPage = (function () {
         }
         var loading = this.loadingCtrl.create({ content: "Sipariş Detayları yükleniyor..." });
         loading.present();
-        this.mdbs.getOrderDetails(this.order._id).subscribe(function (response) {
+        this.ods.getOrderDetails(this.order._id).subscribe(function (response) {
             _this.order = response.json();
             console.log(response.json());
             console.log(_this.order._id, "gaha");
             loading.dismiss();
         });
     }
-    OrderDetailsPage.prototype.ionViewDidLoad = function () {
-        console.log('ionViewDidLoad OrderDetailsPage');
-    };
     return OrderDetailsPage;
 }());
 OrderDetailsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-order-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/order-details.html"*/'<!--\n  Generated template for the OrderDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Sipariş Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <customer-details-card [customer]="order.customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col>\n        <order-details-card [orderId]="order._id" [orderDetails]="order.orderDetails" [balance]="order.payments | calculateBalance"></order-details-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <products-list-card [orderId]="order._id" [products]="order.products"></products-list-card>\n      </ion-col>\n\n      <ion-col>\n        <payments-list-card [orderId]="order._id" [payments]="order.payments"></payments-list-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/order-details.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _e || Object])
 ], OrderDetailsPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=order-details.js.map
 
 /***/ }),
 
-/***/ 106:
+/***/ 107:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CityDistrictProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1296,14 +1289,14 @@ CityDistrictProvider = __decorate([
 
 /***/ }),
 
-/***/ 107:
+/***/ 108:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OnesignalNotificationProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1359,16 +1352,16 @@ OnesignalNotificationProvider = __decorate([
 
 /***/ }),
 
-/***/ 108:
+/***/ 109:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__ = __webpack_require__(160);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__ = __webpack_require__(161);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1463,7 +1456,7 @@ LoginPage = __decorate([
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1472,124 +1465,16 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 117;
+webpackEmptyAsyncContext.id = 118;
 
 /***/ }),
 
-/***/ 13:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MongoDbServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(33);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-var MongoDbServiceProvider = (function () {
-    function MongoDbServiceProvider(http) {
-        this.http = http;
-        this.ref = "https://quiet-chamber-99549.herokuapp.com"; //"http://localhost:5000";
-        console.log('Hello MongoDbServiceProvider Provider');
-    }
-    MongoDbServiceProvider.prototype.insertNewOrder = function (order) {
-        return this.http.post(this.ref + "/orders/new", order);
-    };
-    MongoDbServiceProvider.prototype.insertPayment = function (orderId, paymentInformation) {
-        var url = this.ref + "/orders/" + orderId + "/payments/new";
-        return this.http.post(url, paymentInformation);
-    };
-    MongoDbServiceProvider.prototype.insertProduct = function (orderId, product) {
-        var url = this.ref + "/orders/" + orderId + "/products/new";
-        return this.http.post(url, product);
-    };
-    MongoDbServiceProvider.prototype.updatePayment = function (paymentId, newValue) {
-        var url = this.ref + "/payments/" + paymentId;
-        return this.http.put(url, newValue);
-    };
-    MongoDbServiceProvider.prototype.updateProduct = function (productId, newValue) {
-        var url = this.ref + "/products/" + productId;
-        return this.http.put(url, newValue);
-    };
-    MongoDbServiceProvider.prototype.updateCustomerInformation = function (customerId, newValue) {
-        var url = this.ref + "/customers/" + customerId;
-        return this.http.put(url, newValue);
-    };
-    MongoDbServiceProvider.prototype.updateOrderInformation = function (orderId, newValue) {
-        var url = this.ref + "/orders/" + orderId;
-        return this.http.put(url, newValue);
-    };
-    MongoDbServiceProvider.prototype.deleteOrder = function (id) {
-        var url = this.ref + "/orders/" + id;
-        return this.http.delete(url);
-    };
-    MongoDbServiceProvider.prototype.deletePayment = function (paymentId) {
-        var url = this.ref + "/payments/" + paymentId;
-        return this.http.delete(url);
-    };
-    MongoDbServiceProvider.prototype.deleteProduct = function (productId) {
-        var url = this.ref + "/products/" + productId;
-        return this.http.delete(url);
-    };
-    MongoDbServiceProvider.prototype.getOrdersList = function (customerName, lastOrderKey, limit) {
-        if (limit === void 0) { limit = 10; }
-        var url = this.ref + "/orders?limit=" + limit;
-        if (customerName) {
-            url = url + "&customerName=" + customerName;
-        }
-        if (lastOrderKey) {
-            url = url + "&lastOrderKey=" + lastOrderKey;
-        }
-        console.log("GET ORDER URL : " + url);
-        return this.http.get(url);
-    };
-    MongoDbServiceProvider.prototype.getOrderDetails = function (orderId) {
-        var url = this.ref + "/orders/" + orderId;
-        return this.http.get(url);
-    };
-    MongoDbServiceProvider.prototype.getEvents = function () {
-        var url = this.ref + "/logs";
-        return this.http.get(url);
-    };
-    MongoDbServiceProvider.prototype.logEvent = function (title, detail, personnel, date) {
-        var url = this.ref + "/logs";
-        this.http.post(url, {
-            title: title,
-            detail: detail,
-            personnel: personnel,
-            date: date
-        }).subscribe(function (result) {
-            console.log(result);
-        });
-    };
-    return MongoDbServiceProvider;
-}());
-MongoDbServiceProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]])
-], MongoDbServiceProvider);
-
-//# sourceMappingURL=mongo-db-service.js.map
-
-/***/ }),
-
-/***/ 159:
+/***/ 160:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/login/login.module": [
-		284,
+		290,
 		0
 	]
 };
@@ -1605,23 +1490,24 @@ webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
 module.exports = webpackAsyncContext;
-webpackAsyncContext.id = 159;
+webpackAsyncContext.id = 160;
 
 /***/ }),
 
-/***/ 203:
+/***/ 204:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewOrderFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__order_details_order_details__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_details_order_details__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_city_district_city_district__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1639,13 +1525,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var NewOrderFormPage = (function () {
-    function NewOrderFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, currencyBankProvider, auth, cityDistrictProvider, oneSignalNotificationProvider) {
+    function NewOrderFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, ods, eds, currencyBankProvider, auth, cityDistrictProvider, oneSignalNotificationProvider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
+        this.ods = ods;
+        this.eds = eds;
         this.currencyBankProvider = currencyBankProvider;
         this.auth = auth;
         this.cityDistrictProvider = cityDistrictProvider;
@@ -1737,9 +1625,9 @@ var NewOrderFormPage = (function () {
         }).present();
     };
     NewOrderFormPage.prototype.logOrderSavedEvent = function () {
-        this.mdbs.logEvent("Yeni Sipariş", this.order.orderDetails.personnel + " taraf\u0131ndan " + this.order.orderDetails.amount + " " + this.order.orderDetails.currency + " tutar\u0131nda sipari\u015F al\u0131nd\u0131", this.order.orderDetails.personnel, this.order.orderDetails.orderDate);
+        this.eds.logEvent("Yeni Sipariş", this.order.orderDetails.personnel + " taraf\u0131ndan " + this.order.orderDetails.amount + " " + this.order.orderDetails.currency + " tutar\u0131nda sipari\u015F al\u0131nd\u0131", this.order.orderDetails.personnel, this.order.orderDetails.orderDate);
         if (this.order.payments.length > 0) {
-            this.mdbs.logEvent("Yeni Ödeme", this.order.orderDetails.personnel + " taraf\u0131ndan " + this.order.payments[0].amount + " " + this.order.payments[0].currency + " tutar\u0131nda \u00F6deme al\u0131nd\u0131", this.order.orderDetails.personnel, this.order.orderDetails.orderDate);
+            this.eds.logEvent("Yeni Ödeme", this.order.orderDetails.personnel + " taraf\u0131ndan " + this.order.payments[0].amount + " " + this.order.payments[0].currency + " tutar\u0131nda \u00F6deme al\u0131nd\u0131", this.order.orderDetails.personnel, this.order.orderDetails.orderDate);
         }
         this.oneSignalNotificationProvider.notifyManagers(this.order.orderDetails.personnel + " taraf\u0131ndan " + this.order.orderDetails.amount + " " + this.order.orderDetails.currency + " tutar\u0131nda sipari\u015F al\u0131nd\u0131");
     };
@@ -1755,7 +1643,7 @@ var NewOrderFormPage = (function () {
             content: "Sipariş kaydediliyor..."
         });
         loading.present();
-        this.mdbs.insertNewOrder(this.order).subscribe(function (response) {
+        this.ods.insertNewOrder(this.order).subscribe(function (response) {
             _this.orderId = response.json().orderId;
             _this.logOrderSavedEvent();
             _this.showOrderSavedAlert();
@@ -1819,7 +1707,7 @@ var NewOrderFormPage = (function () {
     };
     NewOrderFormPage.prototype.goToOrderDetailsPage = function () {
         var _this = this;
-        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_3__order_details_order_details__["a" /* OrderDetailsPage */], {
+        this.navCtrl.push(__WEBPACK_IMPORTED_MODULE_2__order_details_order_details__["a" /* OrderDetailsPage */], {
             orderId: this.orderId
         }).then(function () { return _this.orderId = ""; });
     };
@@ -1829,23 +1717,23 @@ NewOrderFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-new-order-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/new-order-form/new-order-form.html"*/'<!--\n  Generated template for the NewOrderFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Yeni Sipariş Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSavingAlert()" [disabled]="!siparisForm.form.valid" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form #siparisForm="ngForm">\n    <ion-grid>\n      <ion-row>\n        <!-- Müşteri -->\n        <ion-col>\n          <ion-card>\n            <ion-card-header>Müşteri</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label fixed>*TC Kimlik</ion-label>\n                  <ion-input name="identificationNumber" maxLength="11" [(ngModel)]="order.customer.identificationNumber" type="tel"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>*İsim</ion-label>\n                  <ion-input name="name" [(ngModel)]="order.customer.name"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 1</ion-label>\n                  <ion-input name="telephone1" [(ngModel)]="order.customer.telephones[0]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Telefon 2</ion-label>\n                  <ion-input name="telephone2" [(ngModel)]="order.customer.telephones[1]"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" [(ngModel)]="order.customer.email"></ion-input>\n                </label>\n\n                <ion-item-divider></ion-item-divider>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Satırı</ion-label>\n                  <ion-textarea name="addressLine" [(ngModel)]="order.customer.address.line"></ion-textarea>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Şehir</ion-label>\n                  <ion-select\n                    name="city"\n                    [(ngModel)]="order.customer.address.city"\n                    (ionChange)="citySelected($event)"\n                  >\n                    <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>İlçe</ion-label>\n                  <ion-input\n                    name="addressDistrict"\n                    [(ngModel)]="order.customer.address.district"\n                  ></ion-input>\n                  <!-- <ion-select\n                    name="addressDistrict"\n                    [disabled]="!order.customer.address.city"\n                    [(ngModel)]="order.customer.address.district"\n                  >\n                    <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>\n                  </ion-select> -->\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Adres Not</ion-label>\n                  <ion-textarea name="addressNote" [(ngModel)]="order.customer.address.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n\n        <!-- Sipariş ve Kapora -->\n        <ion-col>\n          <!-- Sipariş -->\n          <ion-card>\n            <ion-card-header>Sipariş</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>İş Teslim Tarihi</ion-label>\n                  <ion-datetime \n                    name="deliveryDate" \n                    [(ngModel)]="order.orderDetails.deliveryDate"\n                  ></ion-datetime>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Tutarı</ion-label>\n                  <ion-input name="orderAmount" [(ngModel)]="order.orderDetails.amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="orderCurrency" [(ngModel)]="order.orderDetails.currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Sipariş Not</ion-label>\n                  <ion-textarea name="orderNote" [(ngModel)]="order.orderDetails.note"></ion-textarea>\n                </label>\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n\n          <!-- Kapora -->\n          <ion-card *ngIf="order.payments.length > 0">\n            <ion-card-header>Kapora</ion-card-header>\n\n            <ion-card-content>\n              <ion-list>\n                <label ion-item>\n                  <ion-label>Ödeme Türü</ion-label>\n                  <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">\n                    <ion-option *ngFor="let paymentType of currencyBankProvider.paymentTypes">{{ paymentType }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label ion-item>\n                  <ion-label fixed>Tutar</ion-label>\n                  <ion-input name="paymentAmount" [(ngModel)]="order.payments[0].amount" type="number"></ion-input>\n                </label>\n\n                <label ion-item>\n                  <ion-label>Para Birimi</ion-label>\n                  <ion-select name="paymentCurrency" [(ngModel)]="order.payments[0].currency">\n                    <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n                  </ion-select>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label fixed>Taksit Sayısı</ion-label>\n                  <ion-input name="installments" [(ngModel)]="order.payments[0].installments" type="number"></ion-input>\n                </label>\n\n                <label *ngIf="order.payments[0].type == \'Kredi Kartı\'" ion-item>\n                  <ion-label>Banka</ion-label>\n                  <ion-select name="paymentBank" [(ngModel)]="order.payments[0].bank">\n                    <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>\n                  </ion-select>\n                </label>\n                <!--\n                <label ion-item>\n                  <ion-label fixed>Ödeme Not</ion-label>\n                  <ion-textarea name="paymentNote" [(ngModel)]="order.payments[0].note"></ion-textarea>\n                </label>\n                -->\n              </ion-list>\n            </ion-card-content>\n          </ion-card>\n        </ion-col>\n      </ion-row>\n    </ion-grid>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/new-order-form/new-order-form.html"*/,
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_city_district_city_district__["a" /* CityDistrictProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_7__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]) === "function" && _j || Object])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_5__providers_city_district_city_district__["a" /* CityDistrictProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_city_district_city_district__["a" /* CityDistrictProvider */]) === "function" && _j || Object, typeof (_k = typeof __WEBPACK_IMPORTED_MODULE_6__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_6__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */]) === "function" && _k || Object])
 ], NewOrderFormPage);
 
-var _a, _b, _c, _d, _e, _f, _g, _h, _j;
+var _a, _b, _c, _d, _e, _f, _g, _h, _j, _k;
 //# sourceMappingURL=new-order-form.js.map
 
 /***/ }),
 
-/***/ 204:
+/***/ 205:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_details_order_details__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_details_order_details__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1866,11 +1754,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var OrdersListPage = (function () {
-    function OrdersListPage(navCtrl, loadingCtrl, navParams, mdbs, alertCtrl) {
+    function OrdersListPage(navCtrl, loadingCtrl, navParams, ods, alertCtrl) {
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
         this.navParams = navParams;
-        this.mdbs = mdbs;
+        this.ods = ods;
         this.alertCtrl = alertCtrl;
         this.orders = [];
         this.searchbarText = "";
@@ -1885,7 +1773,7 @@ var OrdersListPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Sipariş siliniyor..." });
         loading.present();
-        this.mdbs.deleteOrder(orderId).subscribe(function (response) {
+        this.ods.deleteOrder(orderId).subscribe(function (response) {
             _this.orders.splice(index, 1);
             loading.dismiss();
         });
@@ -1910,7 +1798,7 @@ var OrdersListPage = (function () {
     OrdersListPage.prototype.getOrders = function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
-            _this.mdbs.getOrdersList(_this.searchbarText, _this.lastOrderKey, 20).subscribe(function (response) {
+            _this.ods.getOrdersList(_this.searchbarText, _this.lastOrderKey, 20).subscribe(function (response) {
                 _this.orders = response.json();
                 resolve();
             });
@@ -1927,26 +1815,97 @@ OrdersListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-orders-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/orders-list/orders-list.html"*/'<!--\n  Generated template for the OrdersListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Siparişler</ion-title>\n\n  </ion-navbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-searchbar></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>Müşteri</ion-label>\n      <!--\n        <ion-label>Sipariş Tarihi</ion-label>\n        <ion-label>İş Teslim Tarihi</ion-label>\n        <ion-label>Personel</ion-label>\n      -->\n      <ion-label>Sipariş Tutarı</ion-label>\n      <ion-label>Kalan tutar</ion-label>\n    </ion-item>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n\n\n  <ion-list>\n    <ion-item-sliding *ngFor="let order of orders; let i = index">\n      <ion-item (click)="showOrdersDetails(order._id)">\n        <ion-label>{{ order.customer.name }}</ion-label>\n        <!-- \n          <ion-label>{{ order.orderDetails.orderDate }}</ion-label>\n          <ion-label>{{ order.orderDetails.deliveryDate }}</ion-label>\n          <ion-label>{{ order.orderDetails.personnel }}</ion-label>\n        -->\n        <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n        <ion-label>{{ order.orderDetails.amount - (order.payments | calculateBalance) }} {{ order.orderDetails.currency }}</ion-label>\n      </ion-item>\n\n      <ion-item-options>\n        <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/orders-list/orders-list.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
 ], OrdersListPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=orders-list.js.map
 
 /***/ }),
 
-/***/ 205:
+/***/ 206:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the OrderDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var OrderDbServiceProvider = (function () {
+    function OrderDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    OrderDbServiceProvider.prototype.insertNewOrder = function (order) {
+        return this.http.post(this.globals.ref + "/orders/new", order);
+    };
+    OrderDbServiceProvider.prototype.updateOrderInformation = function (orderId, newValue) {
+        var url = this.globals.ref + "/orders/" + orderId;
+        return this.http.put(url, newValue);
+    };
+    OrderDbServiceProvider.prototype.deleteOrder = function (id) {
+        var url = this.globals.ref + "/orders/" + id;
+        return this.http.delete(url);
+    };
+    OrderDbServiceProvider.prototype.getOrdersList = function (customerName, lastOrderKey, limit) {
+        if (limit === void 0) { limit = 10; }
+        var url = this.globals.ref + "/orders?limit=" + limit;
+        if (customerName) {
+            url = url + "&customerName=" + customerName;
+        }
+        if (lastOrderKey) {
+            url = url + "&lastOrderKey=" + lastOrderKey;
+        }
+        console.log("GET ORDER URL : " + url);
+        return this.http.get(url);
+    };
+    OrderDbServiceProvider.prototype.getOrderDetails = function (orderId) {
+        var url = this.globals.ref + "/orders/" + orderId;
+        return this.http.get(url);
+    };
+    return OrderDbServiceProvider;
+}());
+OrderDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], OrderDbServiceProvider);
+
+//# sourceMappingURL=order-db-service.js.map
+
+/***/ }),
+
+/***/ 207:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_product_types_product_types__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_product_types_product_types__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(287);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1961,12 +1920,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var ProductFormPage = (function () {
-    function ProductFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, productTypesProvider, events) {
+    function ProductFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, pds, productTypesProvider, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
+        this.pds = pds;
         this.productTypesProvider = productTypesProvider;
         this.events = events;
         this.total = 0.0;
@@ -2047,7 +2006,7 @@ var ProductFormPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Yeni ürün ekleniyor..." });
         loading.present();
-        this.mdbs.updateProduct(this.product._id, this.product).subscribe(function (response) {
+        this.pds.updateProduct(this.product._id, this.product).subscribe(function (response) {
             _this.events.publish("product:updated", {
                 index: _this.productIndex,
                 product: _this.product
@@ -2059,7 +2018,7 @@ var ProductFormPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
         loading.present();
-        this.mdbs.insertProduct(this.orderId, this.product).subscribe(function (response) {
+        this.pds.insertProduct(this.orderId, this.product).subscribe(function (response) {
             if (response.json().result) {
                 _this.product._id = response.json().productId;
                 _this.events.publish("product:added", _this.product);
@@ -2073,27 +2032,22 @@ ProductFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-product-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/product-form/product-form.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>{{ mode == \'new\' ? \'Yeni Ürün\' : \'Ürünü Düzenle\' }}</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form>\n    <ion-list>\n      <ion-item>\n        <ion-label>Ürün Kategori</ion-label>\n        <ion-select name="productType" [(ngModel)]="product.type">\n          <ion-option *ngFor="let type of productTypesProvider.types">{{ type }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Desen Kodu</ion-label>\n        <ion-input name="patternCode" [(ngModel)]="product.patternCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Renk Kodu</ion-label>\n        <ion-input name="colorCode" [(ngModel)]="product.colorCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Cins</ion-label>\n        <ion-input name="varietyCode" [(ngModel)]="product.varietyCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Miktar</ion-label>\n        <ion-input type="number" name="quantity" (ionChange)="calculateTotal()" [(ngModel)]="product.quantity"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Birim Fiyat</ion-label>\n        <ion-input type="number" name="unitPrice" (ionChange)="calculateTotal()" [(ngModel)]="product.unitPrice"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>İşçilik Maliyeti</ion-label>\n        <ion-input type="number" name="laborCost" (ionChange)="calculateTotal()" [(ngModel)]="product.laborCost"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Tutar</ion-label>\n        <ion-input [disabled]="true" [value]="total"></ion-input>\n      </ion-item>\n\n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/product-form/product-form.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_product_types_product_types__["a" /* ProductTypesProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_product_types_product_types__["a" /* ProductTypesProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_product_types_product_types__["a" /* ProductTypesProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _g || Object])
 ], ProductFormPage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=product-form.js.map
 
 /***/ }),
 
-/***/ 206:
+/***/ 208:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductTypesProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2139,16 +2093,17 @@ ProductTypesProvider = __decorate([
 
 /***/ }),
 
-/***/ 207:
+/***/ 209:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_currency_bank_currency_bank__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2163,13 +2118,15 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var PaymentFormPage = (function () {
-    function PaymentFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, currencyBankProvider, events, auth) {
+    function PaymentFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, pds, eds, currencyBankProvider, events, auth) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
+        this.pds = pds;
+        this.eds = eds;
         this.currencyBankProvider = currencyBankProvider;
         this.events = events;
         this.auth = auth;
@@ -2231,12 +2188,12 @@ var PaymentFormPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Yeni ödeme ekleniyor..." });
         loading.present();
-        this.mdbs.insertPayment(this.orderId, this.payment).subscribe(function (response) {
+        this.pds.insertPayment(this.orderId, this.payment).subscribe(function (response) {
             if (response.json().result) {
                 _this.payment._id = response.json().paymentId;
                 _this.events.publish("payment:added", _this.payment);
                 if (_this.payment.amount) {
-                    _this.mdbs.logEvent("Yeni Ödeme", _this.payment.personnel + " taraf\u0131ndan " + _this.payment.amount + " " + _this.payment.currency + " tutar\u0131nda \u00F6deme al\u0131nd\u0131", _this.payment.personnel, _this.payment.date);
+                    _this.eds.logEvent("Yeni Ödeme", _this.payment.personnel + " taraf\u0131ndan " + _this.payment.amount + " " + _this.payment.currency + " tutar\u0131nda \u00F6deme al\u0131nd\u0131", _this.payment.personnel, _this.payment.date);
                 }
             }
             loading.dismiss();
@@ -2247,7 +2204,7 @@ var PaymentFormPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
         loading.present();
-        this.mdbs.updatePayment(this.paymentId, this.payment).subscribe(function (response) {
+        this.pds.updatePayment(this.paymentId, this.payment).subscribe(function (response) {
             _this.events.publish("payment:updated", {
                 index: _this.paymentIndex,
                 payment: _this.payment
@@ -2262,29 +2219,23 @@ PaymentFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-payment-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/payment-form/payment-form.html"*/'<!--\n  Generated template for the PaymentFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>{{ mode == \'new\' ? \'Yeni Ödeme Formu\' : \'Ödeme Düzenleme Formu\' }}</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <form *ngIf="payment">\n    <ion-list>\n      <ion-item>\n        <ion-label>Ödeme Türü</ion-label>\n        <ion-select name="type" [(ngModel)]="payment.type">\n          <ion-option *ngFor="let type of currencyBankProvider.paymentTypes">{{ type }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Tutar</ion-label>\n        <ion-input\n          type="number"\n          name="amount"\n          [(ngModel)]="payment.amount"\n        >\n        </ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Para Birimi</ion-label>\n        <ion-select name="currency" [(ngModel)]="payment.currency">\n          <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item *ngIf="payment.type == \'Kredi Kartı\'">\n        <ion-label fixed>Taksit Sayısı</ion-label>\n        <ion-input\n          type="number"\n          name="installments"\n          [(ngModel)]="payment.installments"\n        >\n        </ion-input>\n      </ion-item>\n\n      <ion-item *ngIf="payment.type == \'Kredi Kartı\'">\n        <ion-label>Banka</ion-label>\n        <ion-select name="bank" [(ngModel)]="payment.bank">\n          <ion-option *ngFor="let bank of currencyBankProvider.banks">{{ bank }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <!--\n      <ion-item>\n        <ion-label fixed>Not</ion-label>\n        <ion-textarea\n          name="note"\n          [(ngModel)]="payment.note"\n        >\n        </ion-textarea>\n      </ion-item>\n      -->\n    </ion-list>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/payment-form/payment-form.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_4__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_4__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_5__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _h || Object, typeof (_j = typeof __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _j || Object])
 ], PaymentFormPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h, _j;
 //# sourceMappingURL=payment-form.js.map
 
 /***/ }),
 
-/***/ 208:
+/***/ 210:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_city_district_city_district__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_city_district_city_district__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(286);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2299,12 +2250,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var CustomerFormPage = (function () {
-    function CustomerFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, events, cityDistrictProvider) {
+    function CustomerFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, cds, events, cityDistrictProvider) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
+        this.cds = cds;
         this.events = events;
         this.cityDistrictProvider = cityDistrictProvider;
         this.customer = JSON.parse(JSON.stringify(this.navParams.get('customer')));
@@ -2338,7 +2289,7 @@ var CustomerFormPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
         loading.present();
-        this.mdbs.updateCustomerInformation(this.customer._id, this.customer).subscribe(function (response) {
+        this.cds.updateCustomerInformation(this.customer._id, this.customer).subscribe(function (response) {
             loading.dismiss().then(function () { return _this.navCtrl.pop(); });
             _this.events.publish("customer:updated", _this.customer);
         });
@@ -2349,28 +2300,23 @@ CustomerFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-customer-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/customer-form/customer-form.html"*/'<!--\n  Generated template for the CustomerFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>Müşteri Bilgileri Düzenleme Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <form>\n    <ion-list>\n      <ion-item>\n        <ion-label fixed>TC Kimlik</ion-label>\n        <ion-input type="tel" maxLength="11" name="identificationNumber" [(ngModel)]="customer.identificationNumber"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>İsim</ion-label>\n        <ion-input name="name" [(ngModel)]="customer.name"></ion-input>\n      </ion-item>\n\n      <ion-item-divider></ion-item-divider>\n\n      <ion-item>\n        <ion-label fixed>Telefon 1</ion-label>\n        <ion-input name="telephone1" [(ngModel)]="customer.telephones[0]"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Telefon 2</ion-label>\n        <ion-input name="telephone2" [(ngModel)]="customer.telephones[1]"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Email</ion-label>\n        <ion-input name="email" [(ngModel)]="customer.email"></ion-input>\n      </ion-item>\n\n      <ion-item-divider></ion-item-divider>\n\n      <ion-item>\n        <ion-label fixed>Adres Satırı</ion-label>\n        <ion-textarea name="addressLine" [(ngModel)]="customer.address.line"></ion-textarea>\n      </ion-item>\n\n      <label ion-item>\n        <ion-label>Şehir</ion-label>\n        <ion-select\n          name="city"\n          [(ngModel)]="customer.address.city"\n          (ionChange)="citySelected($event)"\n        >\n          <ion-option *ngFor="let city of cityDistrictProvider.getCities()">{{ city }}</ion-option>\n        </ion-select>\n      </label>\n\n      <label ion-item>\n        <ion-label>İlçe</ion-label>\n        <ion-input\n          fixed\n          name="addressDistrict"\n          [(ngModel)]="customer.address.district"\n        ></ion-input>\n        <!-- <ion-select\n          name="addressDistrict"\n          [disabled]="!customer.address.city"\n          [(ngModel)]="customer.address.district"\n        >\n          <ion-option *ngFor="let district of cityDistrictProvider.ilceler">{{ district }}</ion-option>\n        </ion-select> -->\n      </label>\n\n\n      <ion-item>\n        <ion-label fixed>Adres Not</ion-label>\n        <ion-input name="addressNote" [(ngModel)]="customer.address.note"></ion-input>\n      </ion-item>\n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/customer-form/customer-form.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_city_district_city_district__["a" /* CityDistrictProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_2__providers_city_district_city_district__["a" /* CityDistrictProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_city_district_city_district__["a" /* CityDistrictProvider */]) === "function" && _g || Object])
 ], CustomerFormPage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=customer-form.js.map
 
 /***/ }),
 
-/***/ 209:
+/***/ 211:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_currency_bank_currency_bank__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(206);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2385,12 +2331,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var OrderDetailsFormPage = (function () {
-    function OrderDetailsFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, mdbs, currencyBankProvider, events) {
+    function OrderDetailsFormPage(navCtrl, navParams, alertCtrl, loadingCtrl, ods, currencyBankProvider, events) {
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
+        this.ods = ods;
         this.currencyBankProvider = currencyBankProvider;
         this.events = events;
         this.orderId = this.navParams.get('orderId');
@@ -2428,7 +2374,7 @@ var OrderDetailsFormPage = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
         loading.present();
-        this.mdbs.updateOrderInformation(this.orderId, this.orderDetails).subscribe(function (response) {
+        this.ods.updateOrderInformation(this.orderId, this.orderDetails).subscribe(function (response) {
             loading.dismiss().then(function () { return _this.navCtrl.pop(); });
             _this.events.publish("orderDetails:updated", _this.orderDetails);
         });
@@ -2439,26 +2385,21 @@ OrderDetailsFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-order-details-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/order-details-form/order-details-form.html"*/'<!--\n  Generated template for the OrderInformationFormPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>Sipariş Detayları Düzenleme Formu</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n\n</ion-header>\n\n<ion-content padding>\n  <form>\n    <ion-list>\n      <ion-item>\n        <ion-label>Sipariş Tarihi</ion-label>\n        <ion-datetime name="orderDate" [(ngModel)]="orderDetails.orderDate"></ion-datetime>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>İş Teslim Tarihi</ion-label>\n        <ion-datetime name="deliveryDate" [(ngModel)]="orderDetails.deliveryDate"></ion-datetime>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Tutar</ion-label>\n        <ion-input type="number" name="amount" [(ngModel)]="orderDetails.amount">\n        </ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Para Birimi</ion-label>\n        <ion-select name="currency" [(ngModel)]="orderDetails.currency">\n          <ion-option *ngFor="let currency of currencyBankProvider.currencies">{{ currency }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label>Personel</ion-label>\n        <ion-select name="personnel" [(ngModel)]="orderDetails.personnel">\n          <ion-option *ngFor="let personnel of personnels">{{ personnel }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Not</ion-label>\n        <ion-textarea name="note" [(ngModel)]="orderDetails.note"></ion-textarea>\n      </ion-item>\n    </ion-list>\n  </form>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/forms/order-details-form/order-details-form.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _g || Object])
 ], OrderDetailsFormPage);
 
+var _a, _b, _c, _d, _e, _f, _g;
 //# sourceMappingURL=order-details-form.js.map
 
 /***/ }),
 
-/***/ 210:
+/***/ 212:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(211);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(229);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(213);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(231);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -2466,46 +2407,56 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 229:
+/***/ 231:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(26);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(28);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(277);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(160);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_orders_list_orders_list__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_order_details_order_details__ = __webpack_require__(105);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_order_details_components_forms_product_form_product_form__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_order_details_components_forms_payment_form_payment_form__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(208);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(209);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_panels_products_list_card_products_list_card__ = __webpack_require__(278);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_panels_payments_list_card_payments_list_card__ = __webpack_require__(279);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_panels_order_details_card_order_details_card__ = __webpack_require__(280);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_customer_details_card_customer_details_card__ = __webpack_require__(281);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_auth_service_auth_service__ = __webpack_require__(42);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(107);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_city_district_city_district__ = __webpack_require__(106);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_currency_bank_currency_bank__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_product_types_product_types__ = __webpack_require__(206);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__ = __webpack_require__(282);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(279);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(161);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_orders_list_orders_list__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_order_details_order_details__ = __webpack_require__(106);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_order_details_components_forms_product_form_product_form__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_order_details_components_forms_payment_form_payment_form__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(210);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(211);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_panels_products_list_card_products_list_card__ = __webpack_require__(280);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_panels_payments_list_card_payments_list_card__ = __webpack_require__(281);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_panels_order_details_card_order_details_card__ = __webpack_require__(282);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_customer_details_card_customer_details_card__ = __webpack_require__(283);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__providers_auth_service_auth_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(108);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__providers_city_district_city_district__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_currency_bank_currency_bank__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_product_types_product_types__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__pipes_calculate_balance_calculate_balance__ = __webpack_require__(284);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipes_format_date_format_date__ = __webpack_require__(285);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(206);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(286);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(287);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(288);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(289);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__providers_globals_globals__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
+
+
+
 
 
 
@@ -2557,8 +2508,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_panels_order_details_card_order_details_card__["a" /* OrderDetailsCardComponent */],
             __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_panels_payments_list_card_payments_list_card__["a" /* PaymentsListCardComponent */],
             __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_panels_products_list_card_products_list_card__["a" /* ProductsListCardComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__["a" /* FormatDatePipe */],
-            __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__["a" /* CalculateBalancePipe */]
+            __WEBPACK_IMPORTED_MODULE_27__pipes_format_date_format_date__["a" /* FormatDatePipe */],
+            __WEBPACK_IMPORTED_MODULE_26__pipes_calculate_balance_calculate_balance__["a" /* CalculateBalancePipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
@@ -2591,13 +2542,18 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
             __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_21__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_22__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_21__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
             __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_23__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */],
-            __WEBPACK_IMPORTED_MODULE_25__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */],
-            __WEBPACK_IMPORTED_MODULE_26__providers_product_types_product_types__["a" /* ProductTypesProvider */],
-            __WEBPACK_IMPORTED_MODULE_24__providers_city_district_city_district__["a" /* CityDistrictProvider */]
+            __WEBPACK_IMPORTED_MODULE_22__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */],
+            __WEBPACK_IMPORTED_MODULE_24__providers_currency_bank_currency_bank__["a" /* CurrencyBankProvider */],
+            __WEBPACK_IMPORTED_MODULE_25__providers_product_types_product_types__["a" /* ProductTypesProvider */],
+            __WEBPACK_IMPORTED_MODULE_23__providers_city_district_city_district__["a" /* CityDistrictProvider */],
+            __WEBPACK_IMPORTED_MODULE_28__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_29__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_33__providers_globals_globals__["a" /* GlobalsProvider */]
         ]
     })
 ], AppModule);
@@ -2606,20 +2562,20 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 277:
+/***/ 279:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(201);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(202);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(81);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_new_order_form_new_order_form__ = __webpack_require__(203);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__ = __webpack_require__(204);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(108);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(107);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(202);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(203);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(82);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_new_order_form_new_order_form__ = __webpack_require__(204);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__ = __webpack_require__(205);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(109);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(108);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2696,15 +2652,15 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 278:
+/***/ 280:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductsListCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_product_form_product_form__ = __webpack_require__(205);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_product_form_product_form__ = __webpack_require__(207);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(287);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2725,13 +2681,12 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * for more info on Angular Components.
  */
 var ProductsListCardComponent = (function () {
-    function ProductsListCardComponent(modalCtrl, alertCtrl, loadingCtrl, mdbs, events, po, renderer) {
+    function ProductsListCardComponent(modalCtrl, alertCtrl, loadingCtrl, events, pds, renderer) {
         this.modalCtrl = modalCtrl;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
         this.events = events;
-        this.po = po;
+        this.pds = pds;
         this.renderer = renderer;
     }
     ProductsListCardComponent.prototype.showProductMenuAlert = function (product, index) {
@@ -2763,7 +2718,7 @@ var ProductsListCardComponent = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Ürün siliniyor..." });
         loading.present();
-        this.mdbs.deleteProduct(productId).subscribe(function (response) {
+        this.pds.deleteProduct(productId).subscribe(function (response) {
             _this.products.splice(index, 1);
             loading.dismiss();
         });
@@ -2797,7 +2752,7 @@ var ProductsListCardComponent = (function () {
 }());
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
-    __metadata("design:type", Array)
+    __metadata("design:type", Object)
 ], ProductsListCardComponent.prototype, "products", void 0);
 __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["E" /* Input */])(),
@@ -2807,28 +2762,23 @@ ProductsListCardComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'products-list-card',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/products-list-card/products-list-card.html"*/'<ion-card>\n  <ion-item color="secondBarColor">\n    <h2 style="color: white">Ürünler</h2>\n    <button color="light" (click)="presentModallyProductFormPage(\'new\', undefined, undefined)" outline icon-left item-right ion-button>\n      <ion-icon ios="ios-add" md="md-add"></ion-icon>Yeni\n    </button>\n  </ion-item>\n\n  <ion-card-content style="margin-top: 12px">\n    <ion-list>\n      <ion-item>\n        <ion-label>Desen/Renk</ion-label>\n        <ion-label>Cins</ion-label>\n        <ion-label>Miktar</ion-label>\n        <ion-label>Birim Fiyat</ion-label>\n        <ion-label>İşçilik</ion-label>\n        <ion-label>Tutar</ion-label>\n        <button item end ion-button clear disable></button>\n      </ion-item>\n\n      <ion-item-sliding *ngFor="let product of products; let i = index"> \n        <ion-item>\n          <ion-label>{{ product.patternCode }}/{{ product.colorCode }}</ion-label>\n          <ion-label>{{ product.varietyCode }}</ion-label>\n          <ion-label>{{ product.quantity }}</ion-label>\n          <ion-label>{{ product.unitPrice }}</ion-label>\n          <ion-label>{{ product.laborCost }}</ion-label>\n          <ion-label>{{ product.quantity * (product.unitPrice + product.laborCost) }}</ion-label>\n\n          <button item-end (click)="showProductMenuAlert(product, i)" ion-button clear>\n            <ion-icon md="md-more" ios="ios-more"></ion-icon>\n          </button>\n        </ion-item>\n\n        <ion-item-options>\n          <button (click)="presentModallyProductFormPage(\'edit\', product, i)" ion-button>Düzenle</button>\n          <button (click)="presentDeletionWarning(product._id, i)" color="danger" ion-button>Sil</button>\n        </ion-item-options>\n      </ion-item-sliding>\n    </ion-list>\n  </ion-card-content>\n</ion-card>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/products-list-card/products-list-card.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["o" /* PopoverController */],
-        __WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Renderer */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Renderer */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_0__angular_core__["_0" /* Renderer */]) === "function" && _f || Object])
 ], ProductsListCardComponent);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=products-list-card.js.map
 
 /***/ }),
 
-/***/ 279:
+/***/ 281:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentsListCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_payment_form_payment_form__ = __webpack_require__(207);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_payment_form_payment_form__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(288);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2849,11 +2799,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * for more info on Angular Components.
  */
 var PaymentsListCardComponent = (function () {
-    function PaymentsListCardComponent(modalCtrl, alertCtrl, loadingCtrl, mdbs) {
+    function PaymentsListCardComponent(modalCtrl, alertCtrl, loadingCtrl, pds) {
         this.modalCtrl = modalCtrl;
         this.alertCtrl = alertCtrl;
         this.loadingCtrl = loadingCtrl;
-        this.mdbs = mdbs;
+        this.pds = pds;
         console.log(this.orderId);
     }
     PaymentsListCardComponent.prototype.showPaymentMenuAlert = function (payment, index) {
@@ -2885,7 +2835,7 @@ var PaymentsListCardComponent = (function () {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Ödeme siliniyor..." });
         loading.present();
-        this.mdbs.deletePayment(paymentId).subscribe(function (response) {
+        this.pds.deletePayment(paymentId).subscribe(function (response) {
             _this.payments.splice(index, 1);
             loading.dismiss();
         });
@@ -2929,24 +2879,22 @@ PaymentsListCardComponent = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'payments-list-card',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/payments-list-card/payments-list-card.html"*/'<ion-card>\n  <ion-item color="secondBarColor">\n    <h2 style="color: white">Ödemeler</h2>\n    <button color="light" (click)="presentModallyPaymentFormPage(\'new\', -1, undefined)" outline icon-left item-right ion-button>\n              <ion-icon ios="ios-add" md="md-add"></ion-icon>Yeni\n            </button>\n  </ion-item>\n\n  <ion-card-content style="margin-top: 12px">\n    <ion-list>\n      <ion-item-sliding *ngFor="let payment of payments; let i = index">\n        <ion-item>\n\n            <h1>{{ payment.amount }} {{ payment.currency }}</h1>\n            <h2 *ngIf="payment.type == \'Kredi Kartı\'">{{ payment.installments + " Taksit | " + payment.bank }}</h2>\n            <h3>{{ payment.personnel ? payment.personnel : "---" }} | {{ payment.date ? (payment.date | formatDate) : "---" }}</h3>\n            <!--<p *ngIf="payment.note">{{ payment.note }}</p>-->\n            <button item-end (click)="showPaymentMenuAlert(payment, i)" ion-button clear>\n              <ion-icon md="md-more" ios="ios-more"></ion-icon>\n            </button>\n        </ion-item>\n\n        <ion-item-options *ngIf="false">\n          <button (click)="presentModallyPaymentFormPage(\'edit\', payment, i)" ion-button>DÜZENLE</button>\n          <button (click)="presentDeletionWarning(payment._id, i)" color="danger" ion-button>SİL</button>\n        </ion-item-options>\n      </ion-item-sliding>\n    </ion-list>\n  </ion-card-content>\n</ion-card>'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/order-details/components/panels/payments-list-card/payments-list-card.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["j" /* ModalController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */]) === "function" && _d || Object])
 ], PaymentsListCardComponent);
 
+var _a, _b, _c, _d;
 //# sourceMappingURL=payments-list-card.js.map
 
 /***/ }),
 
-/***/ 280:
+/***/ 282:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_order_details_form_order_details_form__ = __webpack_require__(209);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_order_details_form_order_details_form__ = __webpack_require__(211);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2994,14 +2942,14 @@ OrderDetailsCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 281:
+/***/ 283:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDetailsCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_customer_form_customer_form__ = __webpack_require__(208);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_customer_form_customer_form__ = __webpack_require__(210);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3046,7 +2994,7 @@ CustomerDetailsCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 282:
+/***/ 284:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3103,7 +3051,7 @@ CalculateBalancePipe = __decorate([
 
 /***/ }),
 
-/***/ 283:
+/***/ 285:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -3163,16 +3111,288 @@ FormatDatePipe = __decorate([
 
 /***/ }),
 
-/***/ 42:
+/***/ 286:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the CustomerDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var CustomerDbServiceProvider = (function () {
+    function CustomerDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    CustomerDbServiceProvider.prototype.updateCustomerInformation = function (customerId, newValue) {
+        var url = this.globals.ref + "/customers/" + customerId;
+        return this.http.put(url, newValue);
+    };
+    return CustomerDbServiceProvider;
+}());
+CustomerDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], CustomerDbServiceProvider);
+
+//# sourceMappingURL=customer-db-service.js.map
+
+/***/ }),
+
+/***/ 287:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the ProductDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var ProductDbServiceProvider = (function () {
+    function ProductDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    ProductDbServiceProvider.prototype.insertProduct = function (orderId, product) {
+        var url = this.globals.ref + "/orders/" + orderId + "/products/new";
+        return this.http.post(url, product);
+    };
+    ProductDbServiceProvider.prototype.updateProduct = function (productId, newValue) {
+        var url = this.globals.ref + "/products/" + productId;
+        return this.http.put(url, newValue);
+    };
+    ProductDbServiceProvider.prototype.deleteProduct = function (productId) {
+        var url = this.globals.ref + "/products/" + productId;
+        return this.http.delete(url);
+    };
+    return ProductDbServiceProvider;
+}());
+ProductDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], ProductDbServiceProvider);
+
+//# sourceMappingURL=product-db-service.js.map
+
+/***/ }),
+
+/***/ 288:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the PaymentDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var PaymentDbServiceProvider = (function () {
+    function PaymentDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    PaymentDbServiceProvider.prototype.insertPayment = function (orderId, paymentInformation) {
+        var url = this.globals.ref + "/orders/" + orderId + "/payments/new";
+        return this.http.post(url, paymentInformation);
+    };
+    PaymentDbServiceProvider.prototype.updatePayment = function (paymentId, newValue) {
+        var url = this.globals.ref + "/payments/" + paymentId;
+        return this.http.put(url, newValue);
+    };
+    PaymentDbServiceProvider.prototype.deletePayment = function (paymentId) {
+        var url = this.globals.ref + "/payments/" + paymentId;
+        return this.http.delete(url);
+    };
+    return PaymentDbServiceProvider;
+}());
+PaymentDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], PaymentDbServiceProvider);
+
+//# sourceMappingURL=payment-db-service.js.map
+
+/***/ }),
+
+/***/ 289:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return EventDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(34);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the EventDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var EventDbServiceProvider = (function () {
+    function EventDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello EventDbServiceProvider Provider');
+    }
+    EventDbServiceProvider.prototype.getEvents = function () {
+        var url = this.globals.ref + "/logs";
+        return this.http.get(url);
+    };
+    EventDbServiceProvider.prototype.logEvent = function (title, detail, personnel, date) {
+        var url = this.globals.ref + "/logs";
+        this.http.post(url, {
+            title: title,
+            detail: detail,
+            personnel: personnel,
+            date: date
+        }).subscribe(function (result) {
+            console.log(result);
+        });
+    };
+    return EventDbServiceProvider;
+}());
+EventDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]) === "function" && _b || Object])
+], EventDbServiceProvider);
+
+var _a, _b;
+//# sourceMappingURL=event-db-service.js.map
+
+/***/ }),
+
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalsProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(14);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the GlobalsProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var GlobalsProvider = (function () {
+    function GlobalsProvider() {
+        this.ref = "https://quiet-chamber-99549.herokuapp.com";
+        console.log('Hello GlobalsProvider Provider');
+    }
+    return GlobalsProvider;
+}());
+GlobalsProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], GlobalsProvider);
+
+//# sourceMappingURL=globals.js.map
+
+/***/ }),
+
+/***/ 43:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AuthServiceProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__mongo_db_service_mongo_db_service__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3187,11 +3407,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var AuthServiceProvider = (function () {
-    function AuthServiceProvider(http, mdbs) {
+    function AuthServiceProvider(http, globals) {
         this.http = http;
-        this.mdbs = mdbs;
+        this.globals = globals;
         this.ref = "";
-        this.ref = this.mdbs.ref;
+        this.ref = this.globals.ref;
     }
     AuthServiceProvider.prototype.getUser = function () {
         return this.user.name;
@@ -3216,22 +3436,22 @@ var AuthServiceProvider = (function () {
 }());
 AuthServiceProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]) === "function" && _b || Object])
 ], AuthServiceProvider);
 
+var _a, _b;
 //# sourceMappingURL=auth-service.js.map
 
 /***/ }),
 
-/***/ 53:
+/***/ 54:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CurrencyBankProvider; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(29);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(33);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(13);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(14);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -3284,15 +3504,15 @@ CurrencyBankProvider = __decorate([
 
 /***/ }),
 
-/***/ 81:
+/***/ 82:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__ = __webpack_require__(13);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(42);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(43);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(289);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3307,13 +3527,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var HomePage = (function () {
-    function HomePage(navCtrl, mdbs, auth) {
+    function HomePage(navCtrl, eds, auth) {
         var _this = this;
         this.navCtrl = navCtrl;
-        this.mdbs = mdbs;
+        this.eds = eds;
         this.auth = auth;
         this.events = [];
-        this.mdbs.getEvents().subscribe(function (data) { return _this.events = data.json(); });
+        this.eds.getEvents().subscribe(function (data) { return _this.events = data.json(); });
         console.log(this.auth.getUser());
     }
     return HomePage;
@@ -3322,14 +3542,13 @@ HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-home',template:/*ion-inline-start:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item *ngFor="let event of events">\n      <ion-icon name="leaf" item-start></ion-icon>\n\n      <h1>{{ event.title }}</h1>\n      <h2>{{ event.date | formatDate }} | {{ event.personnel }}</h2>\n      <p>{{ event.detail }}</p>\n    </ion-item>\n  </ion-list>\n</ion-content>\n'/*ion-inline-end:"/Users/ogrenci/Desktop/Waterfall/waterfall/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_mongo_db_service_mongo_db_service__["a" /* MongoDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _c || Object])
 ], HomePage);
 
+var _a, _b, _c;
 //# sourceMappingURL=home.js.map
 
 /***/ })
 
-},[210]);
+},[212]);
 //# sourceMappingURL=main.js.map

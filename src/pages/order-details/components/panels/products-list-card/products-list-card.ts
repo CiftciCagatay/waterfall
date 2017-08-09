@@ -1,7 +1,7 @@
 import { Component, Input, Renderer } from '@angular/core';
-import { ModalController, AlertController, LoadingController, Events, ItemSliding, Item, PopoverController } from "ionic-angular";
+import { ModalController, AlertController, LoadingController, Events } from "ionic-angular";
 import { ProductFormPage } from "../../forms/product-form/product-form";
-import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
+import { ProductDbServiceProvider } from "../../../../../providers/Database_Service_Providers/product-db-service/product-db-service";
 
 /**
  * Generated class for the ProductsListCardComponent component.
@@ -22,9 +22,8 @@ export class ProductsListCardComponent {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider,
     private events: Events,
-    private po: PopoverController,
+    private pds: ProductDbServiceProvider,
     public renderer: Renderer
   ) {
 
@@ -61,7 +60,7 @@ export class ProductsListCardComponent {
 
     loading.present();
 
-    this.mdbs.deleteProduct(productId).subscribe((response) => {
+    this.pds.deleteProduct(productId).subscribe((response) => {
       this.products.splice(index, 1);
 
       loading.dismiss();

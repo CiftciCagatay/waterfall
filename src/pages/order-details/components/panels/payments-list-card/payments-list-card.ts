@@ -1,7 +1,7 @@
 import { Component, Input } from '@angular/core';
 import { ModalController, AlertController, LoadingController } from "ionic-angular";
 import { PaymentFormPage } from "../../forms/payment-form/payment-form";
-import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
+import { PaymentDbServiceProvider } from "../../../../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
 
 /**
  * Generated class for the PaymentsListCardComponent component.
@@ -22,7 +22,7 @@ export class PaymentsListCardComponent {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider
+    private pds: PaymentDbServiceProvider
   ) {
     console.log(this.orderId);
   }
@@ -60,7 +60,7 @@ export class PaymentsListCardComponent {
 
     loading.present();
 
-    this.mdbs.deletePayment(paymentId).subscribe((response) => {
+    this.pds.deletePayment(paymentId).subscribe((response) => {
       this.payments.splice(index, 1)
       
       loading.dismiss();

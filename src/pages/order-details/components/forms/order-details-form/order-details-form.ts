@@ -1,8 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
 import { CityDistrictProvider } from "../../../../../providers/city-district/city-district";
+import { OrderDbServiceProvider } from "../../../../../providers/Database_Service_Providers/order-db-service/order-db-service";
 
 @Component({
   selector: 'page-order-details-form',
@@ -18,7 +18,7 @@ export class OrderDetailsFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider,
+    private ods: OrderDbServiceProvider,
     private currencyBankProvider: CurrencyBankProvider,
     private events: Events
   ) {
@@ -62,7 +62,7 @@ export class OrderDetailsFormPage {
 
     loading.present();
 
-    this.mdbs.updateOrderInformation(this.orderId, this.orderDetails).subscribe((response) => {
+    this.ods.updateOrderInformation(this.orderId, this.orderDetails).subscribe((response) => {
       loading.dismiss().then(() => this.navCtrl.pop());
 
       this.events.publish("orderDetails:updated", this.orderDetails);

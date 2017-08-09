@@ -1,7 +1,8 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { MongoDbServiceProvider } from '../../../../../providers/mongo-db-service/mongo-db-service';
 import { ProductTypesProvider } from '../../../../../providers/product-types/product-types';
+
+import { ProductDbServiceProvider } from "../../../../../providers/Database_Service_Providers/product-db-service/product-db-service";
 
 @Component({
   selector: 'page-product-form',
@@ -20,7 +21,9 @@ export class ProductFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider,
+    
+    private pds: ProductDbServiceProvider,
+
     private productTypesProvider: ProductTypesProvider,
     private events: Events
   ) {
@@ -112,7 +115,7 @@ export class ProductFormPage {
 
     loading.present();
 
-    this.mdbs.updateProduct(this.product._id, this.product).subscribe((response) => {
+    this.pds.updateProduct(this.product._id, this.product).subscribe((response) => {
       this.events.publish("product:updated", {
         index: this.productIndex,
         product: this.product
@@ -127,7 +130,7 @@ export class ProductFormPage {
 
     loading.present();
 
-    this.mdbs.insertProduct(this.orderId, this.product).subscribe((response) => {
+    this.pds.insertProduct(this.orderId, this.product).subscribe((response) => {
       if (response.json().result) {
         this.product._id = response.json().productId;
         this.events.publish("product:added", this.product);

@@ -1,6 +1,6 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, Events } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
+import { OrderDbServiceProvider } from "../../providers/Database_Service_Providers/order-db-service/order-db-service";
 
 @Component({
   selector: 'page-order-details',
@@ -19,7 +19,7 @@ export class OrderDetailsPage {
   constructor(
     public navCtrl: NavController, 
     public navParams: NavParams,
-    private mdbs: MongoDbServiceProvider,
+    private ods: OrderDbServiceProvider,
     private loadingCtrl: LoadingController,
     private events: Events
   ) {
@@ -44,7 +44,6 @@ export class OrderDetailsPage {
       this.order.payments[data.index].currency = data.payment.currency;
       this.order.payments[data.index].installments = data.payment.installments;
       this.order.payments[data.index].bank = data.payment.bank;
-      //this.order.payments[data.index].note = data.payment.note;
     })
 
     this.events.subscribe("product:added", (data) => this.order.products.push(data))
@@ -69,7 +68,7 @@ export class OrderDetailsPage {
 
     loading.present();
 
-    this.mdbs.getOrderDetails(this.order._id).subscribe((response) => {
+    this.ods.getOrderDetails(this.order._id).subscribe((response) => {
       this.order = response.json();
 
       console.log(response.json());
@@ -78,10 +77,6 @@ export class OrderDetailsPage {
 
       loading.dismiss();
     })
-  }
-
-  ionViewDidLoad() {
-    console.log('ionViewDidLoad OrderDetailsPage');
   }
 
 }

@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, LoadingController, AlertController } from 'ionic-angular';
 import { OrderDetailsPage } from "../order-details/order-details";
-import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
+import { OrderDbServiceProvider } from "../../providers/Database_Service_Providers/order-db-service/order-db-service";
 
 /**
  * Generated class for the OrdersListPage page.
@@ -25,7 +25,7 @@ export class OrdersListPage {
     public navCtrl: NavController, 
     private loadingCtrl: LoadingController,
     public navParams: NavParams,
-    private mdbs: MongoDbServiceProvider,
+    private ods: OrderDbServiceProvider,
     private alertCtrl: AlertController
   ) {
     let loading = this.loadingCtrl.create({ content: "Siparişler yükleniyor..." });
@@ -42,7 +42,7 @@ export class OrdersListPage {
 
     loading.present();
 
-    this.mdbs.deleteOrder(orderId).subscribe((response) => {
+    this.ods.deleteOrder(orderId).subscribe((response) => {
       this.orders.splice(index, 1);
       
       loading.dismiss();
@@ -68,7 +68,7 @@ export class OrdersListPage {
 
   getOrders() {
     return new Promise((resolve, reject) => {
-      this.mdbs.getOrdersList(this.searchbarText, this.lastOrderKey, 20).subscribe((response) => {
+      this.ods.getOrdersList(this.searchbarText, this.lastOrderKey, 20).subscribe((response) => {
         this.orders = response.json();
         resolve();
       });

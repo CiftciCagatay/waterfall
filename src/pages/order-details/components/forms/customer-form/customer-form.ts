@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 import { CityDistrictProvider } from "../../../../../providers/city-district/city-district";
+import { CustomerDbServiceProvider } from "../../../../../providers/Database_Service_Providers/customer-db-service/customer-db-service";
 
 @Component({
   selector: 'page-customer-form',
@@ -16,7 +16,7 @@ export class CustomerFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider,
+    private cds: CustomerDbServiceProvider,
     private events: Events,
     private cityDistrictProvider: CityDistrictProvider
   ) {
@@ -58,7 +58,7 @@ export class CustomerFormPage {
 
     loading.present();
 
-    this.mdbs.updateCustomerInformation(this.customer._id, this.customer).subscribe((response) => {
+    this.cds.updateCustomerInformation(this.customer._id, this.customer).subscribe((response) => {
       loading.dismiss().then(() => this.navCtrl.pop());
 
       this.events.publish("customer:updated", this.customer);

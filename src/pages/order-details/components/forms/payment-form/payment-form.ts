@@ -1,8 +1,10 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController, Events } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../../../../providers/mongo-db-service/mongo-db-service";
 import { CurrencyBankProvider } from '../../../../../providers/currency-bank/currency-bank';
 import { AuthServiceProvider } from "../../../../../providers/auth-service/auth-service";
+
+import { PaymentDbServiceProvider } from "../../../../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
+import { EventDbServiceProvider } from "../../../../../providers/Database_Service_Providers/event-db-service/event-db-service";
 
 @Component({
   selector: 'page-payment-form',
@@ -22,7 +24,10 @@ export class PaymentFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider,
+    
+    private pds: PaymentDbServiceProvider,
+    private eds: EventDbServiceProvider,
+
     private currencyBankProvider: CurrencyBankProvider,
     private events: Events,
     private auth: AuthServiceProvider
@@ -92,14 +97,14 @@ export class PaymentFormPage {
 
     loading.present();
 
-    this.mdbs.insertPayment(this.orderId, this.payment).subscribe((response) => {
+    this.pds.insertPayment(this.orderId, this.payment).subscribe((response) => {
       if (response.json().result) {
         this.payment._id = response.json().paymentId;
 
         this.events.publish("payment:added", this.payment);
 
         if (this.payment.amount) {
-          this.mdbs.logEvent(
+          this.eds.logEvent(
             "Yeni Ödeme",
             `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
             this.payment.personnel,
@@ -119,7 +124,7 @@ export class PaymentFormPage {
 
     loading.present();
 
-    this.mdbs.updatePayment(this.paymentId, this.payment).subscribe((response) => {
+    this.pds.updatePayment(this.paymentId, this.payment).subscribe((response) => {
       this.events.publish("payment:updated", {
         index: this.paymentIndex,
         payment: this.payment

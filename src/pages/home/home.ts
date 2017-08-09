@@ -1,7 +1,7 @@
 import { Component } from '@angular/core';
 import { NavController } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
+import { EventDbServiceProvider } from "../../providers/Database_Service_Providers/event-db-service/event-db-service";
 
 @Component({
   selector: 'page-home',
@@ -13,10 +13,10 @@ export class HomePage {
 
   constructor(
     public navCtrl: NavController,
-    private mdbs: MongoDbServiceProvider,
+    private eds: EventDbServiceProvider,
     private auth: AuthServiceProvider
   ) {
-    this.mdbs.getEvents().subscribe(data => this.events = data.json());
+    this.eds.getEvents().subscribe(data => this.events = data.json());
     
     console.log(this.auth.getUser());
   }

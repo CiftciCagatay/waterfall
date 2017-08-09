@@ -1,11 +1,12 @@
 import { Component } from '@angular/core';
 import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
-import { MongoDbServiceProvider } from "../../providers/mongo-db-service/mongo-db-service";
 import { OrderDetailsPage } from "../order-details/order-details";
 import { CurrencyBankProvider } from '../../providers/currency-bank/currency-bank';
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { CityDistrictProvider } from "../../providers/city-district/city-district";
 import { OnesignalNotificationProvider } from "../../providers/onesignal-notification/onesignal-notification";
+import { OrderDbServiceProvider } from "../../providers/Database_Service_Providers/order-db-service/order-db-service";
+import { EventDbServiceProvider } from "../../providers/Database_Service_Providers/event-db-service/event-db-service";
 
 @Component({
   selector: 'page-new-order-form',
@@ -56,7 +57,10 @@ export class NewOrderFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private mdbs: MongoDbServiceProvider,
+    
+    private ods: OrderDbServiceProvider,
+    private eds: EventDbServiceProvider,
+
     private currencyBankProvider: CurrencyBankProvider,
     private auth: AuthServiceProvider,
     private cityDistrictProvider: CityDistrictProvider,
@@ -123,7 +127,7 @@ export class NewOrderFormPage {
   }
 
   logOrderSavedEvent() {
-    this.mdbs.logEvent(
+    this.eds.logEvent(
       "Yeni Sipariş",
       `${this.order.orderDetails.personnel} tarafından ${this.order.orderDetails.amount} ${this.order.orderDetails.currency} tutarında sipariş alındı`,
       this.order.orderDetails.personnel,
@@ -131,7 +135,7 @@ export class NewOrderFormPage {
     )
 
     if (this.order.payments.length > 0) {
-      this.mdbs.logEvent(
+      this.eds.logEvent(
         "Yeni Ödeme",
         `${this.order.orderDetails.personnel} tarafından ${this.order.payments[0].amount} ${this.order.payments[0].currency} tutarında ödeme alındı`,
         this.order.orderDetails.personnel,
@@ -157,7 +161,7 @@ export class NewOrderFormPage {
 
     loading.present();
 
-    this.mdbs.insertNewOrder(this.order).subscribe((response) => {
+    this.ods.insertNewOrder(this.order).subscribe((response) => {
       this.orderId = response.json().orderId;
 
       this.logOrderSavedEvent();

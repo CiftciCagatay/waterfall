@@ -1,7 +1,7 @@
 import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
-import { MongoDbServiceProvider } from "../mongo-db-service/mongo-db-service";
+import { GlobalsProvider } from "../globals/globals";
 
 @Injectable()
 export class AuthServiceProvider {
@@ -12,9 +12,9 @@ export class AuthServiceProvider {
 
   constructor(
     public http: Http,
-    private mdbs: MongoDbServiceProvider
+    private globals: GlobalsProvider
   ) {
-    this.ref = this.mdbs.ref;
+    this.ref = this.globals.ref;
   }
 
   getUser() {
