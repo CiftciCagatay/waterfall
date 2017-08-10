@@ -8,13 +8,27 @@
 </ion-header>
 
 <ion-content padding>
-  <ion-list>
-    <ion-item *ngFor="let event of events">
-      <ion-icon name="leaf" item-start></ion-icon>
+  <ion-grid>
+    <ion-row>
+      <ion-col>
+        <ion-card>
+          <ion-card-header>Son Aktiviteler</ion-card-header>
 
-      <h1>{{ event.title }}</h1>
-      <h2>{{ event.date | formatDate }} | {{ event.personnel }}</h2>
-      <p>{{ event.detail }}</p>
-    </ion-item>
-  </ion-list>
+          <ion-card-content>
+            <ion-list>
+              <ion-item *ngFor="let event of events">
+                <ion-icon name="leaf" item-start></ion-icon>
+
+                <h2>{{ event.title }}</h2>
+                <h3>{{ event.date | formatDate }} | {{ event.personnel }}</h3>
+                <p>{{ event.detail }}</p>
+              </ion-item>
+            </ion-list>
+          </ion-card-content>
+        </ion-card>
+      </ion-col>
+      <ion-col></ion-col>
+      <ion-col></ion-col>
+    </ion-row>
+  </ion-grid>
 </ion-content>
