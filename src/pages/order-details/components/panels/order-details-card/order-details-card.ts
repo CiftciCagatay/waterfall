@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController } from "ionic-angular";
+import { ModalController, Events } from "ionic-angular";
 import { OrderDetailsFormPage } from "../../forms/order-details-form/order-details-form";
 
 @Component({
@@ -14,9 +14,19 @@ export class OrderDetailsCardComponent {
   @Input() balance;
 
   constructor(
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private events: Events
   ) {
-    
+    this.events.subscribe("orderDetails:updated", (data) => {
+      this.orderDetails = {
+        orderDate: data.orderDate,
+        deliveryDate: data.deliveryDate,
+        personnel: data.personnel,
+        amount: data.amount,
+        currency: data.currency,
+        note: data.note
+      }
+    });
   }
 
   presentModallyOrderDetailsFormPage() {

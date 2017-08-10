@@ -35,11 +35,11 @@ export class OrderDbServiceProvider {
     return this.http.delete(url);
   }
 
-  getOrdersList(customerName?: String, lastOrderKey?: String, limit = 10) {
+  getOrdersList(customerName?: String, lastOrderId?: String, limit = 10) {
     let url = this.globals.ref + "/orders?limit=" + limit;
 
     if (customerName) { url = url + "&customerName=" + customerName; }
-    if (lastOrderKey) { url = url + "&lastOrderKey=" + lastOrderKey; }
+    if (lastOrderId) { url = url + "&lastOrderId=" + lastOrderId; }
 
     console.log("GET ORDER URL : " + url);
 

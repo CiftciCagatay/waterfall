@@ -13,6 +13,11 @@
 
     <ion-title>Siparişler</ion-title>
 
+    <ion-buttons end>
+      <button (click)="refreshOrders()" ion-button>
+        <ion-icon md="md-refresh" ios="ios-refresh"></ion-icon>
+      </button>
+    </ion-buttons>
   </ion-navbar>
 
   <ion-toolbar color="navBarColor">
@@ -22,11 +27,6 @@
   <ion-toolbar color="navBarColor">
     <ion-item color="navBarColor">
       <ion-label>Müşteri</ion-label>
-      <!--
-        <ion-label>Sipariş Tarihi</ion-label>
-        <ion-label>İş Teslim Tarihi</ion-label>
-        <ion-label>Personel</ion-label>
-      -->
       <ion-label>Sipariş Tutarı</ion-label>
       <ion-label>Kalan tutar</ion-label>
     </ion-item>
@@ -35,7 +35,9 @@
 
 
 <ion-content padding>
-
+  <ion-refresher (ionRefresh)="refreshOrders($event)">
+    <ion-refresher-content></ion-refresher-content>
+  </ion-refresher>
 
   <ion-list>
     <ion-item-sliding *ngFor="let order of orders; let i = index">
@@ -55,4 +57,8 @@
       </ion-item-options>
     </ion-item-sliding>
   </ion-list>
+
+  <ion-infinite-scroll disabled="!infiniteScrollEnable" (ionInfinite)="getMoreOrders($event)">
+    <ion-infinite-scroll-content></ion-infinite-scroll-content>
+  </ion-infinite-scroll>
 </ion-content>

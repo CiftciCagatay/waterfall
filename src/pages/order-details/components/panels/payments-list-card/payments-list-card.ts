@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController, AlertController, LoadingController } from "ionic-angular";
+import { ModalController, AlertController, LoadingController, Events } from "ionic-angular";
 import { PaymentFormPage } from "../../forms/payment-form/payment-form";
 import { PaymentDbServiceProvider } from "../../../../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
 
@@ -22,9 +22,20 @@ export class PaymentsListCardComponent {
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    private pds: PaymentDbServiceProvider
+    private pds: PaymentDbServiceProvider,
+    private events: Events
   ) {
     console.log(this.orderId);
+
+    this.events.subscribe("payment:added", (data) => this.payments.push(data))
+
+    this.events.subscribe("payment:updated", (data) => {
+      this.payments[data.index].type = data.payment.type;
+      this.payments[data.index].amount = data.payment.amount;
+      this.payments[data.index].currency = data.payment.currency;
+      this.payments[data.index].installments = data.payment.installments;
+      this.payments[data.index].bank = data.payment.bank;
+    })
   }
 
   showPaymentMenuAlert (payment, index) {

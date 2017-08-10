@@ -1,5 +1,5 @@
 import { Component, Input } from '@angular/core';
-import { ModalController } from "ionic-angular";
+import { ModalController, Events } from "ionic-angular";
 import { CustomerFormPage } from "../../forms/customer-form/customer-form";
 
 /**
@@ -17,9 +17,10 @@ export class CustomerDetailsCardComponent {
   @Input() customer: any;
   
   constructor(
-    private modalCtrl: ModalController
+    private modalCtrl: ModalController,
+    private events: Events
   ) {
-    
+    this.events.subscribe("customer:updated", (data) => this.customer = data);
   }
 
   presentModallyCustomerFormPage() {

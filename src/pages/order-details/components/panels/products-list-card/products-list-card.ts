@@ -26,7 +26,17 @@ export class ProductsListCardComponent {
     private pds: ProductDbServiceProvider,
     public renderer: Renderer
   ) {
+    this.events.subscribe("product:added", (data) => this.products.push(data))
 
+    this.events.subscribe("product:updated", (data) => {
+      this.products[data.index].type = data.product.type;
+      this.products[data.index].patternCode = data.product.patternCode;
+      this.products[data.index].colorCode = data.product.colorCode;
+      this.products[data.index].varietyCode = data.product.varietyCode;
+      this.products[data.index].unitPrice = data.product.unitPrice;
+      this.products[data.index].laborCost = data.product.laborCost;
+      this.products[data.index].quantity = data.product.quantity;
+    })
   }
 
   showProductMenuAlert (product, index) {
