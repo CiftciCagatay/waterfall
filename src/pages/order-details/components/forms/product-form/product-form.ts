@@ -42,8 +42,7 @@ export class ProductFormPage {
         colorCode: "",
         varietyCode: "",
         unitPrice: null,
-        quantity: null,
-        laborCost: null
+        quantity: null
       }
 
     } else {
@@ -61,8 +60,7 @@ export class ProductFormPage {
     this.total = quantity * (unitPrice + laborCost);
   }
 
-  deneme() {
-    this.product.laborCost = this.product.laborCost ? parseFloat(this.product.laborCost) : 0.0;
+  convertProductPropsStringToNumber() {
     this.product.unitPrice = this.product.unitPrice ? parseFloat(this.product.unitPrice) : 0.0;
     this.product.quantity = this.product.quantity ? parseFloat(this.product.quantity) : 0.0;
   }
@@ -71,9 +69,6 @@ export class ProductFormPage {
     switch (property) {
       case 'unitPrice':
         this.product.unitPrice = (e.value ? Number(e.value) : 0.0)
-        break
-      case 'laborCost':
-        this.product.laborCost = (e.value ? Number(e.value) : 0.0)
         break
       case 'quantity':
         this.product.quantity = (e.value ? Number(e.value) : 0.0)
@@ -95,7 +90,7 @@ export class ProductFormPage {
         {
           text: "Evet",
           handler: () => {
-            this.deneme();
+            this.convertProductPropsStringToNumber();
             
             if (this.mode == 'edit') {
               this.saveChanges();
