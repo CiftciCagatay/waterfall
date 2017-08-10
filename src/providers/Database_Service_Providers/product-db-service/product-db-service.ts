@@ -20,9 +20,14 @@ export class ProductDbServiceProvider {
     "Renso",
     "Store",
     "Zebra",
-    "Astar"
+    "Astar",
+    "Aksesuar",
+    "Ruspik",
+    "Lambiri",
+    "Mekanizma",
+    "Etek"
   ]
-  
+
   constructor(
     public http: Http,
     private globals: GlobalsProvider

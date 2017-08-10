@@ -1363,7 +1363,12 @@ var ProductDbServiceProvider = (function () {
             "Renso",
             "Store",
             "Zebra",
-            "Astar"
+            "Astar",
+            "Aksesuar",
+            "Ruspik",
+            "Lambiri",
+            "Mekanizma",
+            "Etek"
         ];
         console.log('Hello PaymentDbServiceProvider Provider');
     }
@@ -1383,10 +1388,10 @@ var ProductDbServiceProvider = (function () {
 }());
 ProductDbServiceProvider = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]) === "function" && _b || Object])
 ], ProductDbServiceProvider);
 
+var _a, _b;
 //# sourceMappingURL=product-db-service.js.map
 
 /***/ }),
