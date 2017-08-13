@@ -26,16 +26,7 @@
           <ion-label>{{ product.quantity }}</ion-label>
           <ion-label>{{ product.unitPrice }} TRY</ion-label>
           <ion-label>{{ product.quantity * product.unitPrice }}</ion-label>
-
-          <!-- <button item-end (click)="showProductMenuAlert(product, i)" ion-button clear>
-            <ion-icon md="md-more" ios="ios-more"></ion-icon>
-          </button> -->
         </button>
-
-        <ion-item-options>
-          <button (click)="presentModallyProductFormPage('edit', product, i)" ion-button>Düzenle</button>
-          <button (click)="presentDeletionWarning(product._id, i)" color="danger" ion-button>Sil</button>
-        </ion-item-options>
       </ion-item-sliding>
     </ion-list>
 

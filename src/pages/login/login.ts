@@ -11,7 +11,7 @@ import { OneSignal } from '@ionic-native/onesignal';
   templateUrl: 'login.html',
 })
 export class LoginPage {
-  
+
   mode = "login";
 
   email: string;
@@ -20,7 +20,7 @@ export class LoginPage {
   constructor(
     public navCtrl: NavController,
     private loadingCtrl: LoadingController,
-    private alertCtrl: AlertController, 
+    private alertCtrl: AlertController,
     public navParams: NavParams,
     private menuController: MenuController,
     private authService: AuthServiceProvider,
@@ -47,7 +47,7 @@ export class LoginPage {
 
     this.authService.register(val).subscribe(response => {
       console.log(response, this.authService.ref);
-      
+
       this.loginModeOn();
 
       loading.dismiss();
@@ -61,32 +61,38 @@ export class LoginPage {
 
     loading.present();
 
-    this.authService.login(this.email, this.password).subscribe(response => {
-      console.log(response);
-      
-      let data = response.json()
+    this.authService.login(this.email, this.password)
+      .then(response => {
+        console.log(response);
 
-      if (data.result == "OK" && data.userData[0]) {
-        this.authService.setUser(data.userData[0]);
+        this.authService.getUserDetailsFromDatabaseByEmail(this.email)
+          .subscribe(response => {
+            console.log(response.json());
+            this.authService.setUser(response.json());
 
-        if (this.authService.user.isManager) {
-          this.onesignal.sendTag("isManager", "true");
-        } else {
-          this.onesignal.sendTag("isManager", "false");
-        }
+            if (this.authService.user.isManager) {
+              this.onesignal.sendTag("isManager", "true");
+            } else {
+              this.onesignal.sendTag("isManager", "false");
+            }
 
-        this.menuController.enable(true);
-        this.navCtrl.setRoot(HomePage);
-      } else {
-        this.alertCtrl.create({ 
-          title: "Giriş Yapılamadı", 
-          message: "Lütfen girdiğiniz bilgileri kontrol edin", 
-          buttons: [{ text: "OK" }] 
+            this.menuController.enable(true);
+            
+            loading.dismiss();
+
+            this.navCtrl.setRoot(HomePage);
+          });
+      })
+      .catch((error) => {
+        this.alertCtrl.create({
+          title: "Giriş Yapılamadı",
+          message: "Lütfen girdiğiniz bilgileri kontrol edin",
+          buttons: [{ text: "OK" }]
         }).present();
-      }
 
-      loading.dismiss();
-    });
+
+        loading.dismiss();
+      })
   }
 
 }

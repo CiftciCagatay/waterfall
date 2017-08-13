@@ -2,21 +2,19 @@ import { Injectable } from '@angular/core';
 import { Http } from '@angular/http';
 import 'rxjs/add/operator/map';
 import { GlobalsProvider } from "../globals/globals";
+import { AngularFireAuth } from "angularfire2/auth";
 
 @Injectable()
 export class AuthServiceProvider {
 
   ref = "";
 
-  user = {
-    _id : '598f985fedca5a0ead1bd94b',
-    name: 'Mert Yıldız',
-    isManager: false
-  };
+  user: any;
 
   constructor(
     public http: Http,
-    private globals: GlobalsProvider
+    private globals: GlobalsProvider,
+    private afa: AngularFireAuth
   ) {
     this.ref = this.globals.ref;
   }
@@ -33,8 +31,13 @@ export class AuthServiceProvider {
     delete this.user;
   }
 
+  getUserDetailsFromDatabaseByEmail (email: String) {
+    return this.http.get(this.ref + "/users/findByEmail/" + email);
+  }
+
   login(email: string, password: string) {
-    return this.http.get(this.ref + "/personnels/login?email=" + email + "&password=" + password);
+    return this.afa.auth.signInWithEmailAndPassword(email, password);
+    //return this.http.get(this.ref + "/personnels/login?email=" + email + "&password=" + password);
   }
 
   logout() {

@@ -2,6 +2,7 @@ import { Component } from '@angular/core';
 import { IonicPage, NavController, NavParams, LoadingController } from 'ionic-angular';
 import { CustomerDbServiceProvider } from "../../providers/Database_Service_Providers/customer-db-service/customer-db-service";
 import { OrderDbServiceProvider } from "../../providers/Database_Service_Providers/order-db-service/order-db-service";
+import { OrderDetailsPage } from "../order-details/order-details";
 
 /**
  * Generated class for the CustomerDetailsPage page.
@@ -53,6 +54,12 @@ export class CustomerDetailsPage {
 
   ionViewDidLoad() {
     console.log('ionViewDidLoad CustomerDetailsPage');
+  }
+
+  showOrdersDetails (orderId) {
+    this.navCtrl.push(OrderDetailsPage, {
+      orderId: orderId
+    })
   }
 
 }
