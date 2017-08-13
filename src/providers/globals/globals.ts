@@ -11,7 +11,7 @@ import 'rxjs/add/operator/map';
 @Injectable()
 export class GlobalsProvider {
 
-  ref = "http://localhost:3000";//"https://quiet-chamber-99549.herokuapp.com";
+  ref = "https://quiet-chamber-99549.herokuapp.com";
 
   constructor() {
     console.log('Hello GlobalsProvider Provider');
