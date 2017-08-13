@@ -24,7 +24,7 @@ export class LoginPage {
     public navParams: NavParams,
     private menuController: MenuController,
     private authService: AuthServiceProvider,
-    private onesignal: OneSignal  
+    private onesignal: OneSignal
   ) {
     this.menuController.enable(false);
 

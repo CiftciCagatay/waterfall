@@ -45,6 +45,18 @@ import { PaymentDbServiceProvider } from '../providers/Database_Service_Provider
 import { EventDbServiceProvider } from '../providers/Database_Service_Providers/event-db-service/event-db-service';
 import { GlobalsProvider } from '../providers/globals/globals';
 
+import { AngularFireModule } from 'angularfire2';
+import { AngularFireAuthModule } from 'angularfire2/auth';
+
+var config = {
+  apiKey: "AIzaSyCxmjHbtRTZF0ERTALuA7S2AzPa2uq7TlU",
+  authDomain: "waterfall-e11fb.firebaseapp.com",
+  databaseURL: "https://waterfall-e11fb.firebaseio.com",
+  projectId: "waterfall-e11fb",
+  storageBucket: "waterfall-e11fb.appspot.com",
+  messagingSenderId: "841595940135"
+};
+
 @NgModule({
   declarations: [
     MyApp,
@@ -68,16 +80,18 @@ import { GlobalsProvider } from '../providers/globals/globals';
     OrderDetailsCardComponent,
     PaymentsListCardComponent,
     ProductsListCardComponent,
-    
+
     FormatDatePipe,
     CalculateBalancePipe
   ],
   imports: [
     BrowserModule,
     HttpModule,
+    AngularFireModule.initializeApp(config),
+    AngularFireAuthModule,
     IonicModule.forRoot(MyApp, {
       monthNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
-      monthShortNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık' ],
+      monthShortNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
       dayNames: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'],
       dayShortNames: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'],
     })
@@ -95,7 +109,7 @@ import { GlobalsProvider } from '../providers/globals/globals';
 
     CustomerListPage,
     CustomerDetailsPage,
-    
+
     CustomerFormPage,
     OrderDetailsFormPage,
     ProductFormPage,
@@ -107,7 +121,7 @@ import { GlobalsProvider } from '../providers/globals/globals';
     { provide: ErrorHandler, useClass: IonicErrorHandler },
 
     AuthServiceProvider,
-    
+
     OneSignal,
     OnesignalNotificationProvider,
 
