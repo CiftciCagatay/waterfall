@@ -14,8 +14,12 @@ import { OneSignal } from '@ionic-native/onesignal';
 import { LoginPage } from "../pages/login/login";
 
 import { NewOrderFormPage } from "../pages/new-order-form/new-order-form";
+import { NewOrderFormCustomerListPage } from "../pages/new-order-form/new-order-form-customer-list/new-order-form-customer-list";
 import { OrdersListPage } from "../pages/orders-list/orders-list";
 import { OrderDetailsPage } from "../pages/order-details/order-details";
+
+import { CustomerListPage } from "../pages/customer-list/customer-list";
+import { CustomerDetailsPage } from "../pages/customer-details/customer-details";
 
 import { ProductFormPage } from "../pages/order-details/components/forms/product-form/product-form";
 import { PaymentFormPage } from "../pages/order-details/components/forms/payment-form/payment-form";
@@ -40,8 +44,6 @@ import { ProductDbServiceProvider } from '../providers/Database_Service_Provider
 import { PaymentDbServiceProvider } from '../providers/Database_Service_Providers/payment-db-service/payment-db-service';
 import { EventDbServiceProvider } from '../providers/Database_Service_Providers/event-db-service/event-db-service';
 import { GlobalsProvider } from '../providers/globals/globals';
-import { CustomerListPage } from "../pages/customer-list/customer-list";
-import { CustomerDetailsPage } from "../pages/customer-details/customer-details";
 
 @NgModule({
   declarations: [
@@ -50,6 +52,7 @@ import { CustomerDetailsPage } from "../pages/customer-details/customer-details"
     LoginPage,
     HomePage,
     NewOrderFormPage,
+    NewOrderFormCustomerListPage,
     OrdersListPage,
     OrderDetailsPage,
 
@@ -86,6 +89,7 @@ import { CustomerDetailsPage } from "../pages/customer-details/customer-details"
     LoginPage,
     HomePage,
     NewOrderFormPage,
+    NewOrderFormCustomerListPage,
     OrdersListPage,
     OrderDetailsPage,
 

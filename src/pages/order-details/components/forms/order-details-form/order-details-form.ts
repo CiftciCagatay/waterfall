@@ -64,7 +64,7 @@ export class OrderDetailsFormPage {
 
     loading.present();
 
-    this.ods.updateOrderInformation(this.orderId, this.orderDetails).subscribe((response) => {
+    this.ods.updateOrderInformation(this.orderId, { orderDetails: this.orderDetails }).subscribe((response) => {
       loading.dismiss().then(() => this.navCtrl.pop());
 
       this.events.publish("orderDetails:updated", this.orderDetails);

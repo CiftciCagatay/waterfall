@@ -8,7 +8,11 @@ export class AuthServiceProvider {
 
   ref = "";
 
-  user: any;
+  user = {
+    _id : '598f985fedca5a0ead1bd94b',
+    name: 'Mert Yıldız',
+    isManager: false
+  };
 
   constructor(
     public http: Http,
@@ -18,7 +22,7 @@ export class AuthServiceProvider {
   }
 
   getUser() {
-    return this.user.name;
+    return this.user._id;
   }
 
   setUser(user: any) {

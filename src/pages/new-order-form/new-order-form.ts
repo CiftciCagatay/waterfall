@@ -1,5 +1,5 @@
 import { Component } from '@angular/core';
-import { NavController, NavParams, AlertController, LoadingController } from 'ionic-angular';
+import { NavController, NavParams, AlertController, LoadingController, ModalController, Events } from 'ionic-angular';
 import { OrderDetailsPage } from "../order-details/order-details";
 
 import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
@@ -9,6 +9,7 @@ import { OnesignalNotificationProvider } from "../../providers/onesignal-notific
 import { OrderDbServiceProvider } from "../../providers/Database_Service_Providers/order-db-service/order-db-service";
 import { EventDbServiceProvider } from "../../providers/Database_Service_Providers/event-db-service/event-db-service";
 import { PaymentDbServiceProvider } from "../../providers/Database_Service_Providers/payment-db-service/payment-db-service";
+import { NewOrderFormCustomerListPage } from "./new-order-form-customer-list/new-order-form-customer-list";
 
 @Component({
   selector: 'page-new-order-form',
@@ -37,7 +38,8 @@ export class NewOrderFormPage {
       personnel: this.auth.getUser(),
       amount: null,
       currency: "TRY",
-      note: ""
+      note: "",
+      laborCost: 0.0
     },
 
     payments: [
@@ -55,59 +57,41 @@ export class NewOrderFormPage {
   };
 
   constructor(
-    public navCtrl: NavController,
     public navParams: NavParams,
+
+    public navCtrl: NavController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    
+    private modalCtrl: ModalController,
+
     private ods: OrderDbServiceProvider,
     private eds: EventDbServiceProvider,
     private pds: PaymentDbServiceProvider,
 
     private auth: AuthServiceProvider,
     private cityDistrictProvider: CityDistrictProvider,
-    private oneSignalNotificationProvider: OnesignalNotificationProvider
+    private oneSignalNotificationProvider: OnesignalNotificationProvider,
+    private events: Events
   ) {
     this.citySelected(this.order.customer.address.city);
-  }
 
-  isIdentificationNumberValid (id: String) {
-    if (id[0] == '0') {
-      console.log("TC Kimlik numarasının ilk karakteri 0 olamaz");
-      return false;
-    } else if(id.length != 11) {
-      console.log("TC Kimlik numarası 11 haneli olmalıdır");
-      return false
-    } else if (Number(id) % 2 != 0) {
-      console.log("TC Kimlik numarası tek sayı olamaz");
-      return false;
-    } else {
-
-      var tekIndexToplam = Number(id[0]) + Number(id[2]) + Number(id[4]) + Number(id[6]) + Number(id[8]);
-      var ciftIndexToplam = Number(id[1]) + Number(id[3]) + Number(id[5]) + Number(id[7]);
-
-
-      var farkMod10 = ((tekIndexToplam * 7) - ciftIndexToplam) % 10;
-
-      if (farkMod10 != Number(id[9])) {
-        console.log("10. hanen doğru değil")
-        return false
-      }
-
-      var ilkOnHaneToplam = tekIndexToplam + ciftIndexToplam + Number(id[9]);
-
-      if (ilkOnHaneToplam % 10 != Number(id[10])) {
-        console.log("11. hanen doğru değil")
-        return false;
-      }
-
-    }
+    this.events.subscribe("neworderform:customer:selected", (data) => {
+      this.order.customer = data
+    });
   }
 
   citySelected(city) {
     this.order.customer.address.district = "";
 
     this.cityDistrictProvider.getCounties(city)
+  }
+
+  openCustomerListPage () {
+    let customerListModal = this.modalCtrl.create(NewOrderFormCustomerListPage, {
+      customer: this.order.customer
+    });
+
+    customerListModal.present();
   }
 
   showSavingAlert() {
@@ -160,7 +144,9 @@ export class NewOrderFormPage {
     loading.present();
 
     this.ods.insertNewOrder(this.order).subscribe((response) => {
-      this.orderId = response.json().orderId;
+      this.orderId = response.json()[1]._id;
+
+      console.log(response.json())
 
       this.logOrderSavedEvent();
 
@@ -212,7 +198,8 @@ export class NewOrderFormPage {
         personnel: this.auth.getUser(),
         amount: null,
         currency: "TRY",
-        note: ""
+        note: "",
+        laborCost: 0.0
       },
 
       payments: [

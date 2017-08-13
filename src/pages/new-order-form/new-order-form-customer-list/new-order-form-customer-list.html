@@ -1,0 +1,33 @@
+<ion-header>
+
+  <ion-navbar color="navBarColor">
+    <ion-buttons left>
+      <button ion-button navPop clear icon-only>
+        <ion-icon color="white" md="md-arrow-back" ios="ios-arrow-back"></ion-icon>
+      </button>
+    </ion-buttons>
+
+    <ion-title>Müşteriler</ion-title>
+  </ion-navbar>
+  
+  <ion-toolbar color="navBarColor">
+    <ion-searchbar color="navBarColor" (ionChange)="filterCustomers($event.value)"></ion-searchbar>
+  </ion-toolbar>
+
+  <ion-toolbar color="navBarColor">
+    <ion-item color="navBarColor">
+      <ion-label>TC Kimlik No</ion-label>
+      <ion-label>İsim</ion-label>
+    </ion-item>
+  </ion-toolbar>
+
+</ion-header>
+
+<ion-content padding>
+  <ion-list>
+    <ion-item (click)="selectCustomer(customer._id)" *ngFor="let customer of customers">
+      <ion-label>{{ customer.identificationNumber }}</ion-label>
+      <ion-label>{{ customer.name }}</ion-label>
+    </ion-item>
+  </ion-list>
+</ion-content>

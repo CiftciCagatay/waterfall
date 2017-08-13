@@ -23,6 +23,8 @@ export class CustomerFormPage {
 
     this.customer = JSON.parse(JSON.stringify(this.navParams.get('customer')))
 
+    console.log(this.customer);
+
     if (!this.customer) {
       this.navCtrl.pop();
     }

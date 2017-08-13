@@ -40,7 +40,7 @@ export class PaymentDbServiceProvider {
   }
 
   insertPayment(orderId: string, paymentInformation: any) {
-    let url = this.globals.ref + "/orders/" + orderId + "/payments/new";
+    let url = this.globals.ref + "/orders/" + orderId + "/payments";
 
     return this.http.post(url, paymentInformation);
   }

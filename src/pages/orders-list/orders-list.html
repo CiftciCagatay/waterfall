@@ -39,15 +39,10 @@
     <ion-refresher-content></ion-refresher-content>
   </ion-refresher>
 
-  <ion-list>
+  <ion-list *ngIf="orders.length > 0">
     <ion-item-sliding *ngFor="let order of orders; let i = index">
       <ion-item (click)="showOrdersDetails(order._id)">
-        <ion-label>{{ order.customer.name }}</ion-label>
-        <!-- 
-          <ion-label>{{ order.orderDetails.orderDate }}</ion-label>
-          <ion-label>{{ order.orderDetails.deliveryDate }}</ion-label>
-          <ion-label>{{ order.orderDetails.personnel }}</ion-label>
-        -->
+        <ion-label>{{ order.customer?.name }}</ion-label>
         <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>
         <ion-label>{{ order.orderDetails.amount - (order.payments | calculateBalance) }} {{ order.orderDetails.currency }}</ion-label>
       </ion-item>

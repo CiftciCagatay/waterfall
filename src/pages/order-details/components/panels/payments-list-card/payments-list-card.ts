@@ -27,7 +27,10 @@ export class PaymentsListCardComponent {
   ) {
     console.log(this.orderId);
 
-    this.events.subscribe("payment:added", (data) => this.payments.push(data))
+    this.events.subscribe("payment:added", (data) => {
+      console.log(data);
+      this.payments.push(data)
+    })
 
     this.events.subscribe("payment:updated", (data) => {
       this.payments[data.index].type = data.payment.type;

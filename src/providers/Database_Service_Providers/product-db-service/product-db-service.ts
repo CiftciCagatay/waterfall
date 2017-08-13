@@ -36,7 +36,7 @@ export class ProductDbServiceProvider {
   }
 
   insertProduct(orderId: string, product: any) {
-    let url = this.globals.ref + "/orders/" + orderId + "/products/new";
+    let url = this.globals.ref + "/orders/" + orderId + "/products";
 
     return this.http.post(url, product);
   }
@@ -52,5 +52,4 @@ export class ProductDbServiceProvider {
 
     return this.http.delete(url);
   }
-
 }

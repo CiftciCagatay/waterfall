@@ -18,7 +18,7 @@ export class HomePage {
   ) {
     this.eds.getEvents().subscribe(data => this.events = data.json());
     
-    console.log(this.auth.getUser());
+    //console.log(this.auth.getUser());
   }
 
 }

@@ -31,7 +31,7 @@
 
     <ion-row>
       <ion-col>
-        <products-list-card *ngIf="order.products" [orderId]="order._id" [products]="order.products"></products-list-card>
+        <products-list-card [orderId]="order._id" [products]="order.products" [laborCost]="order.orderDetails?.laborCost"></products-list-card>
       </ion-col>
 
       <ion-col>

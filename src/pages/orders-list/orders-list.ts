@@ -75,7 +75,8 @@ export class OrdersListPage {
       this.ods.getOrdersList(searchbarText, this.lastOrderId, 10).subscribe((response) => {
         this.orders = response.json();
 
-        this.lastOrderId = this.orders[this.orders.length - 1]._id;
+        if (this.orders.length > 0) 
+          this.lastOrderId = this.orders[this.orders.length - 1]._id;
 
         this.infiniteScrollEnable = true;
 

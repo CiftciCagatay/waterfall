@@ -28,9 +28,14 @@
         <!-- Müşteri -->
         <ion-col>
           <ion-card>
-            <ion-card-header>Müşteri</ion-card-header>
+            <ion-item color="secondBarColor">
+              <h2 style="color: white">Müşteri</h2>
+              <button (click)="openCustomerListPage()" color="light" icon-left item-end ion-button outline>
+                <ion-icon md="md-search" ios="ios-search"></ion-icon>Ara
+              </button>
+            </ion-item>
 
-            <ion-card-content>
+            <ion-card-content style="margin-top: 12px">
               <ion-list>
                 <label ion-item>
                   <ion-label fixed>*TC Kimlik</ion-label>
@@ -105,9 +110,11 @@
         <ion-col>
           <!-- Sipariş -->
           <ion-card>
-            <ion-card-header>Sipariş</ion-card-header>
+            <ion-item color="secondBarColor">
+              <h2 style="color: white">Sipariş</h2>
+            </ion-item>
 
-            <ion-card-content>
+            <ion-card-content style="margin-top: 12px;">
               <ion-list>
                 <label ion-item>
                   <ion-label>İş Teslim Tarihi</ion-label>
@@ -139,9 +146,11 @@
 
           <!-- Kapora -->
           <ion-card *ngIf="order.payments.length > 0">
-            <ion-card-header>Kapora</ion-card-header>
+            <ion-item color="secondBarColor">
+              <h2 style="color: white">Kapora</h2>
+            </ion-item>
 
-            <ion-card-content>
+            <ion-card-content style="margin-top: 12px;">
               <ion-list>
                 <label ion-item>
                   <ion-label>Ödeme Türü</ion-label>

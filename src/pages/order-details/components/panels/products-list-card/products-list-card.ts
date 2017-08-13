@@ -2,6 +2,7 @@ import { Component, Input, OnInit } from '@angular/core';
 import { ModalController, AlertController, LoadingController, Events } from "ionic-angular";
 import { ProductFormPage } from "../../forms/product-form/product-form";
 import { ProductDbServiceProvider } from "../../../../../providers/Database_Service_Providers/product-db-service/product-db-service";
+import { OrderDbServiceProvider } from "../../../../../providers/Database_Service_Providers/order-db-service/order-db-service";
 
 /**
  * Generated class for the ProductsListCardComponent component.
@@ -17,20 +18,25 @@ export class ProductsListCardComponent implements OnInit {
 
   @Input() products: Array<any>;
   @Input() orderId: string;
+  @Input() laborCost = 0.0;
 
   totalQuantity = 0.0;
   totalAmount = 0.0;
-  laborCost = 0.0;
 
   constructor(
     private modalCtrl: ModalController,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
     private events: Events,
-    private pds: ProductDbServiceProvider
+    private pds: ProductDbServiceProvider,
+    private ods: OrderDbServiceProvider
   ) {
     this.events.subscribe("product:added", (data) => {
-      this.products.push(data);
+      if (this.products != null)  {
+        this.products.push(data);
+      } else {
+        this.products = [data];
+      }
 
       this.totalAmount += data.quantity * data.unitPrice;
       this.totalQuantity += data.quantity;
@@ -50,10 +56,12 @@ export class ProductsListCardComponent implements OnInit {
   }
 
   ngOnInit() {
-    this.calculateTotalAmountAndQuantity();
+    if (this.products) {
+      this.calculateTotalAmountAndQuantity();
+    }
   }
 
-  calculateTotalAmountAndQuantity () {
+  calculateTotalAmountAndQuantity() {
     this.totalAmount = 0.0;
     this.totalQuantity = 0.0;
 
@@ -65,7 +73,7 @@ export class ProductsListCardComponent implements OnInit {
     this.totalAmount += this.totalQuantity * this.laborCost;
   }
 
-  showLaborCostAlert () {
+  showLaborCostAlert() {
     let alert = this.alertCtrl.create({
       title: "İşçilik",
       subTitle: "İşçilik birim fiyatını giriniz",
@@ -83,6 +91,7 @@ export class ProductsListCardComponent implements OnInit {
           text: "Kaydet",
           handler: (data) => {
             this.laborCost = Number(data.laborCost)
+            this.saveLaborCost();
             this.calculateTotalAmountAndQuantity();
           }
         },
@@ -93,6 +102,35 @@ export class ProductsListCardComponent implements OnInit {
     })
 
     alert.present();
+  }
+
+  saveLaborCost() {
+    let loading = this.loadingCtrl.create({ content: "İşçilik maliyeti güncelleniyor..." });
+
+    loading.present();
+
+    this.ods.updateLaborCost(this.orderId, this.laborCost).subscribe(response => {
+      console.log(response);
+
+      if (response.status == 500) {
+
+        let alert = this.alertCtrl.create({
+          title: "Hata",
+          subTitle: "İşçilik maliyeti güncellenirken bir hatayla karşılaşıldı. Lütfen tekrar deneyin",
+          buttons: [
+            {
+              text: "Tamam"
+            }
+          ]
+        })
+
+        loading.dismiss().then(() => {
+          alert.present();
+        })
+      } else if (response.status == 200) {
+        loading.dismiss();
+      }
+    })
   }
 
   showProductMenuAlert(product, index) {

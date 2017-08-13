@@ -20,7 +20,7 @@ export class OrderDbServiceProvider {
   }
 
   insertNewOrder(order: any) {
-    return this.http.post(this.globals.ref + "/orders/new", order);
+    return this.http.post(this.globals.ref + "/orders", order);
   }
 
   updateOrderInformation(orderId: string, newValue: any) {
@@ -56,6 +56,14 @@ export class OrderDbServiceProvider {
     let url = this.globals.ref + "/orders/" + orderId;
 
     return this.http.get(url);
+  }
+
+  updateLaborCost (orderId: string, laborCost: Number) {
+    let url = this.globals.ref + "/orders/" + orderId + "/laborCost";
+
+    return this.http.put(url, {
+      laborCost: laborCost
+    });
   }
 
 }

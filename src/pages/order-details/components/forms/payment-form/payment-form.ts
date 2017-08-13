@@ -23,7 +23,7 @@ export class PaymentFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    
+
     private pds: PaymentDbServiceProvider,
     private eds: EventDbServiceProvider,
 
@@ -96,21 +96,22 @@ export class PaymentFormPage {
     loading.present();
 
     this.pds.insertPayment(this.orderId, this.payment).subscribe((response) => {
-      if (response.json().result) {
-        this.payment._id = response.json().paymentId;
 
-        this.events.publish("payment:added", this.payment);
+      this.payment = response.json();
 
-        if (this.payment.amount) {
-          this.eds.logEvent(
-            "Yeni Ödeme",
-            `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
-            this.payment.personnel,
-            this.payment.date
-          )
-        }
+      this.events.publish("payment:added", this.payment);
+
+      console.log("HAHA", response)
+
+      if (this.payment.amount) {
+        this.eds.logEvent(
+          "Yeni Ödeme",
+          `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
+          this.payment.personnel,
+          this.payment.date
+        )
       }
-
+      
       loading.dismiss();
 
       this.navCtrl.pop()

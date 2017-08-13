@@ -20,7 +20,7 @@ export class ProductFormPage {
     public navParams: NavParams,
     private alertCtrl: AlertController,
     private loadingCtrl: LoadingController,
-    
+
     private pds: ProductDbServiceProvider,
 
     private events: Events
@@ -52,7 +52,7 @@ export class ProductFormPage {
     console.log(this.product);
   }
 
-  calculateTotal () {
+  calculateTotal() {
     let laborCost = this.product.laborCost ? parseFloat(this.product.laborCost) : 0.0;
     let unitPrice = this.product.unitPrice ? parseFloat(this.product.unitPrice) : 0.0;
     let quantity = this.product.quantity ? parseFloat(this.product.quantity) : 0.0;
@@ -91,7 +91,7 @@ export class ProductFormPage {
           text: "Evet",
           handler: () => {
             this.convertProductPropsStringToNumber();
-            
+
             if (this.mode == 'edit') {
               this.saveChanges();
             } else {
@@ -123,11 +123,15 @@ export class ProductFormPage {
 
     loading.present();
 
+    console.log(this.orderId, this.product)
+
     this.pds.insertProduct(this.orderId, this.product).subscribe((response) => {
-      if (response.json().result) {
-        this.product._id = response.json().productId;
-        this.events.publish("product:added", this.product);
-      }
+      
+      
+      this.product = response.json();
+      this.events.publish("product:added", this.product);
+
+
 
       loading.dismiss().then(() => this.navCtrl.pop());
     });

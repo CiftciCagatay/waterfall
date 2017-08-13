@@ -27,12 +27,12 @@ export class CustomerListPage {
   ) {
     let loading = this.loadingCtrl.create({ content: "Müşteriler yükleniyor..." });
 
-    //loading.present();
+    loading.present();
 
     this.cds.getCustomers().subscribe(response => {
       this.customers = response.json();
       
-      //loading.dismiss();
+      loading.dismiss();
     })
   }
 
@@ -46,7 +46,6 @@ export class CustomerListPage {
     this.cds.getCustomers(text).subscribe(response => {
       this.customers = response.json();
       console.log(response);
-      //loading.dismiss();
     })
   }
 
