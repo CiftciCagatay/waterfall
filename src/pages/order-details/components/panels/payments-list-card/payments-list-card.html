@@ -9,21 +9,12 @@
   <ion-card-content style="margin-top: 12px">
     <ion-list>
       <ion-item-sliding *ngFor="let payment of payments; let i = index">
-        <ion-item>
+        <button ion-item (click)="showPaymentMenuAlert(payment, i)">
 
             <h1>{{ payment.amount }} {{ payment.currency }}</h1>
             <h2 *ngIf="payment.type == 'Kredi Kartı'">{{ payment.installments + " Taksit | " + payment.bank }}</h2>
             <h3>{{ payment.personnel ? payment.personnel : "---" }} | {{ payment.date ? (payment.date | formatDate) : "---" }}</h3>
-            <!--<p *ngIf="payment.note">{{ payment.note }}</p>-->
-            <button item-end (click)="showPaymentMenuAlert(payment, i)" ion-button clear>
-              <ion-icon md="md-more" ios="ios-more"></ion-icon>
-            </button>
-        </ion-item>
-
-        <ion-item-options *ngIf="false">
-          <button (click)="presentModallyPaymentFormPage('edit', payment, i)" ion-button>DÜZENLE</button>
-          <button (click)="presentDeletionWarning(payment._id, i)" color="danger" ion-button>SİL</button>
-        </ion-item-options>
+        </button>
       </ion-item-sliding>
     </ion-list>
   </ion-card-content>
