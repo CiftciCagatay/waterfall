@@ -32,13 +32,25 @@ export class OrdersListPage {
 
     loading.present();
 
-    this.getOrders().then(() => {
-      loading.dismiss();
-    });
-  }
+    this.getOrders()
+      .then(() => {
+        loading.dismiss();
+      })
+      .catch((error) => {
+        console.log(error);
 
-  deneme() {
-    
+        let alert = this.alertCtrl.create({
+          title: "Siparişler Getirilemedi",
+          subTitle: "Siparişler listesi getirilirken bir hatayla karşılaşıldı. Lütfen sayfayı yenileyip tekrar deneyin",
+          buttons: [
+            {
+              text: "Tamam"
+            }
+          ]
+        })
+
+        loading.dismiss();
+      })
   }
 
   deleteOrder(orderId: string, index: number) {
@@ -47,9 +59,23 @@ export class OrdersListPage {
     loading.present();
 
     this.ods.deleteOrder(orderId).subscribe((response) => {
-      this.orders.splice(index, 1);
+      if (response.status == 200) {
+        this.orders.splice(index, 1);
 
-      loading.dismiss();
+        loading.dismiss();
+      } else {
+        let alert = this.alertCtrl.create({
+          title: "Sipariş Silinemedi",
+          subTitle: "Sipariş silinirken bir hatayla karşılaşıldı. Lütfen tekrar deneyin.",
+          buttons: [
+            {
+              text: "Tamam"
+            }
+          ]
+        })
+
+        loading.dismiss().then(() => alert.present());
+      }
     });
   }
 
@@ -73,14 +99,18 @@ export class OrdersListPage {
   getOrders(searchbarText?: String) {
     return new Promise((resolve, reject) => {
       this.ods.getOrdersList(searchbarText, this.lastOrderId, 10).subscribe((response) => {
-        this.orders = response.json();
+        if (response.status == 200) {
+          this.orders = response.json();
 
-        if (this.orders.length > 0) 
-          this.lastOrderId = this.orders[this.orders.length - 1]._id;
+          if (this.orders.length > 0)
+            this.lastOrderId = this.orders[this.orders.length - 1]._id;
 
-        this.infiniteScrollEnable = true;
+          this.infiniteScrollEnable = true;
 
-        resolve();
+          resolve();
+        } else {
+          reject("Ödemeler getirilemedi");
+        }
       });
     })
   }
@@ -88,14 +118,29 @@ export class OrdersListPage {
   refreshOrders(refresher?: any) {
     delete this.lastOrderId;
 
+    let loading = this.loadingCtrl.create({ content: "Sipariş listesi yenileniyor..." });
+
+    loading.present();
+
     if (!refresher) {
-      let loading = this.loadingCtrl.create({ content: "Sipariş listesi yenileniyor..." });
-
-      loading.present();
-
-      this.getOrders().then(() => loading.dismiss());
+      // Eğer liste butona basılarak yenilenmişse
+      this.getOrders()
+        .then(() => loading.dismiss())
+        .catch((error) => {
+          console.log(error);
+          loading.dismiss();
+        })
     } else {
-      this.getOrders().then(() => refresher.complete());
+      // Eğer aşağı çekilerek liste yenilenmişse
+      this.getOrders()
+        .then(() => {
+          refresher.complete();
+          loading.dismiss();
+        })
+        .catch((error) => {
+          console.log(error);
+          loading.dismiss();
+        })
     }
 
     this.infiniteScrollEnable = true;
@@ -103,18 +148,22 @@ export class OrdersListPage {
 
   getMoreOrders(infiniteScroll) {
     this.ods.getOrdersList(undefined, this.lastOrderId, 10).subscribe(response => {
-      console.log(response.json());
+      if (response.status == 200) {
+        console.log(response.json());
 
-      this.orders.push(...response.json());
+        this.orders.push(...response.json());
 
-      if (this.lastOrderId == this.orders[this.orders.length - 1]._id)
-        this.infiniteScrollEnable = false;
+        if (this.lastOrderId == this.orders[this.orders.length - 1]._id)
+          this.infiniteScrollEnable = false;
 
-      this.lastOrderId = this.orders[this.orders.length - 1]._id;
+        this.lastOrderId = this.orders[this.orders.length - 1]._id;
 
-      console.log(this.lastOrderId);
+        console.log(this.lastOrderId);
 
-      infiniteScroll.complete();
+        infiniteScroll.complete();
+      } else {
+        infiniteScroll.complete();
+      }
     });
   }
 

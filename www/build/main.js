@@ -1970,6 +1970,7 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  */
 var OrdersListPage = (function () {
     function OrdersListPage(navCtrl, loadingCtrl, navParams, ods, alertCtrl) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
         this.navParams = navParams;
@@ -1980,19 +1981,45 @@ var OrdersListPage = (function () {
         this.infiniteScrollEnable = true;
         var loading = this.loadingCtrl.create({ content: "Siparişler yükleniyor..." });
         loading.present();
-        this.getOrders().then(function () {
+        this.getOrders()
+            .then(function () {
+            loading.dismiss();
+        })
+            .catch(function (error) {
+            console.log(error);
+            var alert = _this.alertCtrl.create({
+                title: "Siparişler Getirilemedi",
+                subTitle: "Siparişler listesi getirilirken bir hatayla karşılaşıldı. Lütfen sayfayı yenileyip tekrar deneyin",
+                buttons: [
+                    {
+                        text: "Tamam"
+                    }
+                ]
+            });
             loading.dismiss();
         });
     }
-    OrdersListPage.prototype.deneme = function () {
-    };
     OrdersListPage.prototype.deleteOrder = function (orderId, index) {
         var _this = this;
         var loading = this.loadingCtrl.create({ content: "Sipariş siliniyor..." });
         loading.present();
         this.ods.deleteOrder(orderId).subscribe(function (response) {
-            _this.orders.splice(index, 1);
-            loading.dismiss();
+            if (response.status == 200) {
+                _this.orders.splice(index, 1);
+                loading.dismiss();
+            }
+            else {
+                var alert_1 = _this.alertCtrl.create({
+                    title: "Sipariş Silinemedi",
+                    subTitle: "Sipariş silinirken bir hatayla karşılaşıldı. Lütfen tekrar deneyin.",
+                    buttons: [
+                        {
+                            text: "Tamam"
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_1.present(); });
+            }
         });
     };
     OrdersListPage.prototype.presentDeletionWarning = function (orderId, index) {
@@ -2016,36 +2043,61 @@ var OrdersListPage = (function () {
         var _this = this;
         return new Promise(function (resolve, reject) {
             _this.ods.getOrdersList(searchbarText, _this.lastOrderId, 10).subscribe(function (response) {
-                _this.orders = response.json();
-                if (_this.orders.length > 0)
-                    _this.lastOrderId = _this.orders[_this.orders.length - 1]._id;
-                _this.infiniteScrollEnable = true;
-                resolve();
+                if (response.status == 200) {
+                    _this.orders = response.json();
+                    if (_this.orders.length > 0)
+                        _this.lastOrderId = _this.orders[_this.orders.length - 1]._id;
+                    _this.infiniteScrollEnable = true;
+                    resolve();
+                }
+                else {
+                    reject("Ödemeler getirilemedi");
+                }
             });
         });
     };
     OrdersListPage.prototype.refreshOrders = function (refresher) {
         delete this.lastOrderId;
+        var loading = this.loadingCtrl.create({ content: "Sipariş listesi yenileniyor..." });
+        loading.present();
         if (!refresher) {
-            var loading_1 = this.loadingCtrl.create({ content: "Sipariş listesi yenileniyor..." });
-            loading_1.present();
-            this.getOrders().then(function () { return loading_1.dismiss(); });
+            // Eğer liste butona basılarak yenilenmişse
+            this.getOrders()
+                .then(function () { return loading.dismiss(); })
+                .catch(function (error) {
+                console.log(error);
+                loading.dismiss();
+            });
         }
         else {
-            this.getOrders().then(function () { return refresher.complete(); });
+            // Eğer aşağı çekilerek liste yenilenmişse
+            this.getOrders()
+                .then(function () {
+                refresher.complete();
+                loading.dismiss();
+            })
+                .catch(function (error) {
+                console.log(error);
+                loading.dismiss();
+            });
         }
         this.infiniteScrollEnable = true;
     };
     OrdersListPage.prototype.getMoreOrders = function (infiniteScroll) {
         var _this = this;
         this.ods.getOrdersList(undefined, this.lastOrderId, 10).subscribe(function (response) {
-            console.log(response.json());
-            (_a = _this.orders).push.apply(_a, response.json());
-            if (_this.lastOrderId == _this.orders[_this.orders.length - 1]._id)
-                _this.infiniteScrollEnable = false;
-            _this.lastOrderId = _this.orders[_this.orders.length - 1]._id;
-            console.log(_this.lastOrderId);
-            infiniteScroll.complete();
+            if (response.status == 200) {
+                console.log(response.json());
+                (_a = _this.orders).push.apply(_a, response.json());
+                if (_this.lastOrderId == _this.orders[_this.orders.length - 1]._id)
+                    _this.infiniteScrollEnable = false;
+                _this.lastOrderId = _this.orders[_this.orders.length - 1]._id;
+                console.log(_this.lastOrderId);
+                infiniteScroll.complete();
+            }
+            else {
+                infiniteScroll.complete();
+            }
             var _a;
         });
     };
@@ -2060,13 +2112,10 @@ OrdersListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-orders-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/orders-list/orders-list.html"*/'<!--\n  Generated template for the OrdersListPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Siparişler</ion-title>\n\n    <ion-buttons end>\n      <button (click)="refreshOrders()" ion-button>\n        <ion-icon md="md-refresh" ios="ios-refresh"></ion-icon>\n      </button>\n    </ion-buttons>\n  </ion-navbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-searchbar></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>Müşteri</ion-label>\n      <ion-label>Sipariş Tutarı</ion-label>\n      <ion-label>Kalan tutar</ion-label>\n    </ion-item>\n  </ion-toolbar>\n</ion-header>\n\n\n<ion-content padding>\n  <ion-refresher (ionRefresh)="refreshOrders($event)">\n    <ion-refresher-content></ion-refresher-content>\n  </ion-refresher>\n\n  <ion-list *ngIf="orders.length > 0">\n    <ion-item-sliding *ngFor="let order of orders; let i = index">\n      <ion-item (click)="showOrdersDetails(order._id)">\n        <ion-label>{{ order.customer?.name }}</ion-label>\n        <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n        <ion-label>{{ order.orderDetails.amount - (order.payments | calculateBalance) }} {{ order.orderDetails.currency }}</ion-label>\n      </ion-item>\n\n      <ion-item-options>\n        <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>\n      </ion-item-options>\n    </ion-item-sliding>\n  </ion-list>\n\n  <ion-infinite-scroll disabled="!infiniteScrollEnable" (ionInfinite)="getMoreOrders($event)">\n    <ion-infinite-scroll-content></ion-infinite-scroll-content>\n  </ion-infinite-scroll>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/orders-list/orders-list.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
 ], OrdersListPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=orders-list.js.map
 
 /***/ }),
