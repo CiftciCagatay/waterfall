@@ -1356,10 +1356,11 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var NewOrderFormCustomerListPage = (function () {
-    function NewOrderFormCustomerListPage(navCtrl, loadingCtrl, navParams, events, cds) {
+    function NewOrderFormCustomerListPage(navCtrl, loadingCtrl, alertCtrl, navParams, events, cds) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
         this.navParams = navParams;
         this.events = events;
         this.cds = cds;
@@ -1367,8 +1368,25 @@ var NewOrderFormCustomerListPage = (function () {
         var loading = this.loadingCtrl.create({ content: "Müşteriler yükleniyor..." });
         loading.present();
         this.cds.getCustomers().subscribe(function (response) {
-            _this.customers = response.json();
-            loading.dismiss();
+            if (response.status == 200) {
+                _this.customers = response.json();
+                loading.dismiss();
+            }
+            else {
+                var alert_1 = _this.alertCtrl.create({
+                    title: "Müşteriler getirilmedi",
+                    subTitle: "Müşteriler listelenirken bir hatayla karşılaşıldı. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin",
+                    buttons: [
+                        {
+                            text: "Tamam",
+                            handler: function () {
+                                _this.navCtrl.pop();
+                            }
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_1.present(); });
+            }
         });
     }
     NewOrderFormCustomerListPage.prototype.selectCustomer = function (customerId) {
@@ -1376,15 +1394,29 @@ var NewOrderFormCustomerListPage = (function () {
         var loading = this.loadingCtrl.create({ content: "Müşteri seçiliyor..." });
         loading.present();
         this.cds.getCustomerById(customerId).subscribe(function (response) {
-            _this.events.publish("neworderform:customer:selected", response.json());
-            loading.dismiss();
-            _this.navCtrl.pop();
+            if (response.status == 200) {
+                _this.events.publish("neworderform:customer:selected", response.json());
+                loading.dismiss().then(function () { return _this.navCtrl.pop(); });
+            }
+            else {
+                var alert_2 = _this.alertCtrl.create({
+                    title: "Müşteri Seçilemedi",
+                    subTitle: "Müşterinin detayları getirilirken bir hatayla karşılaşıldı. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin",
+                    buttons: [
+                        {
+                            text: "Tamam"
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_2.present(); });
+            }
         });
     };
     NewOrderFormCustomerListPage.prototype.filterCustomers = function (text) {
         var _this = this;
         this.cds.getCustomers(text).subscribe(function (response) {
-            _this.customers = response.json();
+            if (response.status == 200)
+                _this.customers = response.json();
         });
     };
     return NewOrderFormCustomerListPage;
@@ -1394,13 +1426,10 @@ NewOrderFormCustomerListPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-new-order-form-customer-list',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/new-order-form/new-order-form-customer-list/new-order-form-customer-list.html"*/'<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-buttons left>\n      <button ion-button navPop clear icon-only>\n        <ion-icon color="white" md="md-arrow-back" ios="ios-arrow-back"></ion-icon>\n      </button>\n    </ion-buttons>\n\n    <ion-title>Müşteriler</ion-title>\n  </ion-navbar>\n  \n  <ion-toolbar color="navBarColor">\n    <ion-searchbar color="navBarColor" (ionChange)="filterCustomers($event.value)"></ion-searchbar>\n  </ion-toolbar>\n\n  <ion-toolbar color="navBarColor">\n    <ion-item color="navBarColor">\n      <ion-label>TC Kimlik No</ion-label>\n      <ion-label>İsim</ion-label>\n    </ion-item>\n  </ion-toolbar>\n\n</ion-header>\n\n<ion-content padding>\n  <ion-list>\n    <ion-item (click)="selectCustomer(customer._id)" *ngFor="let customer of customers">\n      <ion-label>{{ customer.identificationNumber }}</ion-label>\n      <ion-label>{{ customer.name }}</ion-label>\n    </ion-item>\n  </ion-list>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/new-order-form/new-order-form-customer-list/new-order-form-customer-list.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */]) === "function" && _f || Object])
 ], NewOrderFormCustomerListPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=new-order-form-customer-list.js.map
 
 /***/ }),
