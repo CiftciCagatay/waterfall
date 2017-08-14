@@ -95,27 +95,32 @@ export class PaymentFormPage {
 
     loading.present();
 
-    this.pds.insertPayment(this.orderId, this.payment).subscribe((response) => {
+    this.pds.insertPayment(this.orderId, this.payment).subscribe(
+      (response) => {
+        if (response.status == 200) {
+          this.payment = response.json();
 
-      this.payment = response.json();
+          this.events.publish("payment:added", this.payment);
 
-      this.events.publish("payment:added", this.payment);
-
-      console.log("HAHA", response)
-
-      if (this.payment.amount) {
-        this.eds.logEvent(
-          "Yeni Ödeme",
-          `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
-          this.payment.personnel,
-          this.payment.date
-        )
+          if (this.payment.amount) {
+            this.eds.logEvent(
+              "Yeni Ödeme",
+              `${this.payment.personnel} tarafından ${this.payment.amount} ${this.payment.currency} tutarında ödeme alındı`,
+              this.payment.personnel,
+              this.payment.date
+            )
+          }
+        }
+        
+        loading.dismiss().then(() => this.navCtrl.pop());
+      },
+      (error) => {
+        console.log(error);
+        loading.dismiss().then(() => {
+          this.navCtrl.pop()
+        })
       }
-      
-      loading.dismiss();
-
-      this.navCtrl.pop()
-    });
+    );
   }
 
   saveChanges() {
@@ -123,15 +128,23 @@ export class PaymentFormPage {
 
     loading.present();
 
-    this.pds.updatePayment(this.paymentId, this.payment).subscribe((response) => {
-      this.events.publish("payment:updated", {
-        index: this.paymentIndex,
-        payment: this.payment
-      })
+    this.pds.updatePayment(this.paymentId, this.payment).subscribe(
+      (response) => {
+        if (response.status == 200) {
+          this.events.publish("payment:updated", {
+            index: this.paymentIndex,
+            payment: this.payment
+          });
+        }
 
-      loading.dismiss();
-
-      this.navCtrl.pop()
-    });
+        loading.dismiss().then(() => this.navCtrl.pop());
+      },
+      (error) => {
+        console.log(error);
+        loading.dismiss().then(() => {
+          this.navCtrl.pop()
+        })
+      }
+    );
   }
 }
