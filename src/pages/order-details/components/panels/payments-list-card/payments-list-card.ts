@@ -75,9 +75,22 @@ export class PaymentsListCardComponent {
     loading.present();
 
     this.pds.deletePayment(paymentId).subscribe((response) => {
-      this.payments.splice(index, 1)
-      
-      loading.dismiss();
+      if (response.status == 200) {
+        this.payments.splice(index, 1)
+        loading.dismiss();
+      } else {
+        let alert = this.alertCtrl.create({
+          title: "Ödeme Silinemedi",
+          subTitle: "Ödeme silinirken bir hatayla karşılaşıldı. Lütfen internet bağlantınızı kontrol edip tekrar deneyin",
+          buttons: [
+            {
+              text: "Tamam"
+            }
+          ]
+        });
+
+        loading.dismiss().then(() => alert.present());
+      }
     });
   }
 
