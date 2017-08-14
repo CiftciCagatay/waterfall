@@ -104,37 +104,77 @@ export class ProductFormPage {
   }
 
   saveChanges() {
-    let loading = this.loadingCtrl.create({ content: "Yeni ürün ekleniyor..." });
+    let loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
 
     loading.present();
 
-    this.pds.updateProduct(this.product._id, this.product).subscribe((response) => {
-      this.events.publish("product:updated", {
-        index: this.productIndex,
-        product: this.product
-      })
+    this.pds.updateProduct(this.product._id, this.product).subscribe(
+      (response) => {
+        if (response.status == 200) {
+          this.events.publish("product:updated", {
+            index: this.productIndex,
+            product: this.product
+          })
 
-      loading.dismiss().then(() => this.navCtrl.pop());
-    });
+          loading.dismiss().then(() => this.navCtrl.pop());
+        } else {
+          let alert = this.alertCtrl.create({
+            title: "Değişiklikler Kaydedilemedi",
+            subTitle: "Kaydetme işlemi başarısız oldu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin",
+            buttons: [
+              {
+                text: "Tamam"
+              }
+            ]
+          });
+
+          loading.dismiss().then(() => alert.present());
+        }
+      },
+      (error) => {
+        console.log(error);
+        loading.dismiss().then(() => {
+          this.navCtrl.pop()
+        })
+      }
+    );
   }
 
   appendToTheOrder() {
-    let loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
+    let loading = this.loadingCtrl.create({ content: "Yeni ürün ekleniyor..." });
 
     loading.present();
 
     console.log(this.orderId, this.product)
 
-    this.pds.insertProduct(this.orderId, this.product).subscribe((response) => {
-      
-      
-      this.product = response.json();
-      this.events.publish("product:added", this.product);
+    this.pds.insertProduct(this.orderId, this.product).subscribe(
+      (response) => {
+        if (response.status == 200) {
+          this.product = response.json();
+          this.events.publish("product:added", this.product);
 
+          loading.dismiss().then(() => this.navCtrl.pop());
+        } else {
+          let alert = this.alertCtrl.create({
+            title: "Ürün Kaydedilemedi",
+            subTitle: "Ürün ekleme işlemi başarısız oldu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin",
+            buttons: [
+              {
+                text: "Tamam"
+              }
+            ]
+          });
 
-
-      loading.dismiss().then(() => this.navCtrl.pop());
-    });
+          loading.dismiss().then(() => alert.present());
+        }
+      },
+      (error) => {
+        console.log(error);
+        loading.dismiss().then(() => {
+          this.navCtrl.pop()
+        })
+      }
+    );
   }
 
 }

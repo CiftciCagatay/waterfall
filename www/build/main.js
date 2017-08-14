@@ -2311,25 +2311,63 @@ var ProductFormPage = (function () {
     };
     ProductFormPage.prototype.saveChanges = function () {
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Yeni ürün ekleniyor..." });
+        var loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
         loading.present();
         this.pds.updateProduct(this.product._id, this.product).subscribe(function (response) {
-            _this.events.publish("product:updated", {
-                index: _this.productIndex,
-                product: _this.product
+            if (response.status == 200) {
+                _this.events.publish("product:updated", {
+                    index: _this.productIndex,
+                    product: _this.product
+                });
+                loading.dismiss().then(function () { return _this.navCtrl.pop(); });
+            }
+            else {
+                var alert_1 = _this.alertCtrl.create({
+                    title: "Değişiklikler Kaydedilemedi",
+                    subTitle: "Kaydetme işlemi başarısız oldu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin",
+                    buttons: [
+                        {
+                            text: "Tamam"
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_1.present(); });
+            }
+        }, function (error) {
+            console.log(error);
+            loading.dismiss().then(function () {
+                _this.navCtrl.pop();
             });
-            loading.dismiss().then(function () { return _this.navCtrl.pop(); });
         });
     };
     ProductFormPage.prototype.appendToTheOrder = function () {
         var _this = this;
-        var loading = this.loadingCtrl.create({ content: "Değişiklikler kaydediliyor..." });
+        var loading = this.loadingCtrl.create({ content: "Yeni ürün ekleniyor..." });
         loading.present();
         console.log(this.orderId, this.product);
         this.pds.insertProduct(this.orderId, this.product).subscribe(function (response) {
-            _this.product = response.json();
-            _this.events.publish("product:added", _this.product);
-            loading.dismiss().then(function () { return _this.navCtrl.pop(); });
+            if (response.status == 200) {
+                _this.product = response.json();
+                _this.events.publish("product:added", _this.product);
+                loading.dismiss().then(function () { return _this.navCtrl.pop(); });
+            }
+            else {
+                var alert_2 = _this.alertCtrl.create({
+                    title: "Ürün Kaydedilemedi",
+                    subTitle: "Ürün ekleme işlemi başarısız oldu. Lütfen internet bağlantınızı kontrol edip tekrar deneyin",
+                    buttons: [
+                        {
+                            text: "Tamam"
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_2.present(); });
+            }
+        }, function (error) {
+            console.log(error);
+            loading.dismiss().then(function () {
+                _this.navCtrl.pop();
+            });
         });
     };
     return ProductFormPage;
@@ -2338,14 +2376,10 @@ ProductFormPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-product-form',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/order-details/components/forms/product-form/product-form.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <ion-buttons start>\n      <button navPop ion-button>Vazgeç</button>\n    </ion-buttons>\n\n    <ion-title>{{ mode == \'new\' ? \'Yeni Ürün\' : \'Ürünü Düzenle\' }}</ion-title>\n\n    <ion-buttons end>\n      <button (click)="showSubmitAlert()" ion-button>Kaydet</button>\n    </ion-buttons>\n  </ion-navbar>\n</ion-header>\n\n<ion-content>\n  <form>\n    <ion-list>\n      <ion-item>\n        <ion-label>Ürün Kategori</ion-label>\n        <ion-select name="productType" [(ngModel)]="product.type">\n          <ion-option *ngFor="let type of pds.types">{{ type }}</ion-option>\n        </ion-select>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Desen Kodu</ion-label>\n        <ion-input name="patternCode" [(ngModel)]="product.patternCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Renk Kodu</ion-label>\n        <ion-input name="colorCode" [(ngModel)]="product.colorCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Cins</ion-label>\n        <ion-input name="varietyCode" [(ngModel)]="product.varietyCode"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Miktar</ion-label>\n        <ion-input type="number" name="quantity" (ionChange)="calculateTotal()" [(ngModel)]="product.quantity"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Birim Fiyat</ion-label>\n        <ion-input type="number" name="unitPrice" (ionChange)="calculateTotal()" [(ngModel)]="product.unitPrice"></ion-input>\n      </ion-item>\n\n      <ion-item>\n        <ion-label fixed>Tutar</ion-label>\n        <ion-input [disabled]="true" [value]="total"></ion-input>\n      </ion-item>\n\n    </ion-list>\n  </form>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/order-details/components/forms/product-form/product-form.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["b" /* Events */]) === "function" && _f || Object])
 ], ProductFormPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=product-form.js.map
 
 /***/ }),
