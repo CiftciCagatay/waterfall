@@ -1586,13 +1586,14 @@ var __metadata = (this && this.__metadata) || function (k, v) {
  * on Ionic pages and navigation.
  */
 var CustomerDetailsPage = (function () {
-    function CustomerDetailsPage(navCtrl, navParams, cds, ods, loadingCtrl) {
+    function CustomerDetailsPage(navCtrl, navParams, cds, ods, loadingCtrl, alertCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.cds = cds;
         this.ods = ods;
         this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
         this.orders = [];
         var customerId = this.navParams.get('customerId');
         if (!customerId)
@@ -1600,12 +1601,44 @@ var CustomerDetailsPage = (function () {
         var loading = this.loadingCtrl.create({ content: "Müşteri bilgileri yükleniyor..." });
         loading.present();
         this.cds.getCustomerById(customerId).subscribe(function (response) {
-            _this.customer = response.json();
-            loading.setContent("Müşteriye ait siparişler yükleniyor...");
-            _this.ods.getOrdersByCustomerId(customerId).subscribe(function (ordersResponse) {
-                _this.orders = ordersResponse.json();
+            if (response.status == 200) {
+                _this.customer = response.json();
+                loading.setContent("Müşteriye ait siparişler yükleniyor...");
+                _this.ods.getOrdersByCustomerId(customerId).subscribe(function (ordersResponse) {
+                    if (ordersResponse.status == 200)
+                        _this.orders = ordersResponse.json();
+                    loading.dismiss();
+                }, function (error) {
+                    console.log(error);
+                    var alert = _this.alertCtrl.create({
+                        title: "Müşteriye Ait Siparişler Getirilemedi",
+                        buttons: [
+                            {
+                                text: "Tamam"
+                            }
+                        ]
+                    });
+                    loading.dismiss().then(function () { return alert.present(); });
+                });
+            }
+            else {
                 loading.dismiss();
+            }
+        }, function (error) {
+            console.log(error);
+            var alert = _this.alertCtrl.create({
+                title: "Müşteri Detayları Getirilemedi",
+                subTitle: "Müşteriye ait detaylar getirilirken bir hatayla karşılaşıldı. Lütfen internet bağlantınızı kontrol edin ve tekrar deneyin",
+                buttons: [
+                    {
+                        text: "Tamam",
+                        handler: function () {
+                            _this.navCtrl.pop();
+                        }
+                    }
+                ]
             });
+            loading.dismiss().then(function () { return alert.present(); });
         });
     }
     CustomerDetailsPage.prototype.ionViewDidLoad = function () {
@@ -1623,13 +1656,10 @@ CustomerDetailsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-customer-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/customer-details/customer-details.html"*/'<!--\n  Generated template for the CustomerDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <ion-title>Müşteri Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col col-12 col-md-6>\n        <customer-details-card [customer]="customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col col-12 col-md-6>\n        <ion-card>\n          <ion-item color="secondBarColor">\n            <h2 style="color: white">Siparişler</h2>\n          </ion-item>\n\n          <ion-card-content style="margin-top: 12px">\n            <ion-list>\n              <ion-item-sliding *ngFor="let order of orders; let i = index">\n                <ion-item (click)="showOrdersDetails(order._id)">\n                  <ion-label>{{ order.orderDetails.orderDate | formatDate }}</ion-label>\n                  <ion-label>{{ order.orderDetails.amount }} {{ order.orderDetails.currency }}</ion-label>\n                  <ion-label>{{ order.orderDetails.amount - (order.payments | calculateBalance) }} {{ order.orderDetails.currency }}</ion-label>\n                </ion-item>\n\n                <ion-item-options>\n                  <button color="danger" (click)="presentDeletionWarning(order._id, i)" ion-button>Sil</button>\n                </ion-item-options>\n              </ion-item-sliding>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/customer-details/customer-details.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _f || Object])
 ], CustomerDetailsPage);
 
+var _a, _b, _c, _d, _e, _f;
 //# sourceMappingURL=customer-details.js.map
 
 /***/ }),
