@@ -25,7 +25,7 @@ export class OrderDetailsFormPage {
     private events: Events
   ) {
     this.orderId = this.navParams.get('orderId');
-    
+
     this.orderDetails = {
       orderDate: this.navParams.get('orderDetails').orderDate,
       deliveryDate: this.navParams.get('orderDetails').deliveryDate,
@@ -64,11 +64,20 @@ export class OrderDetailsFormPage {
 
     loading.present();
 
-    this.ods.updateOrderInformation(this.orderId, { orderDetails: this.orderDetails }).subscribe((response) => {
-      loading.dismiss().then(() => this.navCtrl.pop());
-
-      this.events.publish("orderDetails:updated", this.orderDetails);
-    })
+    this.ods.updateOrderInformation(this.orderId, { orderDetails: this.orderDetails })
+      .subscribe(
+        (response) => {
+          if (response.status == 200) {
+            this.events.publish("orderDetails:updated", this.orderDetails);
+          }
+          
+          loading.dismiss().then(() => this.navCtrl.pop());
+        },
+        (error) => {
+          console.log(error);
+          loading.dismiss().then(() => this.navCtrl.pop());
+        }
+      )
   }
 
 }
