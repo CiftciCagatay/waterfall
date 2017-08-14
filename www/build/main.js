@@ -3870,12 +3870,13 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 var OrderDetailsPage = (function () {
-    function OrderDetailsPage(navCtrl, navParams, ods, loadingCtrl) {
+    function OrderDetailsPage(navCtrl, navParams, ods, loadingCtrl, alertCtrl) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.navParams = navParams;
         this.ods = ods;
         this.loadingCtrl = loadingCtrl;
+        this.alertCtrl = alertCtrl;
         this.order = {
             _id: "",
             customer: null,
@@ -3890,8 +3891,40 @@ var OrderDetailsPage = (function () {
         var loading = this.loadingCtrl.create({ content: "Sipariş Detayları yükleniyor..." });
         loading.present();
         this.ods.getOrderDetails(this.order._id).subscribe(function (response) {
-            _this.order = response.json();
-            loading.dismiss();
+            if (response.status == 200) {
+                _this.order = response.json();
+                loading.dismiss();
+            }
+            else if (response.status == 404) {
+                var alert_1 = _this.alertCtrl.create({
+                    title: "Sipariş Bulunamadı",
+                    subTitle: "Lütfen tekrar deneyin",
+                    buttons: [
+                        {
+                            text: "Tamam",
+                            handler: function () {
+                                _this.navCtrl.pop();
+                            }
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_1.present(); });
+            }
+            else {
+                var alert_2 = _this.alertCtrl.create({
+                    title: "Sipariş Getirilemedi",
+                    subTitle: "Sipariş getirilirken hatayla karşılaşıldu. Lütfen tekrar deneyin",
+                    buttons: [
+                        {
+                            text: "Tamam",
+                            handler: function () {
+                                _this.navCtrl.pop();
+                            }
+                        }
+                    ]
+                });
+                loading.dismiss().then(function () { return alert_2.present(); });
+            }
         });
     }
     return OrderDetailsPage;
@@ -3900,12 +3933,10 @@ OrderDetailsPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-order-details',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/order-details/order-details.html"*/'<!--\n  Generated template for the OrderDetailsPage page.\n\n  See http://ionicframework.com/docs/components/#navigation for more info on\n  Ionic pages and navigation.\n-->\n<ion-header>\n\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n\n    <ion-title>Sipariş Detayları</ion-title>\n  </ion-navbar>\n\n</ion-header>\n\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <customer-details-card [customer]="order.customer"></customer-details-card>\n      </ion-col>\n\n      <ion-col>\n        <order-details-card [orderId]="order._id" [orderDetails]="order.orderDetails" [balance]="order.payments | calculateBalance"></order-details-card>\n      </ion-col>\n    </ion-row>\n\n    <ion-row>\n      <ion-col>\n        <products-list-card [orderId]="order._id" [products]="order.products" [laborCost]="order.orderDetails?.laborCost"></products-list-card>\n      </ion-col>\n\n      <ion-col>\n        <payments-list-card [orderId]="order._id" [payments]="order.payments"></payments-list-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/order-details/order-details.html"*/
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _e || Object])
 ], OrderDetailsPage);
 
+var _a, _b, _c, _d, _e;
 //# sourceMappingURL=order-details.js.map
 
 /***/ }),
