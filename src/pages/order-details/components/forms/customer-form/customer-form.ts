@@ -60,11 +60,19 @@ export class CustomerFormPage {
 
     loading.present();
 
-    this.cds.updateCustomerInformation(this.customer._id, this.customer).subscribe((response) => {
-      loading.dismiss().then(() => this.navCtrl.pop());
+    this.cds.updateCustomerInformation(this.customer._id, this.customer).subscribe(
+      (response) => {
+        if (response.status == 200)
+          this.events.publish("customer:updated", this.customer);
 
-      this.events.publish("customer:updated", this.customer);
-    })
+        loading.dismiss().then(() => this.navCtrl.pop());
+      },
+      (error) => {
+        console.log(error);
+
+        loading.dismiss().then(() => this.navCtrl.pop());
+      }
+    )
   }
 
 }
