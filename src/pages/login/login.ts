@@ -62,36 +62,60 @@ export class LoginPage {
     loading.present();
 
     this.authService.login(this.email, this.password)
-      .then(response => {
-        console.log(response);
+      .then(authResponse => {
+        console.log(authResponse);
 
         this.authService.getUserDetailsFromDatabaseByEmail(this.email)
-          .subscribe(response => {
-            console.log(response.json());
-            this.authService.setUser(response.json());
+          .subscribe(
+          (response) => {
+            if (response.status == 200) {
+              console.log(response.json());
+              this.authService.setUser(response.json());
 
-            if (this.authService.user.isManager) {
-              this.onesignal.sendTag("isManager", "true");
-            } else {
-              this.onesignal.sendTag("isManager", "false");
+              if (this.authService.user.isManager) {
+                this.onesignal.sendTag("isManager", "true");
+              } else {
+                this.onesignal.sendTag("isManager", "false");
+              }
+
+              this.menuController.enable(true);
+
+              loading.dismiss();
+
+              this.navCtrl.setRoot(HomePage);
             }
+          },
+          (error) => {
+            if (error.status == 404) {
+              let alert = this.alertCtrl.create({
+                title: "Giriş Yapılamadı",
+                message: "Girdiğiniz veriler kullanıcı yöneticisinde mevcut ancak veritabanında bu email adresine sahip bir kullanıcı bulunamadı. Lütfen yöneticinizle irtibata geçin",
+                buttons: [{ text: "Tamam" }]
+              })
 
-            this.menuController.enable(true);
-            
-            loading.dismiss();
 
-            this.navCtrl.setRoot(HomePage);
-          });
+              loading.dismiss().then(() => alert.present());
+            } else {
+              let alert = this.alertCtrl.create({
+                title: "Giriş Yapılamadı",
+                message: "Sunucuda bir hata meydana geldi. Lütfen tekrar deneyin",
+                buttons: [{ text: "Tamam" }]
+              })
+
+
+              loading.dismiss().then(() => alert.present());
+            }
+          })
       })
       .catch((error) => {
-        this.alertCtrl.create({
+        let alert = this.alertCtrl.create({
           title: "Giriş Yapılamadı",
           message: "Lütfen girdiğiniz bilgileri kontrol edin",
-          buttons: [{ text: "OK" }]
-        }).present();
+          buttons: [{ text: "Tamam" }]
+        })
 
 
-        loading.dismiss();
+        loading.dismiss().then(() => alert.present());
       })
   }
 

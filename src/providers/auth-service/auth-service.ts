@@ -37,7 +37,6 @@ export class AuthServiceProvider {
 
   login(email: string, password: string) {
     return this.afa.auth.signInWithEmailAndPassword(email, password);
-    //return this.http.get(this.ref + "/personnels/login?email=" + email + "&password=" + password);
   }
 
   logout() {
