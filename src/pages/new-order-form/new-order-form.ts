@@ -86,7 +86,7 @@ export class NewOrderFormPage {
     this.cityDistrictProvider.getCounties(city)
   }
 
-  openCustomerListPage () {
+  openCustomerListPage() {
     let customerListModal = this.modalCtrl.create(NewOrderFormCustomerListPage, {
       customer: this.order.customer
     });
@@ -144,22 +144,39 @@ export class NewOrderFormPage {
     loading.present();
 
     this.ods.insertNewOrder(this.order).subscribe((response) => {
-      this.orderId = response.json()[1]._id;
+      if (response.status == 200) {
+        this.orderId = response.json()[1]._id;
 
-      console.log(response.json())
+        console.log(response.json())
 
-      this.logOrderSavedEvent();
+        this.logOrderSavedEvent();
 
-      this.showOrderSavedAlert();
+        this.showOrderSavedAlert();
 
-      loading.dismiss();
+        loading.dismiss();
+      } else {
+        console.log(response);
+
+        let alert = this.alertCtrl.create({
+          title: "Sipariş Kaydedilemedi",
+          subTitle: "Sipariş kaydedilirken bir hatayla karşılaşıldı. Forma girdiğiniz verileri ve internet bağlantınızı kontrol edin",
+          buttons: [
+            {
+              text: "Tamam"
+            }
+          ]
+        });
+
+        loading.dismiss().then(() => alert.present())
+      }
+
     });
 
   }
 
   showOrderSavedAlert() {
     this.resetOrder();
-    
+
     this.alertCtrl.create({
       title: "Sipariş başarıyla kaydedildi",
       message: "Detaylara gitmek ister misiniz?",
@@ -218,8 +235,7 @@ export class NewOrderFormPage {
   }
 
   goToOrderDetailsPage() {
-    this.navCtrl.push(OrderDetailsPage, {
-      orderId: this.orderId
-    }).then(() => this.orderId = "");
+    this.navCtrl.push(OrderDetailsPage, { orderId: this.orderId })
+      .then(() => this.orderId = "");
   }
 }
