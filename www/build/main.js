@@ -1936,8 +1936,8 @@ var NewOrderFormPage = (function () {
         loading.present();
         this.ods.insertNewOrder(this.order).subscribe(function (response) {
             if (response.status == 200) {
-                _this.orderId = response.json()[1]._id;
                 console.log(response.json());
+                _this.orderId = response.json()._id;
                 _this.logOrderSavedEvent();
                 _this.showOrderSavedAlert();
                 loading.dismiss();

@@ -145,9 +145,9 @@ export class NewOrderFormPage {
 
     this.ods.insertNewOrder(this.order).subscribe((response) => {
       if (response.status == 200) {
-        this.orderId = response.json()[1]._id;
-
         console.log(response.json())
+        this.orderId = response.json()._id;
+
 
         this.logOrderSavedEvent();
 
