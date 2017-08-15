@@ -38,7 +38,7 @@ export class OrderDbServiceProvider {
   getOrdersList(customerName?: String, lastOrderId?: String, limit = 10) {
     let url = this.globals.ref + "/orders?limit=" + limit;
 
-    if (customerName) { url = url + "&customerName=" + customerName; }
+    if (customerName) { url = url + "&searchText=" + customerName; }
     if (lastOrderId) { url = url + "&lastOrderId=" + lastOrderId; }
 
     console.log("GET ORDER URL : " + url);

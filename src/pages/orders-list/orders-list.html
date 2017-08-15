@@ -21,7 +21,7 @@
   </ion-navbar>
 
   <ion-toolbar color="navBarColor">
-    <ion-searchbar></ion-searchbar>
+    <ion-searchbar (ionChange)="filterOrders($event.value)"></ion-searchbar>
   </ion-toolbar>
 
   <ion-toolbar color="navBarColor">

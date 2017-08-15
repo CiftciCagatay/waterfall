@@ -53,6 +53,21 @@ export class OrdersListPage {
       })
   }
 
+  filterOrders (customerName) {
+    this.ods.getOrdersList(customerName, undefined, undefined)
+      .subscribe(
+        (response) => {
+          if (response.status == 200) {
+            console.log(response);
+            this.orders = response.json();
+          }
+        },
+        (error) => {
+          console.log(error);
+        }
+      )
+  }
+
   deleteOrder(orderId: string, index: number) {
     let loading = this.loadingCtrl.create({ content: "Sipariş siliniyor..." });
 
