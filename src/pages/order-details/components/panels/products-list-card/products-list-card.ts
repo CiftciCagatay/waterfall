@@ -20,7 +20,7 @@ export class ProductsListCardComponent implements OnInit {
   @Input() orderId: string;
   @Input() laborCost = 0.0;
 
-  totalQuantity = 0.0;
+  // totalQuantity = 0.0;
   totalAmount = 0.0;
 
   constructor(
@@ -32,14 +32,14 @@ export class ProductsListCardComponent implements OnInit {
     private ods: OrderDbServiceProvider
   ) {
     this.events.subscribe("product:added", (data) => {
-      if (this.products != null)  {
+      if (this.products != null) {
         this.products.push(data);
       } else {
         this.products = [data];
       }
 
-      this.totalAmount += data.quantity * data.unitPrice;
-      this.totalQuantity += data.quantity;
+      // this.totalAmount += data.quantity * data.unitPrice;
+      // this.totalQuantity += data.quantity;
     });
 
     this.events.subscribe("product:updated", (data) => {
@@ -48,30 +48,47 @@ export class ProductsListCardComponent implements OnInit {
       this.products[data.index].colorCode = data.product.colorCode;
       this.products[data.index].varietyCode = data.product.varietyCode;
       this.products[data.index].unitPrice = data.product.unitPrice;
-      this.products[data.index].laborCost = data.product.laborCost;
+      // this.products[data.index].laborCost = data.product.laborCost;
       this.products[data.index].quantity = data.product.quantity;
 
-      this.calculateTotalAmountAndQuantity();
+      // this.calculateTotalAmountAndQuantity();
+      this.calculateTotalAmount();
     });
   }
 
-  ngOnInit() {
+  // ngOnInit() {
+  //   if (this.products) {
+  //     this.calculateTotalAmountAndQuantity();
+  //   }
+  // }
+
+  ngOnInit () {
     if (this.products) {
-      this.calculateTotalAmountAndQuantity();
+      this.calculateTotalAmount();
     }
   }
 
-  calculateTotalAmountAndQuantity() {
+  calculateTotalAmount() {
     this.totalAmount = 0.0;
-    this.totalQuantity = 0.0;
 
     for (const product of this.products) {
       this.totalAmount += product.quantity * product.unitPrice;
-      this.totalQuantity += product.quantity;
     }
 
-    this.totalAmount += this.totalQuantity * this.laborCost;
+    this.totalAmount += this.laborCost;
   }
+
+  // calculateTotalAmountAndQuantity() {
+  //   this.totalAmount = 0.0;
+  //   this.totalQuantity = 0.0;
+
+  //   for (const product of this.products) {
+  //     this.totalAmount += product.quantity * product.unitPrice;
+  //     this.totalQuantity += product.quantity;
+  //   }
+
+  //   this.totalAmount += this.totalQuantity * this.laborCost;
+  // }
 
   showLaborCostAlert() {
     let alert = this.alertCtrl.create({
@@ -92,7 +109,8 @@ export class ProductsListCardComponent implements OnInit {
           handler: (data) => {
             this.laborCost = Number(data.laborCost)
             this.saveLaborCost();
-            this.calculateTotalAmountAndQuantity();
+            this.calculateTotalAmount();
+            // this.calculateTotalAmountAndQuantity();
           }
         },
         {
@@ -165,8 +183,8 @@ export class ProductsListCardComponent implements OnInit {
     loading.present();
 
     this.pds.deleteProduct(productId).subscribe((response) => {
-      this.totalAmount -= this.products[index].quantity * this.products[index].unitPrice
-      this.totalQuantity -= this.products[index].quantity
+      // this.totalAmount -= this.products[index].quantity * this.products[index].unitPrice
+      // this.totalQuantity -= this.products[index].quantity
 
       this.products.splice(index, 1);
 
