@@ -47,6 +47,7 @@ import { GlobalsProvider } from '../providers/globals/globals';
 
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
+import { ReportsDbServiceProvider } from "../providers/Database_Service_Providers/reports-db-service/reports-db-service";
 
 var config = {
   apiKey: "AIzaSyCxmjHbtRTZF0ERTALuA7S2AzPa2uq7TlU",
@@ -132,6 +133,7 @@ var config = {
     ProductDbServiceProvider,
     PaymentDbServiceProvider,
     EventDbServiceProvider,
+    ReportsDbServiceProvider,
 
     GlobalsProvider
   ]
