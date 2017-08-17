@@ -29,7 +29,8 @@ export class PaymentDbServiceProvider {
 
   paymentTypes = [
     "Nakit",
-    "Kredi Kartı"
+    "Kredi Kartı",
+    "Havale"
   ]
 
   constructor(
