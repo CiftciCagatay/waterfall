@@ -48,6 +48,8 @@ import { GlobalsProvider } from '../providers/globals/globals';
 import { AngularFireModule } from 'angularfire2';
 import { AngularFireAuthModule } from 'angularfire2/auth';
 import { ReportsDbServiceProvider } from "../providers/Database_Service_Providers/reports-db-service/reports-db-service";
+import { PaymentReportComponent } from "../components/payment-report/payment-report";
+import { ProductReportComponent } from "../components/product-report/product-report";
 
 var config = {
   apiKey: "AIzaSyCxmjHbtRTZF0ERTALuA7S2AzPa2uq7TlU",
@@ -81,6 +83,9 @@ var config = {
     OrderDetailsCardComponent,
     PaymentsListCardComponent,
     ProductsListCardComponent,
+
+    PaymentReportComponent,
+    ProductReportComponent,
 
     FormatDatePipe,
     CalculateBalancePipe

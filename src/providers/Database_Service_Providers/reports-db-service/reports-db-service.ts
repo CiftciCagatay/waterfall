@@ -25,4 +25,10 @@ export class ReportsDbServiceProvider {
 
     return this.http.get(url);
   }
+
+  getProductReport (minDate, maxDate) {
+    let url = this.ref + "/reports/productReport?minDate=" + minDate + "&maxDate=" + maxDate;
+
+    return this.http.get(url)
+  }
 }

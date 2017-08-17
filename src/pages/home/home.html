@@ -10,7 +10,17 @@
 <ion-content padding>
   <ion-grid>
     <ion-row>
+      <!-- <ion-col>
+        
+      </ion-col> -->
+
       <ion-col>
+        <product-report></product-report>
+      </ion-col>
+
+      <ion-col>
+        <payment-report></payment-report>
+
         <ion-card>
           <ion-card-header>Son Aktiviteler</ion-card-header>
 
@@ -27,43 +37,6 @@
           </ion-card-content>
         </ion-card>
       </ion-col>
-
-      <ion-col>
-        <ion-card>
-          <ion-card-header>Ödeme Raporu</ion-card-header>
-
-          <ion-card-content>
-            <ion-item>
-              <canvas #paymentBarCanvas></canvas>
-            </ion-item>
-          </ion-card-content>
-
-          <ion-card-content>
-            <ion-list>
-              <ion-item>
-                <ion-label>Başlangıç Tarihi</ion-label>
-                <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>
-              </ion-item>
-              <ion-item>
-                <ion-label>Bitiş Tarihi</ion-label>
-                <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>
-              </ion-item>
-            </ion-list>
-            
-            <ion-list inset no-line>
-              <ion-item>
-                <ion-label>Ay</ion-label>
-                <ion-label>Toplam Ödeme</ion-label>
-              </ion-item>
-              <ion-item *ngFor="let item of paymentData">
-                <ion-label>{{ item._id }}</ion-label>
-                <ion-label>{{ item.totalAmount }} TRY</ion-label>
-              </ion-item>
-            </ion-list>
-          </ion-card-content>
-        </ion-card>
-      </ion-col>
-      <ion-col></ion-col>
     </ion-row>
   </ion-grid>
 </ion-content>

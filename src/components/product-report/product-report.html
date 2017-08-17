@@ -1,0 +1,32 @@
+<ion-card>
+  <ion-card-header style="text-align: center">Ürün Raporu</ion-card-header>
+
+
+
+  <ion-card-content>
+    <!-- <ion-list>
+      <ion-item>
+        <ion-label>Başlangıç Tarihi</ion-label>
+        <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>
+      </ion-item>
+      <ion-item>
+        <ion-label>Bitiş Tarihi</ion-label>
+        <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>
+      </ion-item>
+    </ion-list> -->
+
+    <canvas #productCanvas id="productCanvas"></canvas>
+    <ion-list inset no-line>
+
+
+      <ion-item>
+        <ion-label>Ürün</ion-label>
+        <ion-label>Toplam Satış</ion-label>
+      </ion-item>
+      <ion-item *ngFor="let product of products">
+        <ion-label>{{ product._id.patternCode }}/{{ product._id.colorCode }}/{{ product._id.varietyCode }}</ion-label>
+        <ion-label>{{ product.totalAmount }} TRY</ion-label>
+      </ion-item>
+    </ion-list>
+  </ion-card-content>
+</ion-card>

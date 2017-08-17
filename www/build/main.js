@@ -1339,9 +1339,65 @@ ProductDbServiceProvider = __decorate([
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportsDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the ProductDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var ReportsDbServiceProvider = (function () {
+    function ReportsDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        this.ref = "";
+        this.ref = this.globals.ref;
+    }
+    ReportsDbServiceProvider.prototype.getPaymentReport = function (minDate, maxDate) {
+        var url = this.ref + "/reports/paymentReport?minDate=" + minDate + "&maxDate=" + maxDate;
+        return this.http.get(url);
+    };
+    ReportsDbServiceProvider.prototype.getProductReport = function (minDate, maxDate) {
+        var url = this.ref + "/reports/productReport?minDate=" + minDate + "&maxDate=" + maxDate;
+        return this.http.get(url);
+    };
+    return ReportsDbServiceProvider;
+}());
+ReportsDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], ReportsDbServiceProvider);
+
+//# sourceMappingURL=reports-db-service.js.map
+
+/***/ }),
+
+/***/ 116:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewOrderFormCustomerListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -1438,16 +1494,16 @@ NewOrderFormCustomerListPage = __decorate([
 
 /***/ }),
 
-/***/ 116:
+/***/ 117:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return LoginPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__ = __webpack_require__(294);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__ = __webpack_require__(176);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1564,13 +1620,13 @@ LoginPage = __decorate([
 
 /***/ }),
 
-/***/ 117:
+/***/ 118:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDetailsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__order_details_order_details__ = __webpack_require__(55);
@@ -1677,15 +1733,15 @@ CustomerDetailsPage = __decorate([
 
 /***/ }),
 
-/***/ 118:
+/***/ 119:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__customer_details_customer_details__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__customer_details_customer_details__ = __webpack_require__(118);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1767,7 +1823,7 @@ CustomerListPage = __decorate([
 
 /***/ }),
 
-/***/ 126:
+/***/ 127:
 /***/ (function(module, exports) {
 
 function webpackEmptyAsyncContext(req) {
@@ -1776,28 +1832,28 @@ function webpackEmptyAsyncContext(req) {
 webpackEmptyAsyncContext.keys = function() { return []; };
 webpackEmptyAsyncContext.resolve = webpackEmptyAsyncContext;
 module.exports = webpackEmptyAsyncContext;
-webpackEmptyAsyncContext.id = 126;
+webpackEmptyAsyncContext.id = 127;
 
 /***/ }),
 
-/***/ 168:
+/***/ 169:
 /***/ (function(module, exports, __webpack_require__) {
 
 var map = {
 	"../pages/customer-details/customer-details.module": [
-		490,
+		492,
 		3
 	],
 	"../pages/customer-list/customer-list.module": [
-		491,
+		493,
 		2
 	],
 	"../pages/login/login.module": [
-		489,
+		491,
 		1
 	],
 	"../pages/new-order-form/new-order-form-customer-list/new-order-form-customer-list.module": [
-		488,
+		490,
 		0
 	]
 };
@@ -1813,110 +1869,17 @@ webpackAsyncContext.keys = function webpackAsyncContextKeys() {
 	return Object.keys(map);
 };
 module.exports = webpackAsyncContext;
-webpackAsyncContext.id = 168;
+webpackAsyncContext.id = 169;
 
 /***/ }),
 
-/***/ 175:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ReportsDbServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/*
-  Generated class for the ProductDbServiceProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
-var ReportsDbServiceProvider = (function () {
-    function ReportsDbServiceProvider(http, globals) {
-        this.http = http;
-        this.globals = globals;
-        this.ref = "";
-        this.ref = this.globals.ref;
-    }
-    ReportsDbServiceProvider.prototype.getPaymentReport = function (minDate, maxDate) {
-        var url = this.ref + "/reports/paymentReport?minDate=" + minDate + "&maxDate=" + maxDate;
-        return this.http.get(url);
-    };
-    return ReportsDbServiceProvider;
-}());
-ReportsDbServiceProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]) === "function" && _b || Object])
-], ReportsDbServiceProvider);
-
-var _a, _b;
-//# sourceMappingURL=reports-db-service.js.map
-
-/***/ }),
-
-/***/ 28:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalsProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-/*
-  Generated class for the GlobalsProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
-var GlobalsProvider = (function () {
-    function GlobalsProvider() {
-        this.ref = "https://quiet-chamber-99549.herokuapp.com";
-        console.log('Hello GlobalsProvider Provider');
-    }
-    return GlobalsProvider;
-}());
-GlobalsProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [])
-], GlobalsProvider);
-
-//# sourceMappingURL=globals.js.map
-
-/***/ }),
-
-/***/ 337:
+/***/ 219:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return NewOrderFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_details_order_details__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_auth_service_auth_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_city_district_city_district__ = __webpack_require__(112);
@@ -1924,7 +1887,7 @@ GlobalsProvider = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__new_order_form_customer_list_new_order_form_customer_list__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__new_order_form_customer_list_new_order_form_customer_list__ = __webpack_require__(116);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -2151,13 +2114,13 @@ NewOrderFormPage = __decorate([
 
 /***/ }),
 
-/***/ 338:
+/***/ 220:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrdersListPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__order_details_order_details__ = __webpack_require__(55);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2346,13 +2309,13 @@ OrdersListPage = __decorate([
 
 /***/ }),
 
-/***/ 339:
+/***/ 221:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(114);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -2522,97 +2485,13 @@ ProductFormPage = __decorate([
 
 /***/ }),
 
-/***/ 34:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDbServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/*
-  Generated class for the OrderDbServiceProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
-var OrderDbServiceProvider = (function () {
-    function OrderDbServiceProvider(http, globals) {
-        this.http = http;
-        this.globals = globals;
-        console.log('Hello PaymentDbServiceProvider Provider');
-    }
-    OrderDbServiceProvider.prototype.insertNewOrder = function (order) {
-        return this.http.post(this.globals.ref + "/orders", order);
-    };
-    OrderDbServiceProvider.prototype.updateOrderInformation = function (orderId, newValue) {
-        var url = this.globals.ref + "/orders/" + orderId;
-        return this.http.put(url, newValue);
-    };
-    OrderDbServiceProvider.prototype.deleteOrder = function (id) {
-        var url = this.globals.ref + "/orders/" + id;
-        return this.http.delete(url);
-    };
-    OrderDbServiceProvider.prototype.getOrdersList = function (customerName, lastOrderId, limit) {
-        if (limit === void 0) { limit = 10; }
-        var url = this.globals.ref + "/orders?limit=" + limit;
-        if (customerName) {
-            url = url + "&searchText=" + customerName;
-        }
-        if (lastOrderId) {
-            url = url + "&lastOrderId=" + lastOrderId;
-        }
-        console.log("GET ORDER URL : " + url);
-        return this.http.get(url);
-    };
-    OrderDbServiceProvider.prototype.getOrdersByCustomerId = function (customerId) {
-        var url = this.globals.ref + "/customers/" + customerId + "/orders";
-        return this.http.get(url);
-    };
-    OrderDbServiceProvider.prototype.getOrderDetails = function (orderId) {
-        var url = this.globals.ref + "/orders/" + orderId;
-        return this.http.get(url);
-    };
-    OrderDbServiceProvider.prototype.updateLaborCost = function (orderId, laborCost) {
-        var url = this.globals.ref + "/orders/" + orderId + "/laborCost";
-        return this.http.put(url, {
-            laborCost: laborCost
-        });
-    };
-    return OrderDbServiceProvider;
-}());
-OrderDbServiceProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
-], OrderDbServiceProvider);
-
-//# sourceMappingURL=order-db-service.js.map
-
-/***/ }),
-
-/***/ 340:
+/***/ 222:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(54);
@@ -2753,13 +2632,13 @@ PaymentFormPage = __decorate([
 
 /***/ }),
 
-/***/ 341:
+/***/ 223:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_city_district_city_district__ = __webpack_require__(112);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2844,13 +2723,13 @@ CustomerFormPage = __decorate([
 
 /***/ }),
 
-/***/ 342:
+/***/ 224:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsFormPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -2940,13 +2819,138 @@ OrderDetailsFormPage = __decorate([
 
 /***/ }),
 
-/***/ 343:
+/***/ 28:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return GlobalsProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_1_rxjs_add_operator_map__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+/*
+  Generated class for the GlobalsProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var GlobalsProvider = (function () {
+    function GlobalsProvider() {
+        this.ref = "https://quiet-chamber-99549.herokuapp.com";
+        console.log('Hello GlobalsProvider Provider');
+    }
+    return GlobalsProvider;
+}());
+GlobalsProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [])
+], GlobalsProvider);
+
+//# sourceMappingURL=globals.js.map
+
+/***/ }),
+
+/***/ 34:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the OrderDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var OrderDbServiceProvider = (function () {
+    function OrderDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    OrderDbServiceProvider.prototype.insertNewOrder = function (order) {
+        return this.http.post(this.globals.ref + "/orders", order);
+    };
+    OrderDbServiceProvider.prototype.updateOrderInformation = function (orderId, newValue) {
+        var url = this.globals.ref + "/orders/" + orderId;
+        return this.http.put(url, newValue);
+    };
+    OrderDbServiceProvider.prototype.deleteOrder = function (id) {
+        var url = this.globals.ref + "/orders/" + id;
+        return this.http.delete(url);
+    };
+    OrderDbServiceProvider.prototype.getOrdersList = function (customerName, lastOrderId, limit) {
+        if (limit === void 0) { limit = 10; }
+        var url = this.globals.ref + "/orders?limit=" + limit;
+        if (customerName) {
+            url = url + "&searchText=" + customerName;
+        }
+        if (lastOrderId) {
+            url = url + "&lastOrderId=" + lastOrderId;
+        }
+        console.log("GET ORDER URL : " + url);
+        return this.http.get(url);
+    };
+    OrderDbServiceProvider.prototype.getOrdersByCustomerId = function (customerId) {
+        var url = this.globals.ref + "/customers/" + customerId + "/orders";
+        return this.http.get(url);
+    };
+    OrderDbServiceProvider.prototype.getOrderDetails = function (orderId) {
+        var url = this.globals.ref + "/orders/" + orderId;
+        return this.http.get(url);
+    };
+    OrderDbServiceProvider.prototype.updateLaborCost = function (orderId, laborCost) {
+        var url = this.globals.ref + "/orders/" + orderId + "/laborCost";
+        return this.http.put(url, {
+            laborCost: laborCost
+        });
+    };
+    return OrderDbServiceProvider;
+}());
+OrderDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], OrderDbServiceProvider);
+
+//# sourceMappingURL=order-db-service.js.map
+
+/***/ }),
+
+/***/ 344:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 Object.defineProperty(__webpack_exports__, "__esModule", { value: true });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(344);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(362);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__ = __webpack_require__(345);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__app_module__ = __webpack_require__(363);
 
 
 Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* platformBrowserDynamic */])().bootstrapModule(__WEBPACK_IMPORTED_MODULE_1__app_module__["a" /* AppModule */]);
@@ -2954,55 +2958,59 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 
 /***/ }),
 
-/***/ 362:
+/***/ 363:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return AppModule; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(480);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(433);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(336);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(294);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_orders_list_orders_list__ = __webpack_require__(338);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_orders_list_orders_list__ = __webpack_require__(220);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_order_details_order_details__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_customer_list_customer_list__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_customer_details_customer_details__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_product_form_product_form__ = __webpack_require__(339);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_payment_form_payment_form__ = __webpack_require__(340);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(341);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(342);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_products_list_card_products_list_card__ = __webpack_require__(481);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_payments_list_card_payments_list_card__ = __webpack_require__(482);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_order_details_card_order_details_card__ = __webpack_require__(483);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_order_details_components_panels_customer_details_card_customer_details_card__ = __webpack_require__(484);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_customer_list_customer_list__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_customer_details_customer_details__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_product_form_product_form__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_payment_form_payment_form__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_products_list_card_products_list_card__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_payments_list_card_payments_list_card__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_order_details_card_order_details_card__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_order_details_components_panels_customer_details_card_customer_details_card__ = __webpack_require__(437);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_auth_service_auth_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(113);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_city_district_city_district__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__ = __webpack_require__(485);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__ = __webpack_require__(486);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__ = __webpack_require__(438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__ = __webpack_require__(439);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(54);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_globals_globals__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_angularfire2__ = __webpack_require__(487);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_angularfire2_auth__ = __webpack_require__(169);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(175);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_angularfire2__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_angularfire2_auth__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_payment_report_payment_report__ = __webpack_require__(441);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_product_report_product_report__ = __webpack_require__(489);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
+
 
 
 
@@ -3074,6 +3082,8 @@ AppModule = __decorate([
             __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_order_details_card_order_details_card__["a" /* OrderDetailsCardComponent */],
             __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_payments_list_card_payments_list_card__["a" /* PaymentsListCardComponent */],
             __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_products_list_card_products_list_card__["a" /* ProductsListCardComponent */],
+            __WEBPACK_IMPORTED_MODULE_38__components_payment_report_payment_report__["a" /* PaymentReportComponent */],
+            __WEBPACK_IMPORTED_MODULE_39__components_product_report_product_report__["a" /* ProductReportComponent */],
             __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__["a" /* FormatDatePipe */],
             __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__["a" /* CalculateBalancePipe */]
         ],
@@ -3135,413 +3145,21 @@ AppModule = __decorate([
 
 /***/ }),
 
-/***/ 438:
-/***/ (function(module, exports, __webpack_require__) {
-
-var map = {
-	"./af": 179,
-	"./af.js": 179,
-	"./ar": 180,
-	"./ar-dz": 181,
-	"./ar-dz.js": 181,
-	"./ar-kw": 182,
-	"./ar-kw.js": 182,
-	"./ar-ly": 183,
-	"./ar-ly.js": 183,
-	"./ar-ma": 184,
-	"./ar-ma.js": 184,
-	"./ar-sa": 185,
-	"./ar-sa.js": 185,
-	"./ar-tn": 186,
-	"./ar-tn.js": 186,
-	"./ar.js": 180,
-	"./az": 187,
-	"./az.js": 187,
-	"./be": 188,
-	"./be.js": 188,
-	"./bg": 189,
-	"./bg.js": 189,
-	"./bn": 190,
-	"./bn.js": 190,
-	"./bo": 191,
-	"./bo.js": 191,
-	"./br": 192,
-	"./br.js": 192,
-	"./bs": 193,
-	"./bs.js": 193,
-	"./ca": 194,
-	"./ca.js": 194,
-	"./cs": 195,
-	"./cs.js": 195,
-	"./cv": 196,
-	"./cv.js": 196,
-	"./cy": 197,
-	"./cy.js": 197,
-	"./da": 198,
-	"./da.js": 198,
-	"./de": 199,
-	"./de-at": 200,
-	"./de-at.js": 200,
-	"./de-ch": 201,
-	"./de-ch.js": 201,
-	"./de.js": 199,
-	"./dv": 202,
-	"./dv.js": 202,
-	"./el": 203,
-	"./el.js": 203,
-	"./en-au": 204,
-	"./en-au.js": 204,
-	"./en-ca": 205,
-	"./en-ca.js": 205,
-	"./en-gb": 206,
-	"./en-gb.js": 206,
-	"./en-ie": 207,
-	"./en-ie.js": 207,
-	"./en-nz": 208,
-	"./en-nz.js": 208,
-	"./eo": 209,
-	"./eo.js": 209,
-	"./es": 210,
-	"./es-do": 211,
-	"./es-do.js": 211,
-	"./es.js": 210,
-	"./et": 212,
-	"./et.js": 212,
-	"./eu": 213,
-	"./eu.js": 213,
-	"./fa": 214,
-	"./fa.js": 214,
-	"./fi": 215,
-	"./fi.js": 215,
-	"./fo": 216,
-	"./fo.js": 216,
-	"./fr": 217,
-	"./fr-ca": 218,
-	"./fr-ca.js": 218,
-	"./fr-ch": 219,
-	"./fr-ch.js": 219,
-	"./fr.js": 217,
-	"./fy": 220,
-	"./fy.js": 220,
-	"./gd": 221,
-	"./gd.js": 221,
-	"./gl": 222,
-	"./gl.js": 222,
-	"./gom-latn": 223,
-	"./gom-latn.js": 223,
-	"./he": 224,
-	"./he.js": 224,
-	"./hi": 225,
-	"./hi.js": 225,
-	"./hr": 226,
-	"./hr.js": 226,
-	"./hu": 227,
-	"./hu.js": 227,
-	"./hy-am": 228,
-	"./hy-am.js": 228,
-	"./id": 229,
-	"./id.js": 229,
-	"./is": 230,
-	"./is.js": 230,
-	"./it": 231,
-	"./it.js": 231,
-	"./ja": 232,
-	"./ja.js": 232,
-	"./jv": 233,
-	"./jv.js": 233,
-	"./ka": 234,
-	"./ka.js": 234,
-	"./kk": 235,
-	"./kk.js": 235,
-	"./km": 236,
-	"./km.js": 236,
-	"./kn": 237,
-	"./kn.js": 237,
-	"./ko": 238,
-	"./ko.js": 238,
-	"./ky": 239,
-	"./ky.js": 239,
-	"./lb": 240,
-	"./lb.js": 240,
-	"./lo": 241,
-	"./lo.js": 241,
-	"./lt": 242,
-	"./lt.js": 242,
-	"./lv": 243,
-	"./lv.js": 243,
-	"./me": 244,
-	"./me.js": 244,
-	"./mi": 245,
-	"./mi.js": 245,
-	"./mk": 246,
-	"./mk.js": 246,
-	"./ml": 247,
-	"./ml.js": 247,
-	"./mr": 248,
-	"./mr.js": 248,
-	"./ms": 249,
-	"./ms-my": 250,
-	"./ms-my.js": 250,
-	"./ms.js": 249,
-	"./my": 251,
-	"./my.js": 251,
-	"./nb": 252,
-	"./nb.js": 252,
-	"./ne": 253,
-	"./ne.js": 253,
-	"./nl": 254,
-	"./nl-be": 255,
-	"./nl-be.js": 255,
-	"./nl.js": 254,
-	"./nn": 256,
-	"./nn.js": 256,
-	"./pa-in": 257,
-	"./pa-in.js": 257,
-	"./pl": 258,
-	"./pl.js": 258,
-	"./pt": 259,
-	"./pt-br": 260,
-	"./pt-br.js": 260,
-	"./pt.js": 259,
-	"./ro": 261,
-	"./ro.js": 261,
-	"./ru": 262,
-	"./ru.js": 262,
-	"./sd": 263,
-	"./sd.js": 263,
-	"./se": 264,
-	"./se.js": 264,
-	"./si": 265,
-	"./si.js": 265,
-	"./sk": 266,
-	"./sk.js": 266,
-	"./sl": 267,
-	"./sl.js": 267,
-	"./sq": 268,
-	"./sq.js": 268,
-	"./sr": 269,
-	"./sr-cyrl": 270,
-	"./sr-cyrl.js": 270,
-	"./sr.js": 269,
-	"./ss": 271,
-	"./ss.js": 271,
-	"./sv": 272,
-	"./sv.js": 272,
-	"./sw": 273,
-	"./sw.js": 273,
-	"./ta": 274,
-	"./ta.js": 274,
-	"./te": 275,
-	"./te.js": 275,
-	"./tet": 276,
-	"./tet.js": 276,
-	"./th": 277,
-	"./th.js": 277,
-	"./tl-ph": 278,
-	"./tl-ph.js": 278,
-	"./tlh": 279,
-	"./tlh.js": 279,
-	"./tr": 280,
-	"./tr.js": 280,
-	"./tzl": 281,
-	"./tzl.js": 281,
-	"./tzm": 282,
-	"./tzm-latn": 283,
-	"./tzm-latn.js": 283,
-	"./tzm.js": 282,
-	"./uk": 284,
-	"./uk.js": 284,
-	"./ur": 285,
-	"./ur.js": 285,
-	"./uz": 286,
-	"./uz-latn": 287,
-	"./uz-latn.js": 287,
-	"./uz.js": 286,
-	"./vi": 288,
-	"./vi.js": 288,
-	"./x-pseudo": 289,
-	"./x-pseudo.js": 289,
-	"./yo": 290,
-	"./yo.js": 290,
-	"./zh-cn": 291,
-	"./zh-cn.js": 291,
-	"./zh-hk": 292,
-	"./zh-hk.js": 292,
-	"./zh-tw": 293,
-	"./zh-tw.js": 293
-};
-function webpackContext(req) {
-	return __webpack_require__(webpackContextResolve(req));
-};
-function webpackContextResolve(req) {
-	var id = map[req];
-	if(!(id + 1)) // check for number or string
-		throw new Error("Cannot find module '" + req + "'.");
-	return id;
-};
-webpackContext.keys = function webpackContextKeys() {
-	return Object.keys(map);
-};
-webpackContext.resolve = webpackContextResolve;
-module.exports = webpackContext;
-webpackContext.id = 438;
-
-/***/ }),
-
-/***/ 45:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDbServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/*
-  Generated class for the CustomerDbServiceProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
-var CustomerDbServiceProvider = (function () {
-    function CustomerDbServiceProvider(http, globals) {
-        this.http = http;
-        this.globals = globals;
-        console.log('Hello PaymentDbServiceProvider Provider');
-    }
-    CustomerDbServiceProvider.prototype.getCustomerById = function (id) {
-        var url = this.globals.ref + "/customers/" + id;
-        return this.http.get(url);
-    };
-    CustomerDbServiceProvider.prototype.getCustomers = function (searchtext, limit) {
-        if (limit === void 0) { limit = 20; }
-        var url = this.globals.ref + "/customers?limit=" + limit;
-        if (searchtext) {
-            url += "&searchText=" + searchtext;
-        }
-        return this.http.get(url);
-    };
-    CustomerDbServiceProvider.prototype.updateCustomerInformation = function (customerId, newValue) {
-        var url = this.globals.ref + "/customers/" + customerId;
-        return this.http.put(url, newValue);
-    };
-    return CustomerDbServiceProvider;
-}());
-CustomerDbServiceProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
-], CustomerDbServiceProvider);
-
-//# sourceMappingURL=customer-db-service.js.map
-
-/***/ }),
-
-/***/ 46:
-/***/ (function(module, __webpack_exports__, __webpack_require__) {
-
-"use strict";
-/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentDbServiceProvider; });
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
-var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
-    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
-    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
-    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
-    return c > 3 && r && Object.defineProperty(target, key, r), r;
-};
-var __metadata = (this && this.__metadata) || function (k, v) {
-    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
-};
-
-
-
-
-/*
-  Generated class for the PaymentDbServiceProvider provider.
-
-  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
-  for more info on providers and Angular DI.
-*/
-var PaymentDbServiceProvider = (function () {
-    function PaymentDbServiceProvider(http, globals) {
-        this.http = http;
-        this.globals = globals;
-        this.banks = [
-            "Garanti",
-            "Ziraat",
-            "Akbank",
-            "Finansbank",
-            "İş Bankası",
-            "Yapı Kredi"
-        ];
-        this.currencies = [
-            "TRY",
-            "EUR",
-            "USD"
-        ];
-        this.paymentTypes = [
-            "Nakit",
-            "Kredi Kartı"
-        ];
-        console.log('Hello PaymentDbServiceProvider Provider');
-    }
-    PaymentDbServiceProvider.prototype.insertPayment = function (orderId, paymentInformation) {
-        var url = this.globals.ref + "/orders/" + orderId + "/payments";
-        return this.http.post(url, paymentInformation);
-    };
-    PaymentDbServiceProvider.prototype.updatePayment = function (paymentId, newValue) {
-        var url = this.globals.ref + "/payments/" + paymentId;
-        return this.http.put(url, newValue);
-    };
-    PaymentDbServiceProvider.prototype.deletePayment = function (paymentId) {
-        var url = this.globals.ref + "/payments/" + paymentId;
-        return this.http.delete(url);
-    };
-    return PaymentDbServiceProvider;
-}());
-PaymentDbServiceProvider = __decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
-        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
-], PaymentDbServiceProvider);
-
-//# sourceMappingURL=payment-db-service.js.map
-
-/***/ }),
-
-/***/ 480:
+/***/ 433:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return MyApp; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(335);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(336);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__ionic_native_status_bar__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_native_splash_screen__ = __webpack_require__(218);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_new_order_form_new_order_form__ = __webpack_require__(337);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__ = __webpack_require__(338);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_new_order_form_new_order_form__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__pages_orders_list_orders_list__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__pages_login_login__ = __webpack_require__(117);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_customer_list_customer_list__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_customer_list_customer_list__ = __webpack_require__(119);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -3620,14 +3238,14 @@ MyApp = __decorate([
 
 /***/ }),
 
-/***/ 481:
+/***/ 434:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductsListCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_product_form_product_form__ = __webpack_require__(339);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_product_form_product_form__ = __webpack_require__(221);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(114);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
@@ -3858,14 +3476,14 @@ ProductsListCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 482:
+/***/ 435:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentsListCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_payment_form_payment_form__ = __webpack_require__(340);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_payment_form_payment_form__ = __webpack_require__(222);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4005,14 +3623,14 @@ PaymentsListCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 483:
+/***/ 436:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_order_details_form_order_details_form__ = __webpack_require__(342);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_order_details_form_order_details_form__ = __webpack_require__(224);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4073,14 +3691,14 @@ OrderDetailsCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 484:
+/***/ 437:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDetailsCardComponent; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_customer_form_customer_form__ = __webpack_require__(341);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__forms_customer_form_customer_form__ = __webpack_require__(223);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4129,7 +3747,7 @@ CustomerDetailsCardComponent = __decorate([
 
 /***/ }),
 
-/***/ 485:
+/***/ 438:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4186,7 +3804,7 @@ CalculateBalancePipe = __decorate([
 
 /***/ }),
 
-/***/ 486:
+/***/ 439:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
 "use strict";
@@ -4246,6 +3864,618 @@ FormatDatePipe = __decorate([
 
 /***/ }),
 
+/***/ 441:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentReportComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chart_js__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_chart_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var PaymentReportComponent = (function () {
+    function PaymentReportComponent(rds, loadingCtrl) {
+        var _this = this;
+        this.rds = rds;
+        this.loadingCtrl = loadingCtrl;
+        this.totalAmount = 0.0;
+        this.payments = [];
+        this.getPaymentReport().subscribe(function (response) {
+            _this.payments = response.json();
+            _this.totalAmount = _this.calculateTotalAmount(_this.payments);
+            _this.paymentChart = _this.getBarChart(_this.payments);
+        });
+    }
+    PaymentReportComponent.prototype.getBarChart = function (paymentData) {
+        var months = Array.from(paymentData, function (x) { return x._id; });
+        var totalAmounts = Array.from(paymentData, function (x) { return x.totalAmount; });
+        var data = {
+            labels: months,
+            datasets: [{
+                    label: 'Toplam Alınan Ödeme',
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)'
+                    ],
+                    data: totalAmounts,
+                    borderWidth: 1
+                }]
+        };
+        return this.getChart(this.paymentCanvas.nativeElement, "bar", data);
+    };
+    PaymentReportComponent.prototype.getChart = function (context, chartType, data) {
+        return new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"].Bar(context, {
+            type: chartType,
+            data: data,
+            options: {
+                showTooltips: false,
+                animation: {
+                    onComplete: function () {
+                        var ctx = this.chart.ctx;
+                        ctx.textAlign = "center";
+                        ctx.textBaseline = "bottom";
+                        this.data.datasets.forEach(function (dataset) {
+                            console.log(dataset);
+                            dataset.data.forEach(function (points) {
+                                ctx.fillText(points.value, points.x, points.y - 10);
+                            });
+                        });
+                    }
+                }
+            }
+        });
+    };
+    PaymentReportComponent.prototype.getPaymentReport = function (minDate, maxDate) {
+        if (minDate === void 0) { minDate = "0-1-1"; }
+        if (maxDate === void 0) { maxDate = "9999-12-30"; }
+        return this.rds.getPaymentReport(minDate, maxDate);
+    };
+    PaymentReportComponent.prototype.refreshChart = function (minDateParts, maxDateParts) {
+        var _this = this;
+        if (minDateParts === void 0) { minDateParts = { day: 1, month: 1, year: 0 }; }
+        if (maxDateParts === void 0) { maxDateParts = { day: 30, month: 12, year: 9999 }; }
+        var loading = this.loadingCtrl.create({ content: "Rapor yükleniyor..." });
+        loading.present();
+        this.getPaymentReport(minDateParts.year + "/" + minDateParts.month + "/" + minDateParts.day, maxDateParts.year + "/" + maxDateParts.month + "/" + maxDateParts.day).subscribe(function (response) {
+            _this.payments = response.json();
+            _this.totalAmount = _this.calculateTotalAmount(_this.payments);
+            _this.paymentChart.data.labels = Array.from(_this.payments, function (x) { return x['_id']; });
+            _this.paymentChart.data.datasets[0].data = Array.from(_this.payments, function (x) { return x['totalAmount']; });
+            _this.paymentChart.update();
+            loading.dismiss();
+        });
+    };
+    PaymentReportComponent.prototype.calculateTotalAmount = function (payments) {
+        var totalAmount = 0.0;
+        for (var _i = 0, payments_1 = payments; _i < payments_1.length; _i++) {
+            var payment = payments_1[_i];
+            totalAmount += payment.totalAmount;
+        }
+        console.log(totalAmount);
+        return totalAmount;
+    };
+    return PaymentReportComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('paymentCanvas'),
+    __metadata("design:type", Object)
+], PaymentReportComponent.prototype, "paymentCanvas", void 0);
+PaymentReportComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'payment-report',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/components/payment-report/payment-report.html"*/'<ion-card>\n  <ion-card-header>Ödeme Raporu</ion-card-header>\n\n  <ion-card-content>\n    <ion-item>\n      <ion-label>Toplam</ion-label>\n      <ion-label>{{ totalAmount }} TRY</ion-label>\n    </ion-item>\n    <ion-item>\n      <canvas #paymentCanvas id="paymentCanvas"></canvas>\n    </ion-item>\n  </ion-card-content>\n\n  <ion-card-content>\n    <ion-list>\n      <ion-item>\n        <ion-label>Başlangıç Tarihi</ion-label>\n        <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label>Bitiş Tarihi</ion-label>\n        <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>\n      </ion-item>\n    </ion-list>\n\n    <ion-list inset no-line>\n      <ion-item>\n        <ion-label>Ay</ion-label>\n        <ion-label>Toplam Ödeme</ion-label>\n      </ion-item>\n      <ion-item *ngFor="let payment of payments">\n        <ion-label>{{ payment._id }}</ion-label>\n        <ion-label>{{ payment.totalAmount }} TRY</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-card-content>\n</ion-card>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/components/payment-report/payment-report.html"*/
+    }),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */],
+        __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* LoadingController */]])
+], PaymentReportComponent);
+
+//# sourceMappingURL=payment-report.js.map
+
+/***/ }),
+
+/***/ 45:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return CustomerDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the CustomerDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var CustomerDbServiceProvider = (function () {
+    function CustomerDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    CustomerDbServiceProvider.prototype.getCustomerById = function (id) {
+        var url = this.globals.ref + "/customers/" + id;
+        return this.http.get(url);
+    };
+    CustomerDbServiceProvider.prototype.getCustomers = function (searchtext, limit) {
+        if (limit === void 0) { limit = 20; }
+        var url = this.globals.ref + "/customers?limit=" + limit;
+        if (searchtext) {
+            url += "&searchText=" + searchtext;
+        }
+        return this.http.get(url);
+    };
+    CustomerDbServiceProvider.prototype.updateCustomerInformation = function (customerId, newValue) {
+        var url = this.globals.ref + "/customers/" + customerId;
+        return this.http.put(url, newValue);
+    };
+    return CustomerDbServiceProvider;
+}());
+CustomerDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], CustomerDbServiceProvider);
+
+//# sourceMappingURL=customer-db-service.js.map
+
+/***/ }),
+
+/***/ 46:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return PaymentDbServiceProvider; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+/*
+  Generated class for the PaymentDbServiceProvider provider.
+
+  See https://angular.io/docs/ts/latest/guide/dependency-injection.html
+  for more info on providers and Angular DI.
+*/
+var PaymentDbServiceProvider = (function () {
+    function PaymentDbServiceProvider(http, globals) {
+        this.http = http;
+        this.globals = globals;
+        this.banks = [
+            "Garanti",
+            "Ziraat",
+            "Akbank",
+            "Finansbank",
+            "İş Bankası",
+            "Yapı Kredi"
+        ];
+        this.currencies = [
+            "TRY",
+            "EUR",
+            "USD"
+        ];
+        this.paymentTypes = [
+            "Nakit",
+            "Kredi Kartı"
+        ];
+        console.log('Hello PaymentDbServiceProvider Provider');
+    }
+    PaymentDbServiceProvider.prototype.insertPayment = function (orderId, paymentInformation) {
+        var url = this.globals.ref + "/orders/" + orderId + "/payments";
+        return this.http.post(url, paymentInformation);
+    };
+    PaymentDbServiceProvider.prototype.updatePayment = function (paymentId, newValue) {
+        var url = this.globals.ref + "/payments/" + paymentId;
+        return this.http.put(url, newValue);
+    };
+    PaymentDbServiceProvider.prototype.deletePayment = function (paymentId) {
+        var url = this.globals.ref + "/payments/" + paymentId;
+        return this.http.delete(url);
+    };
+    return PaymentDbServiceProvider;
+}());
+PaymentDbServiceProvider = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["B" /* Injectable */])(),
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1__angular_http__["b" /* Http */],
+        __WEBPACK_IMPORTED_MODULE_3__globals_globals__["a" /* GlobalsProvider */]])
+], PaymentDbServiceProvider);
+
+//# sourceMappingURL=payment-db-service.js.map
+
+/***/ }),
+
+/***/ 472:
+/***/ (function(module, exports, __webpack_require__) {
+
+var map = {
+	"./af": 229,
+	"./af.js": 229,
+	"./ar": 230,
+	"./ar-dz": 231,
+	"./ar-dz.js": 231,
+	"./ar-kw": 232,
+	"./ar-kw.js": 232,
+	"./ar-ly": 233,
+	"./ar-ly.js": 233,
+	"./ar-ma": 234,
+	"./ar-ma.js": 234,
+	"./ar-sa": 235,
+	"./ar-sa.js": 235,
+	"./ar-tn": 236,
+	"./ar-tn.js": 236,
+	"./ar.js": 230,
+	"./az": 237,
+	"./az.js": 237,
+	"./be": 238,
+	"./be.js": 238,
+	"./bg": 239,
+	"./bg.js": 239,
+	"./bn": 240,
+	"./bn.js": 240,
+	"./bo": 241,
+	"./bo.js": 241,
+	"./br": 242,
+	"./br.js": 242,
+	"./bs": 243,
+	"./bs.js": 243,
+	"./ca": 244,
+	"./ca.js": 244,
+	"./cs": 245,
+	"./cs.js": 245,
+	"./cv": 246,
+	"./cv.js": 246,
+	"./cy": 247,
+	"./cy.js": 247,
+	"./da": 248,
+	"./da.js": 248,
+	"./de": 249,
+	"./de-at": 250,
+	"./de-at.js": 250,
+	"./de-ch": 251,
+	"./de-ch.js": 251,
+	"./de.js": 249,
+	"./dv": 252,
+	"./dv.js": 252,
+	"./el": 253,
+	"./el.js": 253,
+	"./en-au": 254,
+	"./en-au.js": 254,
+	"./en-ca": 255,
+	"./en-ca.js": 255,
+	"./en-gb": 256,
+	"./en-gb.js": 256,
+	"./en-ie": 257,
+	"./en-ie.js": 257,
+	"./en-nz": 258,
+	"./en-nz.js": 258,
+	"./eo": 259,
+	"./eo.js": 259,
+	"./es": 260,
+	"./es-do": 261,
+	"./es-do.js": 261,
+	"./es.js": 260,
+	"./et": 262,
+	"./et.js": 262,
+	"./eu": 263,
+	"./eu.js": 263,
+	"./fa": 264,
+	"./fa.js": 264,
+	"./fi": 265,
+	"./fi.js": 265,
+	"./fo": 266,
+	"./fo.js": 266,
+	"./fr": 267,
+	"./fr-ca": 268,
+	"./fr-ca.js": 268,
+	"./fr-ch": 269,
+	"./fr-ch.js": 269,
+	"./fr.js": 267,
+	"./fy": 270,
+	"./fy.js": 270,
+	"./gd": 271,
+	"./gd.js": 271,
+	"./gl": 272,
+	"./gl.js": 272,
+	"./gom-latn": 273,
+	"./gom-latn.js": 273,
+	"./he": 274,
+	"./he.js": 274,
+	"./hi": 275,
+	"./hi.js": 275,
+	"./hr": 276,
+	"./hr.js": 276,
+	"./hu": 277,
+	"./hu.js": 277,
+	"./hy-am": 278,
+	"./hy-am.js": 278,
+	"./id": 279,
+	"./id.js": 279,
+	"./is": 280,
+	"./is.js": 280,
+	"./it": 281,
+	"./it.js": 281,
+	"./ja": 282,
+	"./ja.js": 282,
+	"./jv": 283,
+	"./jv.js": 283,
+	"./ka": 284,
+	"./ka.js": 284,
+	"./kk": 285,
+	"./kk.js": 285,
+	"./km": 286,
+	"./km.js": 286,
+	"./kn": 287,
+	"./kn.js": 287,
+	"./ko": 288,
+	"./ko.js": 288,
+	"./ky": 289,
+	"./ky.js": 289,
+	"./lb": 290,
+	"./lb.js": 290,
+	"./lo": 291,
+	"./lo.js": 291,
+	"./lt": 292,
+	"./lt.js": 292,
+	"./lv": 293,
+	"./lv.js": 293,
+	"./me": 294,
+	"./me.js": 294,
+	"./mi": 295,
+	"./mi.js": 295,
+	"./mk": 296,
+	"./mk.js": 296,
+	"./ml": 297,
+	"./ml.js": 297,
+	"./mr": 298,
+	"./mr.js": 298,
+	"./ms": 299,
+	"./ms-my": 300,
+	"./ms-my.js": 300,
+	"./ms.js": 299,
+	"./my": 301,
+	"./my.js": 301,
+	"./nb": 302,
+	"./nb.js": 302,
+	"./ne": 303,
+	"./ne.js": 303,
+	"./nl": 304,
+	"./nl-be": 305,
+	"./nl-be.js": 305,
+	"./nl.js": 304,
+	"./nn": 306,
+	"./nn.js": 306,
+	"./pa-in": 307,
+	"./pa-in.js": 307,
+	"./pl": 308,
+	"./pl.js": 308,
+	"./pt": 309,
+	"./pt-br": 310,
+	"./pt-br.js": 310,
+	"./pt.js": 309,
+	"./ro": 311,
+	"./ro.js": 311,
+	"./ru": 312,
+	"./ru.js": 312,
+	"./sd": 313,
+	"./sd.js": 313,
+	"./se": 314,
+	"./se.js": 314,
+	"./si": 315,
+	"./si.js": 315,
+	"./sk": 316,
+	"./sk.js": 316,
+	"./sl": 317,
+	"./sl.js": 317,
+	"./sq": 318,
+	"./sq.js": 318,
+	"./sr": 319,
+	"./sr-cyrl": 320,
+	"./sr-cyrl.js": 320,
+	"./sr.js": 319,
+	"./ss": 321,
+	"./ss.js": 321,
+	"./sv": 322,
+	"./sv.js": 322,
+	"./sw": 323,
+	"./sw.js": 323,
+	"./ta": 324,
+	"./ta.js": 324,
+	"./te": 325,
+	"./te.js": 325,
+	"./tet": 326,
+	"./tet.js": 326,
+	"./th": 327,
+	"./th.js": 327,
+	"./tl-ph": 328,
+	"./tl-ph.js": 328,
+	"./tlh": 329,
+	"./tlh.js": 329,
+	"./tr": 330,
+	"./tr.js": 330,
+	"./tzl": 331,
+	"./tzl.js": 331,
+	"./tzm": 332,
+	"./tzm-latn": 333,
+	"./tzm-latn.js": 333,
+	"./tzm.js": 332,
+	"./uk": 334,
+	"./uk.js": 334,
+	"./ur": 335,
+	"./ur.js": 335,
+	"./uz": 336,
+	"./uz-latn": 337,
+	"./uz-latn.js": 337,
+	"./uz.js": 336,
+	"./vi": 338,
+	"./vi.js": 338,
+	"./x-pseudo": 339,
+	"./x-pseudo.js": 339,
+	"./yo": 340,
+	"./yo.js": 340,
+	"./zh-cn": 341,
+	"./zh-cn.js": 341,
+	"./zh-hk": 342,
+	"./zh-hk.js": 342,
+	"./zh-tw": 343,
+	"./zh-tw.js": 343
+};
+function webpackContext(req) {
+	return __webpack_require__(webpackContextResolve(req));
+};
+function webpackContextResolve(req) {
+	var id = map[req];
+	if(!(id + 1)) // check for number or string
+		throw new Error("Cannot find module '" + req + "'.");
+	return id;
+};
+webpackContext.keys = function webpackContextKeys() {
+	return Object.keys(map);
+};
+webpackContext.resolve = webpackContextResolve;
+module.exports = webpackContext;
+webpackContext.id = 472;
+
+/***/ }),
+
+/***/ 489:
+/***/ (function(module, __webpack_exports__, __webpack_require__) {
+
+"use strict";
+/* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return ProductReportComponent; });
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chart_js__ = __webpack_require__(225);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_3_chart_js__);
+var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
+    var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
+    if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
+    else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
+    return c > 3 && r && Object.defineProperty(target, key, r), r;
+};
+var __metadata = (this && this.__metadata) || function (k, v) {
+    if (typeof Reflect === "object" && typeof Reflect.metadata === "function") return Reflect.metadata(k, v);
+};
+
+
+
+
+var ProductReportComponent = (function () {
+    function ProductReportComponent(rds, loadingCtrl) {
+        var _this = this;
+        this.rds = rds;
+        this.loadingCtrl = loadingCtrl;
+        this.products = [];
+        this.getProductReport().subscribe(function (response) {
+            _this.products = response.json();
+            _this.productChart = _this.getBarChart(_this.products);
+        });
+    }
+    ProductReportComponent.prototype.getBarChart = function (productData) {
+        var products = Array.from(productData, function (x) { return x._id.patternCode + "/" + x._id.colorCode + "/" + x._id.varietyCode; });
+        var totalAmounts = Array.from(productData, function (x) { return x.totalAmount; });
+        var data = {
+            labels: products,
+            datasets: [{
+                    label: 'Top 10 Ürünler',
+                    backgroundColor: [
+                        'rgba(255, 99, 132, 0.2)'
+                    ],
+                    borderColor: [
+                        'rgba(255,99,132,1)'
+                    ],
+                    data: totalAmounts,
+                    borderWidth: 1
+                }]
+        };
+        return this.getChart(this.productCanvas.nativeElement, "bar", data);
+    };
+    ProductReportComponent.prototype.getChart = function (context, chartType, data) {
+        return new __WEBPACK_IMPORTED_MODULE_3_chart_js__["Chart"].Bar(context, {
+            type: chartType,
+            data: data
+        });
+    };
+    ProductReportComponent.prototype.getProductReport = function (minDate, maxDate) {
+        if (minDate === void 0) { minDate = "0-1-1"; }
+        if (maxDate === void 0) { maxDate = "9999-12-30"; }
+        return this.rds.getProductReport(minDate, maxDate);
+    };
+    ProductReportComponent.prototype.refreshChart = function (minDateParts, maxDateParts) {
+        var _this = this;
+        if (minDateParts === void 0) { minDateParts = { day: 1, month: 1, year: 0 }; }
+        if (maxDateParts === void 0) { maxDateParts = { day: 30, month: 12, year: 9999 }; }
+        var loading = this.loadingCtrl.create({ content: "Rapor yükleniyor..." });
+        loading.present();
+        this.getProductReport(minDateParts.year + "/" + minDateParts.month + "/" + minDateParts.day, maxDateParts.year + "/" + maxDateParts.month + "/" + maxDateParts.day).subscribe(function (response) {
+            _this.products = response.json();
+            _this.productChart.data.labels = Array.from(_this.products, function (x) { return x['_id']; });
+            _this.productChart.data.datasets[0].data = Array.from(_this.products, function (x) { return x['totalAmount']; });
+            _this.productChart.update();
+            loading.dismiss();
+        });
+    };
+    return ProductReportComponent;
+}());
+__decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('productCanvas'),
+    __metadata("design:type", Object)
+], ProductReportComponent.prototype, "productCanvas", void 0);
+ProductReportComponent = __decorate([
+    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
+        selector: 'product-report',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/components/product-report/product-report.html"*/'<ion-card>\n  <ion-card-header style="text-align: center">Ürün Raporu</ion-card-header>\n\n\n\n  <ion-card-content>\n    <!-- <ion-list>\n      <ion-item>\n        <ion-label>Başlangıç Tarihi</ion-label>\n        <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>\n      </ion-item>\n      <ion-item>\n        <ion-label>Bitiş Tarihi</ion-label>\n        <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>\n      </ion-item>\n    </ion-list> -->\n\n    <canvas #productCanvas id="productCanvas"></canvas>\n    <ion-list inset no-line>\n\n\n      <ion-item>\n        <ion-label>Ürün</ion-label>\n        <ion-label>Toplam Satış</ion-label>\n      </ion-item>\n      <ion-item *ngFor="let product of products">\n        <ion-label>{{ product._id.patternCode }}/{{ product._id.colorCode }}/{{ product._id.varietyCode }}</ion-label>\n        <ion-label>{{ product.totalAmount }} TRY</ion-label>\n      </ion-item>\n    </ion-list>\n  </ion-card-content>\n</ion-card>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/components/product-report/product-report.html"*/
+    }),
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object])
+], ProductReportComponent);
+
+var _a, _b;
+//# sourceMappingURL=product-report.js.map
+
+/***/ }),
+
 /***/ 53:
 /***/ (function(module, __webpack_exports__, __webpack_require__) {
 
@@ -4256,7 +4486,7 @@ FormatDatePipe = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__ = __webpack_require__(21);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_2_rxjs_add_operator_map__);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__globals_globals__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(169);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_angularfire2_auth__ = __webpack_require__(170);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4382,7 +4612,7 @@ EventDbServiceProvider = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return OrderDetailsPage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
@@ -4477,11 +4707,8 @@ OrderDetailsPage = __decorate([
 "use strict";
 /* harmony export (binding) */ __webpack_require__.d(__webpack_exports__, "a", function() { return HomePage; });
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_core__ = __webpack_require__(0);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(11);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_1_ionic_angular__ = __webpack_require__(9);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(175);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js__ = __webpack_require__(407);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4_chart_js___default = __webpack_require__.n(__WEBPACK_IMPORTED_MODULE_4_chart_js__);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -4494,99 +4721,29 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
-
-
 var HomePage = (function () {
-    function HomePage(navCtrl, loadingCtrl, eds, rds) {
+    function HomePage(navCtrl, loadingCtrl, eds) {
         var _this = this;
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
         this.eds = eds;
-        this.rds = rds;
         this.events = [];
-        this.paymentData = [];
         this.eds.getEvents().subscribe(function (data) { return _this.events = data.json(); }, function (error) { return console.log(error); });
     }
-    HomePage.prototype.ionViewDidLoad = function () {
-        var _this = this;
-        this.getPaymentReport().subscribe(function (response) {
-            _this.paymentData = response.json();
-            _this.paymentReportData = _this.getBarChart(_this.paymentData);
-            console.log(_this.paymentReportData);
-        });
-    };
-    HomePage.prototype.getBarChart = function (paymentData) {
-        var months = Array.from(paymentData, function (x) { return x._id; });
-        var totalAmounts = Array.from(paymentData, function (x) { return x.totalAmount; });
-        var data = {
-            labels: months,
-            datasets: [{
-                    label: 'Toplam Alınan Ödeme',
-                    backgroundColor: [
-                        'rgba(255, 99, 132, 0.2)'
-                    ],
-                    borderColor: [
-                        'rgba(255,99,132,1)'
-                    ],
-                    data: totalAmounts,
-                    borderWidth: 1
-                }]
-        };
-        var options = {
-            scales: {
-                yAxes: [{
-                        ticks: {
-                            beginAtZero: true
-                        }
-                    }]
-            }
-        };
-        return this.getChart(this.paymentBarCanvas.nativeElement, "bar", data, options);
-    };
-    HomePage.prototype.getChart = function (context, chartType, data, options) {
-        return new __WEBPACK_IMPORTED_MODULE_4_chart_js__["Chart"](context, {
-            type: chartType,
-            data: data,
-            options: options
-        });
-    };
-    HomePage.prototype.getPaymentReport = function (minDate, maxDate) {
-        if (minDate === void 0) { minDate = "0-1-1"; }
-        if (maxDate === void 0) { maxDate = "9999-12-30"; }
-        return this.rds.getPaymentReport(minDate, maxDate);
-    };
-    HomePage.prototype.refreshChart = function (minDateParts, maxDateParts) {
-        var _this = this;
-        if (minDateParts === void 0) { minDateParts = { day: 1, month: 1, year: 0 }; }
-        if (maxDateParts === void 0) { maxDateParts = { day: 30, month: 12, year: 9999 }; }
-        var loading = this.loadingCtrl.create({ content: "Rapor yükleniyor..." });
-        loading.present();
-        this.getPaymentReport(minDateParts.year + "/" + minDateParts.month + "/" + minDateParts.day, maxDateParts.year + "/" + maxDateParts.month + "/" + maxDateParts.day).subscribe(function (response) {
-            _this.paymentData = response.json();
-            console.log(_this.paymentData);
-            _this.paymentReportData.data.labels = Array.from(_this.paymentData, function (x) { return x._id; });
-            _this.paymentReportData.data.datasets[0].data = Array.from(_this.paymentData, function (x) { return x.totalAmount; });
-            _this.paymentReportData.update();
-            loading.dismiss();
-        });
-    };
     return HomePage;
 }());
-__decorate([
-    Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["_13" /* ViewChild */])('paymentBarCanvas'),
-    __metadata("design:type", Object)
-], HomePage.prototype, "paymentBarCanvas", void 0);
 HomePage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
-        selector: 'page-home',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <ion-col>\n        <ion-card>\n          <ion-card-header>Son Aktiviteler</ion-card-header>\n\n          <ion-card-content>\n            <ion-list>\n              <ion-item *ngFor="let event of events">\n                <ion-icon name="leaf" item-start></ion-icon>\n\n                <h2>{{ event.title }}</h2>\n                <h3>{{ event.date | formatDate }} | {{ event.personnel }}</h3>\n                <p>{{ event.detail }}</p>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n\n      <ion-col>\n        <ion-card>\n          <ion-card-header>Ödeme Raporu</ion-card-header>\n\n          <ion-card-content>\n            <ion-item>\n              <canvas #paymentBarCanvas></canvas>\n            </ion-item>\n          </ion-card-content>\n\n          <ion-card-content>\n            <ion-list>\n              <ion-item>\n                <ion-label>Başlangıç Tarihi</ion-label>\n                <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>\n              </ion-item>\n              <ion-item>\n                <ion-label>Bitiş Tarihi</ion-label>\n                <ion-datetime (ionChange)="refreshChart($event)"></ion-datetime>\n              </ion-item>\n            </ion-list>\n            \n            <ion-list inset no-line>\n              <ion-item>\n                <ion-label>Ay</ion-label>\n                <ion-label>Toplam Ödeme</ion-label>\n              </ion-item>\n              <ion-item *ngFor="let item of paymentData">\n                <ion-label>{{ item._id }}</ion-label>\n                <ion-label>{{ item.totalAmount }} TRY</ion-label>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n      <ion-col></ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/home/home.html"*/
+        selector: 'page-home',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/home/home.html"*/'<ion-header>\n  <ion-navbar color="navBarColor">\n    <button ion-button menuToggle>\n      <ion-icon name="menu"></ion-icon>\n    </button>\n    <ion-title>Home</ion-title>\n  </ion-navbar>\n</ion-header>\n\n<ion-content padding>\n  <ion-grid>\n    <ion-row>\n      <!-- <ion-col>\n        \n      </ion-col> -->\n\n      <ion-col>\n        <product-report></product-report>\n      </ion-col>\n\n      <ion-col>\n        <payment-report></payment-report>\n\n        <ion-card>\n          <ion-card-header>Son Aktiviteler</ion-card-header>\n\n          <ion-card-content>\n            <ion-list>\n              <ion-item *ngFor="let event of events">\n                <ion-icon name="leaf" item-start></ion-icon>\n\n                <h2>{{ event.title }}</h2>\n                <h3>{{ event.date | formatDate }} | {{ event.personnel }}</h3>\n                <p>{{ event.detail }}</p>\n              </ion-item>\n            </ion-list>\n          </ion-card-content>\n        </ion-card>\n      </ion-col>\n    </ion-row>\n  </ion-grid>\n</ion-content>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/home/home.html"*/
     }),
-    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_3__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */]) === "function" && _d || Object])
+    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
+        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
+        __WEBPACK_IMPORTED_MODULE_2__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */]])
 ], HomePage);
 
-var _a, _b, _c, _d;
 //# sourceMappingURL=home.js.map
 
 /***/ })
 
-},[343]);
+},[344]);
 //# sourceMappingURL=main.js.map
