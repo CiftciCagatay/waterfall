@@ -1504,6 +1504,7 @@ NewOrderFormCustomerListPage = __decorate([
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__ = __webpack_require__(53);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__home_home__ = __webpack_require__(88);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__ionic_storage__ = __webpack_require__(494);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
@@ -1518,8 +1519,10 @@ var __metadata = (this && this.__metadata) || function (k, v) {
 
 
 
+
 var LoginPage = (function () {
-    function LoginPage(navCtrl, loadingCtrl, alertCtrl, navParams, menuController, authService, onesignal) {
+    function LoginPage(navCtrl, loadingCtrl, alertCtrl, navParams, menuController, authService, onesignal, storage) {
+        var _this = this;
         this.navCtrl = navCtrl;
         this.loadingCtrl = loadingCtrl;
         this.alertCtrl = alertCtrl;
@@ -1527,8 +1530,19 @@ var LoginPage = (function () {
         this.menuController = menuController;
         this.authService = authService;
         this.onesignal = onesignal;
+        this.storage = storage;
         this.mode = "login";
         this.menuController.enable(false);
+        storage.get('email').then(function (email) {
+            if (email) {
+                _this.email = email;
+            }
+        });
+        storage.get('password').then(function (password) {
+            if (password) {
+                _this.password = password;
+            }
+        });
     }
     LoginPage.prototype.registerModeOn = function () {
         this.mode = "register";
@@ -1568,6 +1582,8 @@ var LoginPage = (function () {
                     else {
                         _this.onesignal.sendTag("isManager", "false");
                     }
+                    _this.storage.set('email', _this.email);
+                    _this.storage.set('password', _this.password);
                     _this.menuController.enable(true);
                     loading.dismiss();
                     _this.navCtrl.setRoot(__WEBPACK_IMPORTED_MODULE_3__home_home__["a" /* HomePage */]);
@@ -1607,15 +1623,10 @@ LoginPage = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_0__angular_core__["n" /* Component */])({
         selector: 'page-login',template:/*ion-inline-start:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/login/login.html"*/'<div style="background-image: url(\'http://lordsimpex.com.pk/wp-content/uploads/2015/03/bg-daily-news1.jpg\'); display:flex;justify-content:center;align-items:center;width:100%;height:100%;">\n\n  <div style="width: 50%; min-width: 293.5px; height: 50%">\n    <ion-card style="padding: 8px; font-family: \'Gill Sans MT\', Calibri, \'Trebuchet MS\', sans-serif; text-align: center;">\n      <h1>Hoş Geldiniz</h1>\n    </ion-card>\n\n    <form #register="ngForm" *ngIf="mode == \'register\'" (ngSubmit)="registerUser(register.value)">\n      <ion-card>\n        <ion-card-content>\n          <ion-list>\n            <label ion-item>\n              <ion-label>İsim Soyisim</ion-label>\n              <ion-input name="name" type="text" ngModel required>\n              </ion-input>\n            </label>\n\n            <label ion-item>\n                  <ion-label fixed>Mağaza Adı</ion-label>\n                  <ion-input name="shop" type="text" ngModel required>\n                  </ion-input>\n                </label>\n\n            <label ion-item>\n                  <ion-label fixed>Email</ion-label>\n                  <ion-input name="email" type="email" ngModel required>\n                  </ion-input>\n                </label>\n\n            <label ion-item>\n              <ion-label>Mağaza Sahibi</ion-label>\n              <ion-checkbox name="isManager" [ngModel]="false"></ion-checkbox>\n            </label>\n\n            <label ion-item>\n                  <ion-label>Şifre</ion-label>\n                  <ion-input name="password" type="password" ngModel required>\n                  </ion-input>\n                </label>\n          </ion-list>\n\n          <button type="submit" [disabled]="!register.form.valid" ion-button block>Kayıt Ol</button>\n          <button (click)="loginModeOn()" ion-button outline block>Zaten bir hesabınız var mı? Giriş yapın</button>\n        </ion-card-content>\n      </ion-card>\n    </form>\n\n    <form #login="ngForm" *ngIf="mode == \'login\'">\n      <ion-card>\n        <ion-card-content>\n          <ion-list>\n            <label ion-item>\n                  <ion-label floating>Email</ion-label>\n                  <ion-input name="email" type="email" [(ngModel)]="email" required>\n                  </ion-input>\n                </label>\n\n            <label ion-item>\n                  <ion-label floating>Şifre</ion-label>\n                  <ion-input name="password" type="password" [(ngModel)]="password" required>\n                  </ion-input>\n                </label>\n          </ion-list>\n\n          <button (click)="loginUser()" [disabled]="!login.form.valid" ion-button block>Giriş Yap</button>\n          <!-- <button (click)="registerModeOn()" ion-button outline block>Hesabınız mı yok? Kayıt olun</button> -->\n        </ion-card-content>\n      </ion-card>\n    </form>\n  </div>\n</div>'/*ion-inline-end:"/Users/ogrenci/Desktop/waterfall/waterfall/src/pages/login/login.html"*/,
     }),
-    __metadata("design:paramtypes", [__WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */],
-        __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */],
-        __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
-        __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__["a" /* OneSignal */]])
+    __metadata("design:paramtypes", [typeof (_a = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["l" /* NavController */]) === "function" && _a || Object, typeof (_b = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["h" /* LoadingController */]) === "function" && _b || Object, typeof (_c = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["a" /* AlertController */]) === "function" && _c || Object, typeof (_d = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["m" /* NavParams */]) === "function" && _d || Object, typeof (_e = typeof __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_1_ionic_angular__["i" /* MenuController */]) === "function" && _e || Object, typeof (_f = typeof __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_2__providers_auth_service_auth_service__["a" /* AuthServiceProvider */]) === "function" && _f || Object, typeof (_g = typeof __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__["a" /* OneSignal */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_4__ionic_native_onesignal__["a" /* OneSignal */]) === "function" && _g || Object, typeof (_h = typeof __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */] !== "undefined" && __WEBPACK_IMPORTED_MODULE_5__ionic_storage__["b" /* Storage */]) === "function" && _h || Object])
 ], LoginPage);
 
+var _a, _b, _c, _d, _e, _f, _g, _h;
 //# sourceMappingURL=login.js.map
 
 /***/ }),
@@ -2950,49 +2961,51 @@ Object(__WEBPACK_IMPORTED_MODULE_0__angular_platform_browser_dynamic__["a" /* pl
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__ = __webpack_require__(31);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_1__angular_core__ = __webpack_require__(0);
 /* harmony import */ var __WEBPACK_IMPORTED_MODULE_2_ionic_angular__ = __webpack_require__(9);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__app_component__ = __webpack_require__(433);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__pages_home_home__ = __webpack_require__(88);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__angular_http__ = __webpack_require__(20);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__ = __webpack_require__(217);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__ = __webpack_require__(218);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__ = __webpack_require__(176);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__pages_login_login__ = __webpack_require__(117);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__ = __webpack_require__(219);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__ = __webpack_require__(116);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_orders_list_orders_list__ = __webpack_require__(220);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_order_details_order_details__ = __webpack_require__(55);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_customer_list_customer_list__ = __webpack_require__(119);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_customer_details_customer_details__ = __webpack_require__(118);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_product_form_product_form__ = __webpack_require__(221);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_payment_form_payment_form__ = __webpack_require__(222);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(223);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(224);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_products_list_card_products_list_card__ = __webpack_require__(434);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_payments_list_card_payments_list_card__ = __webpack_require__(435);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_order_details_card_order_details_card__ = __webpack_require__(436);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_order_details_components_panels_customer_details_card_customer_details_card__ = __webpack_require__(437);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__providers_auth_service_auth_service__ = __webpack_require__(53);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(113);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_city_district_city_district__ = __webpack_require__(112);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__ = __webpack_require__(438);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__ = __webpack_require__(439);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(114);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(54);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_globals_globals__ = __webpack_require__(28);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35_angularfire2__ = __webpack_require__(440);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_angularfire2_auth__ = __webpack_require__(170);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(115);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__components_payment_report_payment_report__ = __webpack_require__(441);
-/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_product_report_product_report__ = __webpack_require__(489);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_3__ionic_storage__ = __webpack_require__(494);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_4__app_component__ = __webpack_require__(433);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_5__pages_home_home__ = __webpack_require__(88);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_6__angular_http__ = __webpack_require__(20);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__ = __webpack_require__(217);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__ = __webpack_require__(218);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__ = __webpack_require__(176);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_10__pages_login_login__ = __webpack_require__(117);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form__ = __webpack_require__(219);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_12__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__ = __webpack_require__(116);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_13__pages_orders_list_orders_list__ = __webpack_require__(220);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_14__pages_order_details_order_details__ = __webpack_require__(55);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_15__pages_customer_list_customer_list__ = __webpack_require__(119);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_16__pages_customer_details_customer_details__ = __webpack_require__(118);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_product_form_product_form__ = __webpack_require__(221);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_payment_form_payment_form__ = __webpack_require__(222);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_customer_form_customer_form__ = __webpack_require__(223);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_forms_order_details_form_order_details_form__ = __webpack_require__(224);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_products_list_card_products_list_card__ = __webpack_require__(434);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_payments_list_card_payments_list_card__ = __webpack_require__(435);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_23__pages_order_details_components_panels_order_details_card_order_details_card__ = __webpack_require__(436);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_24__pages_order_details_components_panels_customer_details_card_customer_details_card__ = __webpack_require__(437);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_25__providers_auth_service_auth_service__ = __webpack_require__(53);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_26__providers_onesignal_notification_onesignal_notification__ = __webpack_require__(113);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_27__providers_city_district_city_district__ = __webpack_require__(112);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_28__pipes_calculate_balance_calculate_balance__ = __webpack_require__(438);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_29__pipes_format_date_format_date__ = __webpack_require__(439);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_order_db_service_order_db_service__ = __webpack_require__(34);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_customer_db_service_customer_db_service__ = __webpack_require__(45);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_product_db_service_product_db_service__ = __webpack_require__(114);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_33__providers_Database_Service_Providers_payment_db_service_payment_db_service__ = __webpack_require__(46);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_34__providers_Database_Service_Providers_event_db_service_event_db_service__ = __webpack_require__(54);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_35__providers_globals_globals__ = __webpack_require__(28);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_36_angularfire2__ = __webpack_require__(440);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_37_angularfire2_auth__ = __webpack_require__(170);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_38__providers_Database_Service_Providers_reports_db_service_reports_db_service__ = __webpack_require__(115);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_39__components_payment_report_payment_report__ = __webpack_require__(441);
+/* harmony import */ var __WEBPACK_IMPORTED_MODULE_40__components_product_report_product_report__ = __webpack_require__(489);
 var __decorate = (this && this.__decorate) || function (decorators, target, key, desc) {
     var c = arguments.length, r = c < 3 ? target : desc === null ? desc = Object.getOwnPropertyDescriptor(target, key) : desc, d;
     if (typeof Reflect === "object" && typeof Reflect.decorate === "function") r = Reflect.decorate(decorators, target, key, desc);
     else for (var i = decorators.length - 1; i >= 0; i--) if (d = decorators[i]) r = (c < 3 ? d(r) : c > 3 ? d(target, key, r) : d(target, key)) || r;
     return c > 3 && r && Object.defineProperty(target, key, r), r;
 };
+
 
 
 
@@ -3049,71 +3062,79 @@ var AppModule = (function () {
 AppModule = __decorate([
     Object(__WEBPACK_IMPORTED_MODULE_1__angular_core__["L" /* NgModule */])({
         declarations: [
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_9__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */],
-            __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__["a" /* NewOrderFormCustomerListPage */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_orders_list_orders_list__["a" /* OrdersListPage */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_order_details_order_details__["a" /* OrderDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_customer_list_customer_list__["a" /* CustomerListPage */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_customer_details_customer_details__["a" /* CustomerDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_customer_form_customer_form__["a" /* CustomerFormPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_order_details_form_order_details_form__["a" /* OrderDetailsFormPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_product_form_product_form__["a" /* ProductFormPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_payment_form_payment_form__["a" /* PaymentFormPage */],
-            __WEBPACK_IMPORTED_MODULE_23__pages_order_details_components_panels_customer_details_card_customer_details_card__["a" /* CustomerDetailsCardComponent */],
-            __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_order_details_card_order_details_card__["a" /* OrderDetailsCardComponent */],
-            __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_payments_list_card_payments_list_card__["a" /* PaymentsListCardComponent */],
-            __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_panels_products_list_card_products_list_card__["a" /* ProductsListCardComponent */],
-            __WEBPACK_IMPORTED_MODULE_38__components_payment_report_payment_report__["a" /* PaymentReportComponent */],
-            __WEBPACK_IMPORTED_MODULE_39__components_product_report_product_report__["a" /* ProductReportComponent */],
-            __WEBPACK_IMPORTED_MODULE_28__pipes_format_date_format_date__["a" /* FormatDatePipe */],
-            __WEBPACK_IMPORTED_MODULE_27__pipes_calculate_balance_calculate_balance__["a" /* CalculateBalancePipe */]
+            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__["a" /* NewOrderFormCustomerListPage */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_orders_list_orders_list__["a" /* OrdersListPage */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_order_details_order_details__["a" /* OrderDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_customer_list_customer_list__["a" /* CustomerListPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_customer_details_customer_details__["a" /* CustomerDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_customer_form_customer_form__["a" /* CustomerFormPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_forms_order_details_form_order_details_form__["a" /* OrderDetailsFormPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_product_form_product_form__["a" /* ProductFormPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_payment_form_payment_form__["a" /* PaymentFormPage */],
+            __WEBPACK_IMPORTED_MODULE_24__pages_order_details_components_panels_customer_details_card_customer_details_card__["a" /* CustomerDetailsCardComponent */],
+            __WEBPACK_IMPORTED_MODULE_23__pages_order_details_components_panels_order_details_card_order_details_card__["a" /* OrderDetailsCardComponent */],
+            __WEBPACK_IMPORTED_MODULE_22__pages_order_details_components_panels_payments_list_card_payments_list_card__["a" /* PaymentsListCardComponent */],
+            __WEBPACK_IMPORTED_MODULE_21__pages_order_details_components_panels_products_list_card_products_list_card__["a" /* ProductsListCardComponent */],
+            __WEBPACK_IMPORTED_MODULE_39__components_payment_report_payment_report__["a" /* PaymentReportComponent */],
+            __WEBPACK_IMPORTED_MODULE_40__components_product_report_product_report__["a" /* ProductReportComponent */],
+            __WEBPACK_IMPORTED_MODULE_29__pipes_format_date_format_date__["a" /* FormatDatePipe */],
+            __WEBPACK_IMPORTED_MODULE_28__pipes_calculate_balance_calculate_balance__["a" /* CalculateBalancePipe */]
         ],
         imports: [
             __WEBPACK_IMPORTED_MODULE_0__angular_platform_browser__["a" /* BrowserModule */],
-            __WEBPACK_IMPORTED_MODULE_5__angular_http__["c" /* HttpModule */],
-            __WEBPACK_IMPORTED_MODULE_35_angularfire2__["a" /* AngularFireModule */].initializeApp(config),
-            __WEBPACK_IMPORTED_MODULE_36_angularfire2_auth__["b" /* AngularFireAuthModule */],
-            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */], {
+            __WEBPACK_IMPORTED_MODULE_6__angular_http__["c" /* HttpModule */],
+            __WEBPACK_IMPORTED_MODULE_3__ionic_storage__["a" /* IonicStorageModule */].forRoot(),
+            __WEBPACK_IMPORTED_MODULE_36_angularfire2__["a" /* AngularFireModule */].initializeApp(config),
+            __WEBPACK_IMPORTED_MODULE_37_angularfire2_auth__["b" /* AngularFireAuthModule */],
+            __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["e" /* IonicModule */].forRoot(__WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */], {
                 monthNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
                 monthShortNames: ['Ocak', 'Şubat', 'Mart', 'Nisan', 'Mayıs', 'Haziran', 'Temmuz', 'Ağustos', 'Eylül', 'Ekim', 'Kasım', 'Aralık'],
                 dayNames: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'],
                 dayShortNames: ['Pazartesi', 'Salı', 'Çarşamba', 'Perşembe', 'Cuma', 'Cumartesi', 'Pazar'],
+            }, {
+                links: [
+                    { loadChildren: '../pages/new-order-form/new-order-form-customer-list/new-order-form-customer-list.module#NewOrderFormCustomerListPageModule', name: 'NewOrderFormCustomerListPage', segment: 'new-order-form-customer-list', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/login/login.module#LoginPageModule', name: 'LoginPage', segment: 'login', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/customer-details/customer-details.module#CustomerDetailsPageModule', name: 'CustomerDetailsPage', segment: 'customer-details', priority: 'low', defaultHistory: [] },
+                    { loadChildren: '../pages/customer-list/customer-list.module#CustomerListPageModule', name: 'CustomerListPage', segment: 'customer-list', priority: 'low', defaultHistory: [] }
+                ]
             })
         ],
         bootstrap: [__WEBPACK_IMPORTED_MODULE_2_ionic_angular__["c" /* IonicApp */]],
         entryComponents: [
-            __WEBPACK_IMPORTED_MODULE_3__app_component__["a" /* MyApp */],
-            __WEBPACK_IMPORTED_MODULE_9__pages_login_login__["a" /* LoginPage */],
-            __WEBPACK_IMPORTED_MODULE_4__pages_home_home__["a" /* HomePage */],
-            __WEBPACK_IMPORTED_MODULE_10__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */],
-            __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__["a" /* NewOrderFormCustomerListPage */],
-            __WEBPACK_IMPORTED_MODULE_12__pages_orders_list_orders_list__["a" /* OrdersListPage */],
-            __WEBPACK_IMPORTED_MODULE_13__pages_order_details_order_details__["a" /* OrderDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_14__pages_customer_list_customer_list__["a" /* CustomerListPage */],
-            __WEBPACK_IMPORTED_MODULE_15__pages_customer_details_customer_details__["a" /* CustomerDetailsPage */],
-            __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_customer_form_customer_form__["a" /* CustomerFormPage */],
-            __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_order_details_form_order_details_form__["a" /* OrderDetailsFormPage */],
-            __WEBPACK_IMPORTED_MODULE_16__pages_order_details_components_forms_product_form_product_form__["a" /* ProductFormPage */],
-            __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_payment_form_payment_form__["a" /* PaymentFormPage */]
+            __WEBPACK_IMPORTED_MODULE_4__app_component__["a" /* MyApp */],
+            __WEBPACK_IMPORTED_MODULE_10__pages_login_login__["a" /* LoginPage */],
+            __WEBPACK_IMPORTED_MODULE_5__pages_home_home__["a" /* HomePage */],
+            __WEBPACK_IMPORTED_MODULE_11__pages_new_order_form_new_order_form__["a" /* NewOrderFormPage */],
+            __WEBPACK_IMPORTED_MODULE_12__pages_new_order_form_new_order_form_customer_list_new_order_form_customer_list__["a" /* NewOrderFormCustomerListPage */],
+            __WEBPACK_IMPORTED_MODULE_13__pages_orders_list_orders_list__["a" /* OrdersListPage */],
+            __WEBPACK_IMPORTED_MODULE_14__pages_order_details_order_details__["a" /* OrderDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_15__pages_customer_list_customer_list__["a" /* CustomerListPage */],
+            __WEBPACK_IMPORTED_MODULE_16__pages_customer_details_customer_details__["a" /* CustomerDetailsPage */],
+            __WEBPACK_IMPORTED_MODULE_19__pages_order_details_components_forms_customer_form_customer_form__["a" /* CustomerFormPage */],
+            __WEBPACK_IMPORTED_MODULE_20__pages_order_details_components_forms_order_details_form_order_details_form__["a" /* OrderDetailsFormPage */],
+            __WEBPACK_IMPORTED_MODULE_17__pages_order_details_components_forms_product_form_product_form__["a" /* ProductFormPage */],
+            __WEBPACK_IMPORTED_MODULE_18__pages_order_details_components_forms_payment_form_payment_form__["a" /* PaymentFormPage */]
         ],
         providers: [
-            __WEBPACK_IMPORTED_MODULE_6__ionic_native_status_bar__["a" /* StatusBar */],
-            __WEBPACK_IMPORTED_MODULE_7__ionic_native_splash_screen__["a" /* SplashScreen */],
+            __WEBPACK_IMPORTED_MODULE_7__ionic_native_status_bar__["a" /* StatusBar */],
+            __WEBPACK_IMPORTED_MODULE_8__ionic_native_splash_screen__["a" /* SplashScreen */],
             { provide: __WEBPACK_IMPORTED_MODULE_1__angular_core__["v" /* ErrorHandler */], useClass: __WEBPACK_IMPORTED_MODULE_2_ionic_angular__["d" /* IonicErrorHandler */] },
-            __WEBPACK_IMPORTED_MODULE_24__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_8__ionic_native_onesignal__["a" /* OneSignal */],
-            __WEBPACK_IMPORTED_MODULE_25__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */],
-            __WEBPACK_IMPORTED_MODULE_26__providers_city_district_city_district__["a" /* CityDistrictProvider */],
-            __WEBPACK_IMPORTED_MODULE_29__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_33__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_37__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */],
-            __WEBPACK_IMPORTED_MODULE_34__providers_globals_globals__["a" /* GlobalsProvider */]
+            __WEBPACK_IMPORTED_MODULE_25__providers_auth_service_auth_service__["a" /* AuthServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_9__ionic_native_onesignal__["a" /* OneSignal */],
+            __WEBPACK_IMPORTED_MODULE_26__providers_onesignal_notification_onesignal_notification__["a" /* OnesignalNotificationProvider */],
+            __WEBPACK_IMPORTED_MODULE_27__providers_city_district_city_district__["a" /* CityDistrictProvider */],
+            __WEBPACK_IMPORTED_MODULE_30__providers_Database_Service_Providers_order_db_service_order_db_service__["a" /* OrderDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_31__providers_Database_Service_Providers_customer_db_service_customer_db_service__["a" /* CustomerDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_32__providers_Database_Service_Providers_product_db_service_product_db_service__["a" /* ProductDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_33__providers_Database_Service_Providers_payment_db_service_payment_db_service__["a" /* PaymentDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_34__providers_Database_Service_Providers_event_db_service_event_db_service__["a" /* EventDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_38__providers_Database_Service_Providers_reports_db_service_reports_db_service__["a" /* ReportsDbServiceProvider */],
+            __WEBPACK_IMPORTED_MODULE_35__providers_globals_globals__["a" /* GlobalsProvider */]
         ]
     })
 ], AppModule);

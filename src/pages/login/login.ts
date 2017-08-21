@@ -4,6 +4,7 @@ import { AuthServiceProvider } from "../../providers/auth-service/auth-service";
 import { NewOrderFormPage } from "../new-order-form/new-order-form";
 import { HomePage } from "../home/home";
 import { OneSignal } from '@ionic-native/onesignal';
+import { Storage } from '@ionic/storage';
 
 @IonicPage()
 @Component({
@@ -24,10 +25,22 @@ export class LoginPage {
     public navParams: NavParams,
     private menuController: MenuController,
     private authService: AuthServiceProvider,
-    private onesignal: OneSignal
+    private onesignal: OneSignal,
+    private storage: Storage
   ) {
     this.menuController.enable(false);
 
+    storage.get('email').then((email) => {
+      if (email) {
+        this.email = email;
+      }
+    });
+
+    storage.get('password').then((password) => {
+      if (password) {
+        this.password = password;
+      }
+    });
   }
 
   registerModeOn() {
@@ -77,6 +90,9 @@ export class LoginPage {
               } else {
                 this.onesignal.sendTag("isManager", "false");
               }
+
+              this.storage.set('email', this.email);
+              this.storage.set('password', this.password);
 
               this.menuController.enable(true);
 
