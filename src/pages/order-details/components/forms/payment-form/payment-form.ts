@@ -54,7 +54,7 @@ export class PaymentFormPage {
       this.payment = {
         type: "Nakit",
         amount: null,
-        date: new Date(),
+        date: (new Date()).toISOString(),
         currency: "TRY",
         installments: null,
         personnel: this.auth.getUser(),

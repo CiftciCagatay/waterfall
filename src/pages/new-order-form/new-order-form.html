@@ -117,12 +117,21 @@
             <ion-card-content style="margin-top: 12px;">
               <ion-list>
                 <label ion-item>
+                  <ion-label>Sipariş Tarihi</ion-label>
+                  <ion-datetime 
+                    name="orderDate" 
+                    [(ngModel)]="order.orderDetails.orderDate"
+                  ></ion-datetime>
+                </label>
+
+                <label ion-item>
                   <ion-label>İş Teslim Tarihi</ion-label>
                   <ion-datetime 
                     name="deliveryDate" 
                     [(ngModel)]="order.orderDetails.deliveryDate"
                   ></ion-datetime>
                 </label>
+
 
                 <label ion-item>
                   <ion-label fixed>Sipariş Tutarı</ion-label>
@@ -157,6 +166,14 @@
                   <ion-select name="paymentType" [(ngModel)]="order.payments[0].type">
                     <ion-option *ngFor="let paymentType of pds.paymentTypes">{{ paymentType }}</ion-option>
                   </ion-select>
+                </label>
+
+                <label ion-item>
+                  <ion-label>Ödeme Tarihi</ion-label>
+                  <ion-datetime 
+                    name="paymentDate" 
+                    [(ngModel)]="order.payments[0].date"
+                  ></ion-datetime>
                 </label>
 
                 <label ion-item>

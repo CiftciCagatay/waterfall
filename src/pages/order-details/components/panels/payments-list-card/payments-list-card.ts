@@ -38,6 +38,7 @@ export class PaymentsListCardComponent {
       this.payments[data.index].currency = data.payment.currency;
       this.payments[data.index].installments = data.payment.installments;
       this.payments[data.index].bank = data.payment.bank;
+      this.payments[data.index].date = data.payment.date;
     })
   }
 

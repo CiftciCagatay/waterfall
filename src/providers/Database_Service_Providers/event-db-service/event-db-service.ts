@@ -25,7 +25,7 @@ export class EventDbServiceProvider {
     return this.http.get(url);
   }
 
-  logEvent(title: string, detail: string, personnel: any, date: Date) {
+  logEvent(title: string, detail: string, personnel: any, date: any) {
     let url = this.globals.ref + "/logs";
 
     this.http.post(url, {

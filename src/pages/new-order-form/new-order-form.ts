@@ -33,7 +33,7 @@ export class NewOrderFormPage {
     },
 
     orderDetails: {
-      orderDate: new Date(),
+      orderDate: (new Date()).toISOString(),
       deliveryDate: (new Date()).toISOString(),
       personnel: this.auth.getUser(),
       amount: null,
@@ -51,7 +51,7 @@ export class NewOrderFormPage {
         personnel: this.auth.getUser(),
         installments: null,
         bank: "",
-        date: new Date()
+        date: (new Date()).toISOString()
       }
     ]
   };
@@ -210,7 +210,7 @@ export class NewOrderFormPage {
       },
 
       orderDetails: {
-        orderDate: new Date(),
+        orderDate: (new Date()).toISOString(),
         deliveryDate: (new Date()).toISOString(),
         personnel: this.auth.getUser(),
         amount: null,
@@ -228,7 +228,7 @@ export class NewOrderFormPage {
           personnel: this.auth.getUser(),
           installments: null,
           bank: "",
-          date: new Date()
+          date: (new Date()).toISOString()
         }
       ]
     };

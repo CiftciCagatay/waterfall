@@ -20,14 +20,15 @@ export class FormatDatePipe implements PipeTransform {
     if (val) {
       let value;
 
-      if (typeof val.getMonth === 'function') {
-        value = val;
-      } else {
+      if (typeof val === 'string') {
+
         value = new Date(val)
+
+      } else {
+        value = val;
       }
 
-
-      let day = value.getDay() > 9 ? value.getDay() : '0' + value.getDay()
+      let day = value.getDate() > 9 ? value.getDate() : '0' + value.getDate()
       let month = value.getMonth() > 8 ? value.getMonth() + 1 : '0' + (value.getMonth() + 1)
       let year = value.getFullYear()
       let hours = value.getHours() > 9 ? value.getHours() : '0' + value.getHours()

@@ -31,6 +31,14 @@
         </ion-select>
       </ion-item>
 
+      <label ion-item>
+        <ion-label>Ödeme Tarihi</ion-label>
+        <ion-datetime 
+          name="paymentDate" 
+          [(ngModel)]="payment.date"
+        ></ion-datetime>
+      </label>
+
       <ion-item>
         <ion-label fixed>Tutar</ion-label>
         <ion-input
